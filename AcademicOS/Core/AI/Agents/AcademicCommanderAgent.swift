@@ -53,7 +53,7 @@ public final class AcademicCommanderAgent: Agent, @unchecked Sendable {
         if lower.contains("debim") && (lower.contains("materyal") || lower.contains("doküman") || lower.contains("yeni")) {
             let connector = NEUUniversityConnector.shared
             if let payload = await connector.cachedDebimPayload, !payload.documents.isEmpty {
-                let recent = payload.documents.prefix(4).map { "• \($0.title) (\($0.courseCode ?? "Genel")) [DEBİM]" }.joined(separator: "\n")
+                let recent = payload.documents.prefix(4).map { "• \($0.fileName) (\($0.courseCode)) [DEBİM]" }.joined(separator: "\n")
                 return "DEBİM LMS üzerinden tespit edilen güncel materyaller:\n\(recent)"
             }
             return "DEBİM'de şu an için yeni yüklenen ders materyali bulunmuyor. En son sync durumunu DEBİM panelinden kontrol edebilirsiniz."
@@ -112,7 +112,7 @@ public final class AcademicCommanderAgent: Agent, @unchecked Sendable {
             if let tasks = try? await taskRepo?.getTasks() {
                 let pending = tasks.filter { !$0.isCompleted }
                 if !pending.isEmpty {
-                    let taskList = pending.prefix(5).map { "• \($0.title) (\($0.dueDate ?? "Tarihsiz"))" }.joined(separator: "\n")
+                    let taskList = pending.prefix(5).map { "• \($0.title) (\($0.dueDate.map { formatDate($0) } ?? "Tarihsiz"))" }.joined(separator: "\n")
                     return "Bu hafta teslim etmeniz gereken / tamamlanmamış görevler:\n\(taskList)"
                 } else {
                     return "Harika! Şu anda bekleyen veya teslim tarihi yaklaşan tamamlanmamış bir ödeviniz bulunmuyor."
@@ -145,10 +145,10 @@ public final class AcademicCommanderAgent: Agent, @unchecked Sendable {
             if let tasks = try? await taskRepo?.getTasks() {
                 let now = Date()
                 let overdue = tasks.filter { task in
-                    !task.isCompleted && (task.dueDateTime ?? Date.distantFuture) < now
+                    !task.isCompleted && (task.dueDate ?? Date.distantFuture) < now
                 }
                 if !overdue.isEmpty {
-                    let list = overdue.prefix(5).map { "• \($0.title) (Son Tarih: \($0.dueDate ?? "Belirtilmemiş"))" }.joined(separator: "\n")
+                    let list = overdue.prefix(5).map { "• \($0.title) (Son Tarih: \($0.dueDate.map { formatDate($0) } ?? "Belirtilmemiş"))" }.joined(separator: "\n")
                     return "Gecikmiş görevleriniz bulunmaktadır:\n\(list)"
                 } else {
                     return "Gecikmiş herhangi bir göreviniz bulunmuyor. Tüm teslimleriniz güncel!"
@@ -159,7 +159,7 @@ public final class AcademicCommanderAgent: Agent, @unchecked Sendable {
         // Deterministic Fast-Path: Today's Classes / Schedule
         if lower.contains("bugünkü ders") || lower.contains("today's class") || lower.contains("ders programı") {
             if let courses = try? await courseRepo?.getCourses(), !courses.isEmpty {
-                let courseList = courses.map { "• \($0.code): \($0.name) (\($0.classroom ?? "Derslik belirtilmemiş"))" }.joined(separator: "\n")
+                let courseList = courses.map { "• \($0.code): \($0.name) (\($0.lectureRoom.isEmpty ? "Derslik belirtilmemiş" : $0.lectureRoom))" }.joined(separator: "\n")
                 return "Kayıtlı dersleriniz ve programınız:\n\(courseList)"
             }
         }

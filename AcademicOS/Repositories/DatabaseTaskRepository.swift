@@ -33,7 +33,7 @@ public final class DatabaseTaskRepository: TaskRepositoryProtocol, @unchecked Se
     }
 
     public func deleteTask(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(AcademicTask.self, id: id)
     }
 
     // Assignments
@@ -52,6 +52,6 @@ public final class DatabaseTaskRepository: TaskRepositoryProtocol, @unchecked Se
     }
 
     public func deleteAssignment(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(Assignment.self, id: id)
     }
 }

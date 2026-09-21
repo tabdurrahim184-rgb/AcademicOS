@@ -35,7 +35,7 @@ public final class AppleFoundationModelProvider: @unchecked Sendable {
                 let elapsed = Int(Date().timeIntervalSince(startTime) * 1000)
 
                 return AIResponse(
-                    content: response.text,
+                    content: response.content,
                     providerType: .local,
                     modelIdentifier: modelIdentifier,
                     latencyMs: elapsed,

@@ -52,7 +52,7 @@ public final class UniversityAgent: Agent, @unchecked Sendable {
         if lower.contains("sınav") || lower.contains("exam") {
             if let exams = try? await examRepo?.getAllExams(), !exams.isEmpty {
                 let sorted = exams.sorted { $0.examDate < $1.examDate }
-                let list = sorted.prefix(4).map { "• \($0.title) (\($0.examType)): Tarih: \(formatDate($0.examDate)), Salon: \($0.room ?? "İlan edilecek")" }.joined(separator: "\n")
+                let list = sorted.prefix(4).map { "• \($0.title) (\($0.examType)): Tarih: \(formatDate($0.examDate)), Salon: \($0.room.isEmpty ? "İlan edilecek" : $0.room)" }.joined(separator: "\n")
                 return "Portaldan çekilen resmi sınav takviminiz:\n\n\(list)"
             }
             return "Bu bilgi üniversite portalından alınamadı veya henüz bir sınav programı yayınlanmadı."
@@ -69,8 +69,9 @@ public final class UniversityAgent: Agent, @unchecked Sendable {
 
         // 4. Assignments & Deadlines
         if lower.contains("ödev") || lower.contains("assignment") || lower.contains("teslim") {
-            if let tasks = try? await taskRepo?.getAllTasks() {
-                let pending = tasks.filter { !$0.isCompleted }
+            let courseId = context["course_id"].flatMap { UUID(uuidString: $0) }
+            if let tasks = try? await taskRepo?.getTasks() {
+                let pending = tasks.filter { !$0.isCompleted && (courseId == nil || $0.courseId == courseId) }
                 if !pending.isEmpty {
                     let list = pending.prefix(5).map { "• \($0.title) — Son Teslim: \(formatDate($0.dueDate ?? Date()))" }.joined(separator: "\n")
                     return "Portalda aktif olarak bekleyen ödev teslimleriniz:\n\n\(list)"

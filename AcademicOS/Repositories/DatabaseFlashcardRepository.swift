@@ -47,6 +47,6 @@ public final class DatabaseFlashcardRepository: FlashcardRepositoryProtocol, @un
     }
 
     public func deleteFlashcard(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(Flashcard.self, id: id)
     }
 }

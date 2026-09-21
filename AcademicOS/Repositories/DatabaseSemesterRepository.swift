@@ -39,6 +39,6 @@ public final class DatabaseSemesterRepository: SemesterRepositoryProtocol, @unch
     }
 
     public func deleteSemester(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(Semester.self, id: id)
     }
 }

@@ -81,10 +81,10 @@ public actor SQLiteDatabaseManager: LocalStoreProtocol {
         try writeDiskDictionary(diskData)
     }
 
-    public func fetch<T: Identifiable & Codable & Sendable>(id: T.ID) async throws -> T? {
+    public func fetch<T: Identifiable & Codable & Sendable>(_ type: T.Type, id: T.ID) async throws -> T? {
         try await ensureReady()
         let diskData = readDiskDictionary()
-        let typeKey = keyForType(T.self)
+        let typeKey = keyForType(type)
         let itemIdString = String(describing: id)
 
         guard let data = diskData[typeKey]?[itemIdString] else { return nil }
@@ -93,10 +93,14 @@ public actor SQLiteDatabaseManager: LocalStoreProtocol {
         return try decoder.decode(T.self, from: data)
     }
 
-    public func fetchAll<T: Identifiable & Codable & Sendable>() async throws -> [T] {
+    public func fetch<T: Identifiable & Codable & Sendable>(id: T.ID) async throws -> T? {
+        try await fetch(T.self, id: id)
+    }
+
+    public func fetchAll<T: Identifiable & Codable & Sendable>(_ type: T.Type) async throws -> [T] {
         try await ensureReady()
         let diskData = readDiskDictionary()
-        let typeKey = keyForType(T.self)
+        let typeKey = keyForType(type)
         guard let dict = diskData[typeKey] else { return [] }
 
         let decoder = JSONDecoder()
@@ -110,13 +114,21 @@ public actor SQLiteDatabaseManager: LocalStoreProtocol {
         return results
     }
 
-    public func delete<T: Identifiable & Codable & Sendable>(id: T.ID) async throws {
+    public func fetchAll<T: Identifiable & Codable & Sendable>() async throws -> [T] {
+        try await fetchAll(T.self)
+    }
+
+    public func delete<T: Identifiable & Codable & Sendable>(_ type: T.Type, id: T.ID) async throws {
         try await ensureReady()
         var diskData = readDiskDictionary()
-        let typeKey = keyForType(T.self)
+        let typeKey = keyForType(type)
         let itemIdString = String(describing: id)
         diskData[typeKey]?.removeValue(forKey: itemIdString)
         try writeDiskDictionary(diskData)
+    }
+
+    public func delete<T: Identifiable & Codable & Sendable>(type: T.Type, id: T.ID) async throws {
+        try await delete(type, id: id)
     }
 
     public func deleteAll<T: Identifiable & Codable & Sendable>(_ type: T.Type) async throws {

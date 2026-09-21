@@ -37,6 +37,6 @@ public final class DatabaseCourseRepository: CourseRepositoryProtocol, @unchecke
     }
 
     public func deleteCourse(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(Course.self, id: id)
     }
 }

@@ -46,160 +46,161 @@
 		00000000000000000000276C /* AcademicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000276B /* AcademicCard.swift */; };
 		00000000000000000000276E /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000276D /* ActionButton.swift */; };
 		000000000000000000002770 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000276F /* EmptyStateView.swift */; };
-		000000000000000000002772 /* MetricBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002771 /* MetricBadge.swift */; };
-		000000000000000000002774 /* OfflineBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002773 /* OfflineBanner.swift */; };
-		000000000000000000002776 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002775 /* StatusBadge.swift */; };
-		000000000000000000002778 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002777 /* CornerRadius.swift */; };
-		00000000000000000000277A /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002779 /* Spacing.swift */; };
-		00000000000000000000277C /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000277B /* Typography.swift */; };
-		00000000000000000000277E /* AcademicDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000277D /* AcademicDocument.swift */; };
-		000000000000000000002780 /* AcademicErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000277F /* AcademicErrors.swift */; };
-		000000000000000000002782 /* AcademicMastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002781 /* AcademicMastery.swift */; };
-		000000000000000000002784 /* AcademicTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002783 /* AcademicTask.swift */; };
-		000000000000000000002786 /* AIMemoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002785 /* AIMemoryEntry.swift */; };
-		000000000000000000002788 /* AINoteVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002787 /* AINoteVersion.swift */; };
-		00000000000000000000278A /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002789 /* Assignment.swift */; };
-		00000000000000000000278C /* AudioMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000278B /* AudioMarker.swift */; };
-		00000000000000000000278E /* AudioRecordingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000278D /* AudioRecordingMetadata.swift */; };
-		000000000000000000002790 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000278F /* Course.swift */; };
-		000000000000000000002792 /* Exam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002791 /* Exam.swift */; };
-		000000000000000000002794 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002793 /* Flashcard.swift */; };
-		000000000000000000002796 /* GPARecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002795 /* GPARecord.swift */; };
-		000000000000000000002798 /* GraduationProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002797 /* GraduationProgress.swift */; };
-		00000000000000000000279A /* LectureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002799 /* LectureSession.swift */; };
-		00000000000000000000279C /* NEUUniversityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000279B /* NEUUniversityModels.swift */; };
-		00000000000000000000279E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000279D /* Note.swift */; };
-		0000000000000000000027A0 /* PipelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000279F /* PipelineState.swift */; };
-		0000000000000000000027A2 /* PortalDataTrustLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A1 /* PortalDataTrustLevel.swift */; };
-		0000000000000000000027A4 /* Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A3 /* Professor.swift */; };
-		0000000000000000000027A6 /* ProfessorEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A5 /* ProfessorEmphasis.swift */; };
-		0000000000000000000027A8 /* QueuedJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A7 /* QueuedJob.swift */; };
-		0000000000000000000027AA /* RealUniversityConnectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A9 /* RealUniversityConnectorConfiguration.swift */; };
-		0000000000000000000027AC /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027AB /* Semester.swift */; };
-		0000000000000000000027AE /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027AD /* StudentProfile.swift */; };
-		0000000000000000000027B0 /* StudySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027AF /* StudySession.swift */; };
-		0000000000000000000027B2 /* Transcript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B1 /* Transcript.swift */; };
-		0000000000000000000027B4 /* UniversityPortalModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B3 /* UniversityPortalModels.swift */; };
-		0000000000000000000027B6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B5 /* NetworkMonitor.swift */; };
-		0000000000000000000027B8 /* NetworkMonitorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B7 /* NetworkMonitorProtocol.swift */; };
-		0000000000000000000027BA /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B9 /* NetworkStatus.swift */; };
-		0000000000000000000027BC /* DomainPolicyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027BB /* DomainPolicyService.swift */; };
-		0000000000000000000027BE /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027BD /* KeychainKey.swift */; };
-		0000000000000000000027C0 /* KeychainServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027BF /* KeychainServiceProtocol.swift */; };
-		0000000000000000000027C2 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C1 /* KeychainStorage.swift */; };
-		0000000000000000000027C4 /* SecurityActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C3 /* SecurityActivityLog.swift */; };
-		0000000000000000000027C6 /* UniversityCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C5 /* UniversityCredentialManager.swift */; };
-		0000000000000000000027C8 /* UniversityWebSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C7 /* UniversityWebSessionManager.swift */; };
-		0000000000000000000027CA /* DocumentFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C9 /* DocumentFileManager.swift */; };
-		0000000000000000000027CC /* AICommandCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027CB /* AICommandCenterView.swift */; };
-		0000000000000000000027CE /* AICommandCenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027CD /* AICommandCenterViewModel.swift */; };
-		0000000000000000000027D0 /* AgentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027CF /* AgentCardView.swift */; };
-		0000000000000000000027D2 /* AIRouterStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D1 /* AIRouterStatusBanner.swift */; };
-		0000000000000000000027D4 /* AIUsageTelemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D3 /* AIUsageTelemetryView.swift */; };
-		0000000000000000000027D6 /* AcademicCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D5 /* AcademicCalendarView.swift */; };
-		0000000000000000000027D8 /* AcademicCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D7 /* AcademicCalendarViewModel.swift */; };
-		0000000000000000000027DA /* EventScheduleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D9 /* EventScheduleRow.swift */; };
-		0000000000000000000027DC /* MonthCalendarOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027DB /* MonthCalendarOverview.swift */; };
-		0000000000000000000027DE /* CommandDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027DD /* CommandDashboardView.swift */; };
-		0000000000000000000027E0 /* CommandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027DF /* CommandViewModel.swift */; };
-		0000000000000000000027E2 /* AcademicStatusGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E1 /* AcademicStatusGrid.swift */; };
-		0000000000000000000027E4 /* GraduationHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E3 /* GraduationHeroCard.swift */; };
-		0000000000000000000027E6 /* MissionTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E5 /* MissionTimelineView.swift */; };
-		0000000000000000000027E8 /* UpcomingEventsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E7 /* UpcomingEventsSection.swift */; };
-		0000000000000000000027EA /* AddCourseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E9 /* AddCourseSheet.swift */; };
-		0000000000000000000027EC /* AddLectureSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027EB /* AddLectureSheet.swift */; };
-		0000000000000000000027EE /* LectureIntelligenceResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027ED /* LectureIntelligenceResultView.swift */; };
-		0000000000000000000027F0 /* LectureRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027EF /* LectureRecordingView.swift */; };
-		0000000000000000000027F2 /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F1 /* NoteEditorView.swift */; };
-		0000000000000000000027F4 /* TranscriptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F3 /* TranscriptDetailView.swift */; };
-		0000000000000000000027F6 /* CourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F5 /* CourseDetailView.swift */; };
-		0000000000000000000027F8 /* CourseDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F7 /* CourseDetailViewModel.swift */; };
-		0000000000000000000027FA /* CoursesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F9 /* CoursesListView.swift */; };
-		0000000000000000000027FC /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027FB /* CoursesViewModel.swift */; };
-		0000000000000000000027FE /* CourseAISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027FD /* CourseAISection.swift */; };
-		000000000000000000002800 /* CourseDocumentsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027FF /* CourseDocumentsSection.swift */; };
-		000000000000000000002802 /* CourseExamsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002801 /* CourseExamsSection.swift */; };
-		000000000000000000002804 /* CourseFlashcardsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002803 /* CourseFlashcardsSection.swift */; };
-		000000000000000000002806 /* CourseLecturesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002805 /* CourseLecturesSection.swift */; };
-		000000000000000000002808 /* CourseNotesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002807 /* CourseNotesSection.swift */; };
-		00000000000000000000280A /* CourseOverviewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002809 /* CourseOverviewSection.swift */; };
-		00000000000000000000280C /* CourseRecordingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000280B /* CourseRecordingsSection.swift */; };
-		00000000000000000000280E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000280D /* OnboardingView.swift */; };
-		000000000000000000002810 /* SettingsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000280F /* SettingsListSection.swift */; };
-		000000000000000000002812 /* StudentOverviewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002811 /* StudentOverviewHeader.swift */; };
-		000000000000000000002814 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002813 /* ProfileView.swift */; };
-		000000000000000000002816 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002815 /* ProfileViewModel.swift */; };
-		000000000000000000002818 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002817 /* RootTabView.swift */; };
-		00000000000000000000281A /* UniversityAnnouncementRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002819 /* UniversityAnnouncementRow.swift */; };
-		00000000000000000000281C /* UniversityGradeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000281B /* UniversityGradeCard.swift */; };
-		00000000000000000000281E /* ImportPreviewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000281D /* ImportPreviewSheet.swift */; };
-		000000000000000000002820 /* NEUConnectorDiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000281F /* NEUConnectorDiagnosticsView.swift */; };
-		000000000000000000002822 /* NEUDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002821 /* NEUDashboardView.swift */; };
-		000000000000000000002824 /* NEUMaterialImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002823 /* NEUMaterialImportSheet.swift */; };
-		000000000000000000002826 /* NEUTranscriptImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002825 /* NEUTranscriptImportSheet.swift */; };
-		000000000000000000002828 /* UniversityInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002827 /* UniversityInboxView.swift */; };
-		00000000000000000000282A /* UniversityPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002829 /* UniversityPortalView.swift */; };
-		00000000000000000000282C /* UniversitySetupWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000282B /* UniversitySetupWizardView.swift */; };
-		00000000000000000000282E /* AcademicRepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000282D /* AcademicRepositoryProtocols.swift */; };
-		000000000000000000002830 /* CalendarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000282F /* CalendarRepository.swift */; };
-		000000000000000000002832 /* CourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002831 /* CourseRepository.swift */; };
-		000000000000000000002834 /* DatabaseAIMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002833 /* DatabaseAIMemoryRepository.swift */; };
-		000000000000000000002836 /* DatabaseCourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002835 /* DatabaseCourseRepository.swift */; };
-		000000000000000000002838 /* DatabaseExamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002837 /* DatabaseExamRepository.swift */; };
-		00000000000000000000283A /* DatabaseFlashcardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002839 /* DatabaseFlashcardRepository.swift */; };
-		00000000000000000000283C /* DatabaseGraduationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000283B /* DatabaseGraduationRepository.swift */; };
-		00000000000000000000283E /* DatabaseLectureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000283D /* DatabaseLectureRepository.swift */; };
-		000000000000000000002840 /* DatabaseMasteryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000283F /* DatabaseMasteryRepository.swift */; };
-		000000000000000000002842 /* DatabaseNotesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002841 /* DatabaseNotesRepository.swift */; };
-		000000000000000000002844 /* DatabaseNoteVersionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002843 /* DatabaseNoteVersionRepository.swift */; };
-		000000000000000000002846 /* DatabasePipelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002845 /* DatabasePipelineRepository.swift */; };
-		000000000000000000002848 /* DatabaseProfessorEmphasisRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002847 /* DatabaseProfessorEmphasisRepository.swift */; };
-		00000000000000000000284A /* DatabaseRecordingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002849 /* DatabaseRecordingRepository.swift */; };
-		00000000000000000000284C /* DatabaseSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000284B /* DatabaseSearchRepository.swift */; };
-		00000000000000000000284E /* DatabaseSemesterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000284D /* DatabaseSemesterRepository.swift */; };
-		000000000000000000002850 /* DatabaseStudentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000284F /* DatabaseStudentRepository.swift */; };
-		000000000000000000002852 /* DatabaseTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002851 /* DatabaseTaskRepository.swift */; };
-		000000000000000000002854 /* DatabaseUniversityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002853 /* DatabaseUniversityRepository.swift */; };
-		000000000000000000002856 /* GraduationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002855 /* GraduationRepository.swift */; };
-		000000000000000000002858 /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002857 /* ProfileRepository.swift */; };
-		00000000000000000000285A /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002859 /* TaskRepository.swift */; };
-		00000000000000000000285C /* UniversityRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000285B /* UniversityRepositoryProtocol.swift */; };
-		00000000000000000000285E /* DocumentContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000285D /* DocumentContextService.swift */; };
-		000000000000000000002860 /* FlashcardGenerationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000285F /* FlashcardGenerationService.swift */; };
-		000000000000000000002862 /* InteractiveQuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002861 /* InteractiveQuizService.swift */; };
-		000000000000000000002864 /* LectureIntelligencePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002863 /* LectureIntelligencePipeline.swift */; };
-		000000000000000000002866 /* MemoryPromotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002865 /* MemoryPromotionService.swift */; };
-		000000000000000000002868 /* ProfessorEmphasisDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002867 /* ProfessorEmphasisDetector.swift */; };
-		00000000000000000000286A /* AudioPlaybackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002869 /* AudioPlaybackService.swift */; };
-		00000000000000000000286C /* AudioRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000286B /* AudioRecordingService.swift */; };
-		00000000000000000000286E /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000286D /* TranscriptionService.swift */; };
-		000000000000000000002870 /* DataHealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000286F /* DataHealthService.swift */; };
-		000000000000000000002872 /* MockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002871 /* MockDataService.swift */; };
-		000000000000000000002874 /* SyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002873 /* SyncCoordinator.swift */; };
-		000000000000000000002876 /* AcademicNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002875 /* AcademicNotificationService.swift */; };
-		000000000000000000002878 /* AcademicRelevanceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002877 /* AcademicRelevanceEngine.swift */; };
-		00000000000000000000287A /* CourseReconciliationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002879 /* CourseReconciliationEngine.swift */; };
-		00000000000000000000287C /* CustomUniversityConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000287B /* CustomUniversityConnector.swift */; };
-		00000000000000000000287E /* DemoUniversityConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000287D /* DemoUniversityConnector.swift */; };
-		000000000000000000002880 /* GPACalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000287F /* GPACalculator.swift */; };
-		000000000000000000002882 /* GPAWeightingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002881 /* GPAWeightingPolicy.swift */; };
-		000000000000000000002884 /* NEUChangeHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002883 /* NEUChangeHistoryService.swift */; };
-		000000000000000000002886 /* NEUCourseReconciliationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002885 /* NEUCourseReconciliationService.swift */; };
-		000000000000000000002888 /* NEULivePortalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002887 /* NEULivePortalCoordinator.swift */; };
-		00000000000000000000288A /* NEUMoodleConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002889 /* NEUMoodleConnector.swift */; };
-		00000000000000000000288C /* NEUPortalInspectionExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000288B /* NEUPortalInspectionExporter.swift */; };
-		00000000000000000000288E /* NEUStudentPortalConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000288D /* NEUStudentPortalConnector.swift */; };
-		000000000000000000002890 /* NEUTranscriptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000288F /* NEUTranscriptParser.swift */; };
-		000000000000000000002892 /* NEUUniversityConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002891 /* NEUUniversityConnector.swift */; };
-		000000000000000000002894 /* PortalChangeDetectionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002893 /* PortalChangeDetectionEngine.swift */; };
-		000000000000000000002896 /* PortalInspectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002895 /* PortalInspectionService.swift */; };
-		000000000000000000002898 /* PortalPageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002897 /* PortalPageClassifier.swift */; };
-		00000000000000000000289A /* UniversityBackgroundRefreshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002899 /* UniversityBackgroundRefreshService.swift */; };
-		00000000000000000000289C /* UniversityConnectorDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000289B /* UniversityConnectorDiagnostics.swift */; };
-		00000000000000000000289E /* UniversityConnectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000289D /* UniversityConnectorProtocol.swift */; };
-		0000000000000000000028A0 /* UniversityDocumentDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000289F /* UniversityDocumentDownloader.swift */; };
-		0000000000000000000028A2 /* UniversitySyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000028A1 /* UniversitySyncEngine.swift */; };
-		0000000000000000000028A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000028A3 /* Assets.xcassets */; };
+		000000000000000000002772 /* FilterChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002771 /* FilterChip.swift */; };
+		000000000000000000002774 /* MetricBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002773 /* MetricBadge.swift */; };
+		000000000000000000002776 /* OfflineBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002775 /* OfflineBanner.swift */; };
+		000000000000000000002778 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002777 /* StatusBadge.swift */; };
+		00000000000000000000277A /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002779 /* CornerRadius.swift */; };
+		00000000000000000000277C /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000277B /* Spacing.swift */; };
+		00000000000000000000277E /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000277D /* Typography.swift */; };
+		000000000000000000002780 /* AcademicDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000277F /* AcademicDocument.swift */; };
+		000000000000000000002782 /* AcademicErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002781 /* AcademicErrors.swift */; };
+		000000000000000000002784 /* AcademicMastery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002783 /* AcademicMastery.swift */; };
+		000000000000000000002786 /* AcademicTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002785 /* AcademicTask.swift */; };
+		000000000000000000002788 /* AIMemoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002787 /* AIMemoryEntry.swift */; };
+		00000000000000000000278A /* AINoteVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002789 /* AINoteVersion.swift */; };
+		00000000000000000000278C /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000278B /* Assignment.swift */; };
+		00000000000000000000278E /* AudioMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000278D /* AudioMarker.swift */; };
+		000000000000000000002790 /* AudioRecordingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000278F /* AudioRecordingMetadata.swift */; };
+		000000000000000000002792 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002791 /* Course.swift */; };
+		000000000000000000002794 /* Exam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002793 /* Exam.swift */; };
+		000000000000000000002796 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002795 /* Flashcard.swift */; };
+		000000000000000000002798 /* GPARecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002797 /* GPARecord.swift */; };
+		00000000000000000000279A /* GraduationProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002799 /* GraduationProgress.swift */; };
+		00000000000000000000279C /* LectureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000279B /* LectureSession.swift */; };
+		00000000000000000000279E /* NEUUniversityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000279D /* NEUUniversityModels.swift */; };
+		0000000000000000000027A0 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000279F /* Note.swift */; };
+		0000000000000000000027A2 /* PipelineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A1 /* PipelineState.swift */; };
+		0000000000000000000027A4 /* PortalDataTrustLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A3 /* PortalDataTrustLevel.swift */; };
+		0000000000000000000027A6 /* Professor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A5 /* Professor.swift */; };
+		0000000000000000000027A8 /* ProfessorEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A7 /* ProfessorEmphasis.swift */; };
+		0000000000000000000027AA /* QueuedJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027A9 /* QueuedJob.swift */; };
+		0000000000000000000027AC /* RealUniversityConnectorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027AB /* RealUniversityConnectorConfiguration.swift */; };
+		0000000000000000000027AE /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027AD /* Semester.swift */; };
+		0000000000000000000027B0 /* StudentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027AF /* StudentProfile.swift */; };
+		0000000000000000000027B2 /* StudySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B1 /* StudySession.swift */; };
+		0000000000000000000027B4 /* Transcript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B3 /* Transcript.swift */; };
+		0000000000000000000027B6 /* UniversityPortalModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B5 /* UniversityPortalModels.swift */; };
+		0000000000000000000027B8 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B7 /* NetworkMonitor.swift */; };
+		0000000000000000000027BA /* NetworkMonitorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027B9 /* NetworkMonitorProtocol.swift */; };
+		0000000000000000000027BC /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027BB /* NetworkStatus.swift */; };
+		0000000000000000000027BE /* DomainPolicyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027BD /* DomainPolicyService.swift */; };
+		0000000000000000000027C0 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027BF /* KeychainKey.swift */; };
+		0000000000000000000027C2 /* KeychainServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C1 /* KeychainServiceProtocol.swift */; };
+		0000000000000000000027C4 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C3 /* KeychainStorage.swift */; };
+		0000000000000000000027C6 /* SecurityActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C5 /* SecurityActivityLog.swift */; };
+		0000000000000000000027C8 /* UniversityCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C7 /* UniversityCredentialManager.swift */; };
+		0000000000000000000027CA /* UniversityWebSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027C9 /* UniversityWebSessionManager.swift */; };
+		0000000000000000000027CC /* DocumentFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027CB /* DocumentFileManager.swift */; };
+		0000000000000000000027CE /* AICommandCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027CD /* AICommandCenterView.swift */; };
+		0000000000000000000027D0 /* AICommandCenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027CF /* AICommandCenterViewModel.swift */; };
+		0000000000000000000027D2 /* AgentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D1 /* AgentCardView.swift */; };
+		0000000000000000000027D4 /* AIRouterStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D3 /* AIRouterStatusBanner.swift */; };
+		0000000000000000000027D6 /* AIUsageTelemetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D5 /* AIUsageTelemetryView.swift */; };
+		0000000000000000000027D8 /* AcademicCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D7 /* AcademicCalendarView.swift */; };
+		0000000000000000000027DA /* AcademicCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027D9 /* AcademicCalendarViewModel.swift */; };
+		0000000000000000000027DC /* EventScheduleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027DB /* EventScheduleRow.swift */; };
+		0000000000000000000027DE /* MonthCalendarOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027DD /* MonthCalendarOverview.swift */; };
+		0000000000000000000027E0 /* CommandDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027DF /* CommandDashboardView.swift */; };
+		0000000000000000000027E2 /* CommandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E1 /* CommandViewModel.swift */; };
+		0000000000000000000027E4 /* AcademicStatusGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E3 /* AcademicStatusGrid.swift */; };
+		0000000000000000000027E6 /* GraduationHeroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E5 /* GraduationHeroCard.swift */; };
+		0000000000000000000027E8 /* MissionTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E7 /* MissionTimelineView.swift */; };
+		0000000000000000000027EA /* UpcomingEventsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027E9 /* UpcomingEventsSection.swift */; };
+		0000000000000000000027EC /* AddCourseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027EB /* AddCourseSheet.swift */; };
+		0000000000000000000027EE /* AddLectureSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027ED /* AddLectureSheet.swift */; };
+		0000000000000000000027F0 /* LectureIntelligenceResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027EF /* LectureIntelligenceResultView.swift */; };
+		0000000000000000000027F2 /* LectureRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F1 /* LectureRecordingView.swift */; };
+		0000000000000000000027F4 /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F3 /* NoteEditorView.swift */; };
+		0000000000000000000027F6 /* TranscriptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F5 /* TranscriptDetailView.swift */; };
+		0000000000000000000027F8 /* CourseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F7 /* CourseDetailView.swift */; };
+		0000000000000000000027FA /* CourseDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027F9 /* CourseDetailViewModel.swift */; };
+		0000000000000000000027FC /* CoursesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027FB /* CoursesListView.swift */; };
+		0000000000000000000027FE /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027FD /* CoursesViewModel.swift */; };
+		000000000000000000002800 /* CourseAISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000027FF /* CourseAISection.swift */; };
+		000000000000000000002802 /* CourseDocumentsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002801 /* CourseDocumentsSection.swift */; };
+		000000000000000000002804 /* CourseExamsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002803 /* CourseExamsSection.swift */; };
+		000000000000000000002806 /* CourseFlashcardsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002805 /* CourseFlashcardsSection.swift */; };
+		000000000000000000002808 /* CourseLecturesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002807 /* CourseLecturesSection.swift */; };
+		00000000000000000000280A /* CourseNotesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002809 /* CourseNotesSection.swift */; };
+		00000000000000000000280C /* CourseOverviewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000280B /* CourseOverviewSection.swift */; };
+		00000000000000000000280E /* CourseRecordingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000280D /* CourseRecordingsSection.swift */; };
+		000000000000000000002810 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000280F /* OnboardingView.swift */; };
+		000000000000000000002812 /* SettingsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002811 /* SettingsListSection.swift */; };
+		000000000000000000002814 /* StudentOverviewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002813 /* StudentOverviewHeader.swift */; };
+		000000000000000000002816 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002815 /* ProfileView.swift */; };
+		000000000000000000002818 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002817 /* ProfileViewModel.swift */; };
+		00000000000000000000281A /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002819 /* RootTabView.swift */; };
+		00000000000000000000281C /* UniversityAnnouncementRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000281B /* UniversityAnnouncementRow.swift */; };
+		00000000000000000000281E /* UniversityGradeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000281D /* UniversityGradeCard.swift */; };
+		000000000000000000002820 /* ImportPreviewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000281F /* ImportPreviewSheet.swift */; };
+		000000000000000000002822 /* NEUConnectorDiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002821 /* NEUConnectorDiagnosticsView.swift */; };
+		000000000000000000002824 /* NEUDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002823 /* NEUDashboardView.swift */; };
+		000000000000000000002826 /* NEUMaterialImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002825 /* NEUMaterialImportSheet.swift */; };
+		000000000000000000002828 /* NEUTranscriptImportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002827 /* NEUTranscriptImportSheet.swift */; };
+		00000000000000000000282A /* UniversityInboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002829 /* UniversityInboxView.swift */; };
+		00000000000000000000282C /* UniversityPortalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000282B /* UniversityPortalView.swift */; };
+		00000000000000000000282E /* UniversitySetupWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000282D /* UniversitySetupWizardView.swift */; };
+		000000000000000000002830 /* AcademicRepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000282F /* AcademicRepositoryProtocols.swift */; };
+		000000000000000000002832 /* CalendarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002831 /* CalendarRepository.swift */; };
+		000000000000000000002834 /* CourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002833 /* CourseRepository.swift */; };
+		000000000000000000002836 /* DatabaseAIMemoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002835 /* DatabaseAIMemoryRepository.swift */; };
+		000000000000000000002838 /* DatabaseCourseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002837 /* DatabaseCourseRepository.swift */; };
+		00000000000000000000283A /* DatabaseExamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002839 /* DatabaseExamRepository.swift */; };
+		00000000000000000000283C /* DatabaseFlashcardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000283B /* DatabaseFlashcardRepository.swift */; };
+		00000000000000000000283E /* DatabaseGraduationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000283D /* DatabaseGraduationRepository.swift */; };
+		000000000000000000002840 /* DatabaseLectureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000283F /* DatabaseLectureRepository.swift */; };
+		000000000000000000002842 /* DatabaseMasteryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002841 /* DatabaseMasteryRepository.swift */; };
+		000000000000000000002844 /* DatabaseNotesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002843 /* DatabaseNotesRepository.swift */; };
+		000000000000000000002846 /* DatabaseNoteVersionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002845 /* DatabaseNoteVersionRepository.swift */; };
+		000000000000000000002848 /* DatabasePipelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002847 /* DatabasePipelineRepository.swift */; };
+		00000000000000000000284A /* DatabaseProfessorEmphasisRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002849 /* DatabaseProfessorEmphasisRepository.swift */; };
+		00000000000000000000284C /* DatabaseRecordingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000284B /* DatabaseRecordingRepository.swift */; };
+		00000000000000000000284E /* DatabaseSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000284D /* DatabaseSearchRepository.swift */; };
+		000000000000000000002850 /* DatabaseSemesterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000284F /* DatabaseSemesterRepository.swift */; };
+		000000000000000000002852 /* DatabaseStudentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002851 /* DatabaseStudentRepository.swift */; };
+		000000000000000000002854 /* DatabaseTaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002853 /* DatabaseTaskRepository.swift */; };
+		000000000000000000002856 /* DatabaseUniversityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002855 /* DatabaseUniversityRepository.swift */; };
+		000000000000000000002858 /* GraduationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002857 /* GraduationRepository.swift */; };
+		00000000000000000000285A /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002859 /* ProfileRepository.swift */; };
+		00000000000000000000285C /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000285B /* TaskRepository.swift */; };
+		00000000000000000000285E /* UniversityRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000285D /* UniversityRepositoryProtocol.swift */; };
+		000000000000000000002860 /* DocumentContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000285F /* DocumentContextService.swift */; };
+		000000000000000000002862 /* FlashcardGenerationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002861 /* FlashcardGenerationService.swift */; };
+		000000000000000000002864 /* InteractiveQuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002863 /* InteractiveQuizService.swift */; };
+		000000000000000000002866 /* LectureIntelligencePipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002865 /* LectureIntelligencePipeline.swift */; };
+		000000000000000000002868 /* MemoryPromotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002867 /* MemoryPromotionService.swift */; };
+		00000000000000000000286A /* ProfessorEmphasisDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002869 /* ProfessorEmphasisDetector.swift */; };
+		00000000000000000000286C /* AudioPlaybackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000286B /* AudioPlaybackService.swift */; };
+		00000000000000000000286E /* AudioRecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000286D /* AudioRecordingService.swift */; };
+		000000000000000000002870 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000286F /* TranscriptionService.swift */; };
+		000000000000000000002872 /* DataHealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002871 /* DataHealthService.swift */; };
+		000000000000000000002874 /* MockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002873 /* MockDataService.swift */; };
+		000000000000000000002876 /* SyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002875 /* SyncCoordinator.swift */; };
+		000000000000000000002878 /* AcademicNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002877 /* AcademicNotificationService.swift */; };
+		00000000000000000000287A /* AcademicRelevanceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002879 /* AcademicRelevanceEngine.swift */; };
+		00000000000000000000287C /* CourseReconciliationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000287B /* CourseReconciliationEngine.swift */; };
+		00000000000000000000287E /* CustomUniversityConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000287D /* CustomUniversityConnector.swift */; };
+		000000000000000000002880 /* DemoUniversityConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000287F /* DemoUniversityConnector.swift */; };
+		000000000000000000002882 /* GPACalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002881 /* GPACalculator.swift */; };
+		000000000000000000002884 /* GPAWeightingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002883 /* GPAWeightingPolicy.swift */; };
+		000000000000000000002886 /* NEUChangeHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002885 /* NEUChangeHistoryService.swift */; };
+		000000000000000000002888 /* NEUCourseReconciliationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002887 /* NEUCourseReconciliationService.swift */; };
+		00000000000000000000288A /* NEULivePortalCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002889 /* NEULivePortalCoordinator.swift */; };
+		00000000000000000000288C /* NEUMoodleConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000288B /* NEUMoodleConnector.swift */; };
+		00000000000000000000288E /* NEUPortalInspectionExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000288D /* NEUPortalInspectionExporter.swift */; };
+		000000000000000000002890 /* NEUStudentPortalConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000288F /* NEUStudentPortalConnector.swift */; };
+		000000000000000000002892 /* NEUTranscriptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002891 /* NEUTranscriptParser.swift */; };
+		000000000000000000002894 /* NEUUniversityConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002893 /* NEUUniversityConnector.swift */; };
+		000000000000000000002896 /* PortalChangeDetectionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002895 /* PortalChangeDetectionEngine.swift */; };
+		000000000000000000002898 /* PortalInspectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002897 /* PortalInspectionService.swift */; };
+		00000000000000000000289A /* PortalPageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000002899 /* PortalPageClassifier.swift */; };
+		00000000000000000000289C /* UniversityBackgroundRefreshService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000289B /* UniversityBackgroundRefreshService.swift */; };
+		00000000000000000000289E /* UniversityConnectorDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000289D /* UniversityConnectorDiagnostics.swift */; };
+		0000000000000000000028A0 /* UniversityConnectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000289F /* UniversityConnectorProtocol.swift */; };
+		0000000000000000000028A2 /* UniversityDocumentDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000028A1 /* UniversityDocumentDownloader.swift */; };
+		0000000000000000000028A4 /* UniversitySyncEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000028A3 /* UniversitySyncEngine.swift */; };
+		0000000000000000000028A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0000000000000000000028A5 /* Assets.xcassets */; };
 		000000000000000000002712 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000000000000000000002711 /* WebKit.framework */; };
 		000000000000000000002714 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000000000000000000002713 /* Speech.framework */; };
 		000000000000000000002716 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000000000000000000002715 /* AVFoundation.framework */; };
@@ -213,8 +214,8 @@
 
 /* Begin PBXFileReference section */
 		000000000000000000000001 /* AcademicOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcademicOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0000000000000000000028A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0000000000000000000028A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0000000000000000000028A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0000000000000000000028A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		000000000000000000002723 /* AcademicOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicOSApp.swift"; sourceTree = "<group>"; };
 		000000000000000000002725 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContainer.swift"; sourceTree = "<group>"; };
 		000000000000000000002727 /* AcademicCommanderAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicCommanderAgent.swift"; sourceTree = "<group>"; };
@@ -254,159 +255,160 @@
 		00000000000000000000276B /* AcademicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicCard.swift"; sourceTree = "<group>"; };
 		00000000000000000000276D /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionButton.swift"; sourceTree = "<group>"; };
 		00000000000000000000276F /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmptyStateView.swift"; sourceTree = "<group>"; };
-		000000000000000000002771 /* MetricBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetricBadge.swift"; sourceTree = "<group>"; };
-		000000000000000000002773 /* OfflineBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineBanner.swift"; sourceTree = "<group>"; };
-		000000000000000000002775 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatusBadge.swift"; sourceTree = "<group>"; };
-		000000000000000000002777 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadius.swift"; sourceTree = "<group>"; };
-		000000000000000000002779 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spacing.swift"; sourceTree = "<group>"; };
-		00000000000000000000277B /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Typography.swift"; sourceTree = "<group>"; };
-		00000000000000000000277D /* AcademicDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicDocument.swift"; sourceTree = "<group>"; };
-		00000000000000000000277F /* AcademicErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicErrors.swift"; sourceTree = "<group>"; };
-		000000000000000000002781 /* AcademicMastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicMastery.swift"; sourceTree = "<group>"; };
-		000000000000000000002783 /* AcademicTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicTask.swift"; sourceTree = "<group>"; };
-		000000000000000000002785 /* AIMemoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIMemoryEntry.swift"; sourceTree = "<group>"; };
-		000000000000000000002787 /* AINoteVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AINoteVersion.swift"; sourceTree = "<group>"; };
-		000000000000000000002789 /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment.swift"; sourceTree = "<group>"; };
-		00000000000000000000278B /* AudioMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioMarker.swift"; sourceTree = "<group>"; };
-		00000000000000000000278D /* AudioRecordingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioRecordingMetadata.swift"; sourceTree = "<group>"; };
-		00000000000000000000278F /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course.swift"; sourceTree = "<group>"; };
-		000000000000000000002791 /* Exam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exam.swift"; sourceTree = "<group>"; };
-		000000000000000000002793 /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard.swift"; sourceTree = "<group>"; };
-		000000000000000000002795 /* GPARecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPARecord.swift"; sourceTree = "<group>"; };
-		000000000000000000002797 /* GraduationProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraduationProgress.swift"; sourceTree = "<group>"; };
-		000000000000000000002799 /* LectureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureSession.swift"; sourceTree = "<group>"; };
-		00000000000000000000279B /* NEUUniversityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUUniversityModels.swift"; sourceTree = "<group>"; };
-		00000000000000000000279D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note.swift"; sourceTree = "<group>"; };
-		00000000000000000000279F /* PipelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PipelineState.swift"; sourceTree = "<group>"; };
-		0000000000000000000027A1 /* PortalDataTrustLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalDataTrustLevel.swift"; sourceTree = "<group>"; };
-		0000000000000000000027A3 /* Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Professor.swift"; sourceTree = "<group>"; };
-		0000000000000000000027A5 /* ProfessorEmphasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfessorEmphasis.swift"; sourceTree = "<group>"; };
-		0000000000000000000027A7 /* QueuedJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QueuedJob.swift"; sourceTree = "<group>"; };
-		0000000000000000000027A9 /* RealUniversityConnectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealUniversityConnectorConfiguration.swift"; sourceTree = "<group>"; };
-		0000000000000000000027AB /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Semester.swift"; sourceTree = "<group>"; };
-		0000000000000000000027AD /* StudentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentProfile.swift"; sourceTree = "<group>"; };
-		0000000000000000000027AF /* StudySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudySession.swift"; sourceTree = "<group>"; };
-		0000000000000000000027B1 /* Transcript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transcript.swift"; sourceTree = "<group>"; };
-		0000000000000000000027B3 /* UniversityPortalModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityPortalModels.swift"; sourceTree = "<group>"; };
-		0000000000000000000027B5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkMonitor.swift"; sourceTree = "<group>"; };
-		0000000000000000000027B7 /* NetworkMonitorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkMonitorProtocol.swift"; sourceTree = "<group>"; };
-		0000000000000000000027B9 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatus.swift"; sourceTree = "<group>"; };
-		0000000000000000000027BB /* DomainPolicyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DomainPolicyService.swift"; sourceTree = "<group>"; };
-		0000000000000000000027BD /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainKey.swift"; sourceTree = "<group>"; };
-		0000000000000000000027BF /* KeychainServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainServiceProtocol.swift"; sourceTree = "<group>"; };
-		0000000000000000000027C1 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainStorage.swift"; sourceTree = "<group>"; };
-		0000000000000000000027C3 /* SecurityActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecurityActivityLog.swift"; sourceTree = "<group>"; };
-		0000000000000000000027C5 /* UniversityCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityCredentialManager.swift"; sourceTree = "<group>"; };
-		0000000000000000000027C7 /* UniversityWebSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityWebSessionManager.swift"; sourceTree = "<group>"; };
-		0000000000000000000027C9 /* DocumentFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentFileManager.swift"; sourceTree = "<group>"; };
-		0000000000000000000027CB /* AICommandCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AICommandCenterView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027CD /* AICommandCenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AICommandCenterViewModel.swift"; sourceTree = "<group>"; };
-		0000000000000000000027CF /* AgentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgentCardView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027D1 /* AIRouterStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIRouterStatusBanner.swift"; sourceTree = "<group>"; };
-		0000000000000000000027D3 /* AIUsageTelemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIUsageTelemetryView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027D5 /* AcademicCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicCalendarView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027D7 /* AcademicCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicCalendarViewModel.swift"; sourceTree = "<group>"; };
-		0000000000000000000027D9 /* EventScheduleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventScheduleRow.swift"; sourceTree = "<group>"; };
-		0000000000000000000027DB /* MonthCalendarOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthCalendarOverview.swift"; sourceTree = "<group>"; };
-		0000000000000000000027DD /* CommandDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandDashboardView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027DF /* CommandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandViewModel.swift"; sourceTree = "<group>"; };
-		0000000000000000000027E1 /* AcademicStatusGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicStatusGrid.swift"; sourceTree = "<group>"; };
-		0000000000000000000027E3 /* GraduationHeroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraduationHeroCard.swift"; sourceTree = "<group>"; };
-		0000000000000000000027E5 /* MissionTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionTimelineView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027E7 /* UpcomingEventsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpcomingEventsSection.swift"; sourceTree = "<group>"; };
-		0000000000000000000027E9 /* AddCourseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddCourseSheet.swift"; sourceTree = "<group>"; };
-		0000000000000000000027EB /* AddLectureSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddLectureSheet.swift"; sourceTree = "<group>"; };
-		0000000000000000000027ED /* LectureIntelligenceResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureIntelligenceResultView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027EF /* LectureRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureRecordingView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027F1 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEditorView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027F3 /* TranscriptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranscriptDetailView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027F5 /* CourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027F7 /* CourseDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailViewModel.swift"; sourceTree = "<group>"; };
-		0000000000000000000027F9 /* CoursesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoursesListView.swift"; sourceTree = "<group>"; };
-		0000000000000000000027FB /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoursesViewModel.swift"; sourceTree = "<group>"; };
-		0000000000000000000027FD /* CourseAISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseAISection.swift"; sourceTree = "<group>"; };
-		0000000000000000000027FF /* CourseDocumentsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDocumentsSection.swift"; sourceTree = "<group>"; };
-		000000000000000000002801 /* CourseExamsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseExamsSection.swift"; sourceTree = "<group>"; };
-		000000000000000000002803 /* CourseFlashcardsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseFlashcardsSection.swift"; sourceTree = "<group>"; };
-		000000000000000000002805 /* CourseLecturesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseLecturesSection.swift"; sourceTree = "<group>"; };
-		000000000000000000002807 /* CourseNotesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseNotesSection.swift"; sourceTree = "<group>"; };
-		000000000000000000002809 /* CourseOverviewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseOverviewSection.swift"; sourceTree = "<group>"; };
-		00000000000000000000280B /* CourseRecordingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseRecordingsSection.swift"; sourceTree = "<group>"; };
-		00000000000000000000280D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView.swift"; sourceTree = "<group>"; };
-		00000000000000000000280F /* SettingsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListSection.swift"; sourceTree = "<group>"; };
-		000000000000000000002811 /* StudentOverviewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentOverviewHeader.swift"; sourceTree = "<group>"; };
-		000000000000000000002813 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileView.swift"; sourceTree = "<group>"; };
-		000000000000000000002815 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewModel.swift"; sourceTree = "<group>"; };
-		000000000000000000002817 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootTabView.swift"; sourceTree = "<group>"; };
-		000000000000000000002819 /* UniversityAnnouncementRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityAnnouncementRow.swift"; sourceTree = "<group>"; };
-		00000000000000000000281B /* UniversityGradeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityGradeCard.swift"; sourceTree = "<group>"; };
-		00000000000000000000281D /* ImportPreviewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImportPreviewSheet.swift"; sourceTree = "<group>"; };
-		00000000000000000000281F /* NEUConnectorDiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUConnectorDiagnosticsView.swift"; sourceTree = "<group>"; };
-		000000000000000000002821 /* NEUDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUDashboardView.swift"; sourceTree = "<group>"; };
-		000000000000000000002823 /* NEUMaterialImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUMaterialImportSheet.swift"; sourceTree = "<group>"; };
-		000000000000000000002825 /* NEUTranscriptImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUTranscriptImportSheet.swift"; sourceTree = "<group>"; };
-		000000000000000000002827 /* UniversityInboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityInboxView.swift"; sourceTree = "<group>"; };
-		000000000000000000002829 /* UniversityPortalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityPortalView.swift"; sourceTree = "<group>"; };
-		00000000000000000000282B /* UniversitySetupWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversitySetupWizardView.swift"; sourceTree = "<group>"; };
-		00000000000000000000282D /* AcademicRepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicRepositoryProtocols.swift"; sourceTree = "<group>"; };
-		00000000000000000000282F /* CalendarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002831 /* CourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002833 /* DatabaseAIMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseAIMemoryRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002835 /* DatabaseCourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseCourseRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002837 /* DatabaseExamRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseExamRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002839 /* DatabaseFlashcardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseFlashcardRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000283B /* DatabaseGraduationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseGraduationRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000283D /* DatabaseLectureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseLectureRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000283F /* DatabaseMasteryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseMasteryRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002841 /* DatabaseNotesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseNotesRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002843 /* DatabaseNoteVersionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseNoteVersionRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002845 /* DatabasePipelineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabasePipelineRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002847 /* DatabaseProfessorEmphasisRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseProfessorEmphasisRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002849 /* DatabaseRecordingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseRecordingRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000284B /* DatabaseSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseSearchRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000284D /* DatabaseSemesterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseSemesterRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000284F /* DatabaseStudentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseStudentRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002851 /* DatabaseTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseTaskRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002853 /* DatabaseUniversityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseUniversityRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002855 /* GraduationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraduationRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002857 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileRepository.swift"; sourceTree = "<group>"; };
-		000000000000000000002859 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskRepository.swift"; sourceTree = "<group>"; };
-		00000000000000000000285B /* UniversityRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityRepositoryProtocol.swift"; sourceTree = "<group>"; };
-		00000000000000000000285D /* DocumentContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentContextService.swift"; sourceTree = "<group>"; };
-		00000000000000000000285F /* FlashcardGenerationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlashcardGenerationService.swift"; sourceTree = "<group>"; };
-		000000000000000000002861 /* InteractiveQuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InteractiveQuizService.swift"; sourceTree = "<group>"; };
-		000000000000000000002863 /* LectureIntelligencePipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureIntelligencePipeline.swift"; sourceTree = "<group>"; };
-		000000000000000000002865 /* MemoryPromotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryPromotionService.swift"; sourceTree = "<group>"; };
-		000000000000000000002867 /* ProfessorEmphasisDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfessorEmphasisDetector.swift"; sourceTree = "<group>"; };
-		000000000000000000002869 /* AudioPlaybackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlaybackService.swift"; sourceTree = "<group>"; };
-		00000000000000000000286B /* AudioRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioRecordingService.swift"; sourceTree = "<group>"; };
-		00000000000000000000286D /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranscriptionService.swift"; sourceTree = "<group>"; };
-		00000000000000000000286F /* DataHealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHealthService.swift"; sourceTree = "<group>"; };
-		000000000000000000002871 /* MockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MockDataService.swift"; sourceTree = "<group>"; };
-		000000000000000000002873 /* SyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncCoordinator.swift"; sourceTree = "<group>"; };
-		000000000000000000002875 /* AcademicNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicNotificationService.swift"; sourceTree = "<group>"; };
-		000000000000000000002877 /* AcademicRelevanceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicRelevanceEngine.swift"; sourceTree = "<group>"; };
-		000000000000000000002879 /* CourseReconciliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseReconciliationEngine.swift"; sourceTree = "<group>"; };
-		00000000000000000000287B /* CustomUniversityConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomUniversityConnector.swift"; sourceTree = "<group>"; };
-		00000000000000000000287D /* DemoUniversityConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DemoUniversityConnector.swift"; sourceTree = "<group>"; };
-		00000000000000000000287F /* GPACalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPACalculator.swift"; sourceTree = "<group>"; };
-		000000000000000000002881 /* GPAWeightingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPAWeightingPolicy.swift"; sourceTree = "<group>"; };
-		000000000000000000002883 /* NEUChangeHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUChangeHistoryService.swift"; sourceTree = "<group>"; };
-		000000000000000000002885 /* NEUCourseReconciliationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUCourseReconciliationService.swift"; sourceTree = "<group>"; };
-		000000000000000000002887 /* NEULivePortalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEULivePortalCoordinator.swift"; sourceTree = "<group>"; };
-		000000000000000000002889 /* NEUMoodleConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUMoodleConnector.swift"; sourceTree = "<group>"; };
-		00000000000000000000288B /* NEUPortalInspectionExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUPortalInspectionExporter.swift"; sourceTree = "<group>"; };
-		00000000000000000000288D /* NEUStudentPortalConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUStudentPortalConnector.swift"; sourceTree = "<group>"; };
-		00000000000000000000288F /* NEUTranscriptParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUTranscriptParser.swift"; sourceTree = "<group>"; };
-		000000000000000000002891 /* NEUUniversityConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUUniversityConnector.swift"; sourceTree = "<group>"; };
-		000000000000000000002893 /* PortalChangeDetectionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalChangeDetectionEngine.swift"; sourceTree = "<group>"; };
-		000000000000000000002895 /* PortalInspectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalInspectionService.swift"; sourceTree = "<group>"; };
-		000000000000000000002897 /* PortalPageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalPageClassifier.swift"; sourceTree = "<group>"; };
-		000000000000000000002899 /* UniversityBackgroundRefreshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityBackgroundRefreshService.swift"; sourceTree = "<group>"; };
-		00000000000000000000289B /* UniversityConnectorDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityConnectorDiagnostics.swift"; sourceTree = "<group>"; };
-		00000000000000000000289D /* UniversityConnectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityConnectorProtocol.swift"; sourceTree = "<group>"; };
-		00000000000000000000289F /* UniversityDocumentDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityDocumentDownloader.swift"; sourceTree = "<group>"; };
-		0000000000000000000028A1 /* UniversitySyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversitySyncEngine.swift"; sourceTree = "<group>"; };
+		000000000000000000002771 /* FilterChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilterChip.swift"; sourceTree = "<group>"; };
+		000000000000000000002773 /* MetricBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetricBadge.swift"; sourceTree = "<group>"; };
+		000000000000000000002775 /* OfflineBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OfflineBanner.swift"; sourceTree = "<group>"; };
+		000000000000000000002777 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatusBadge.swift"; sourceTree = "<group>"; };
+		000000000000000000002779 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadius.swift"; sourceTree = "<group>"; };
+		00000000000000000000277B /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Spacing.swift"; sourceTree = "<group>"; };
+		00000000000000000000277D /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Typography.swift"; sourceTree = "<group>"; };
+		00000000000000000000277F /* AcademicDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicDocument.swift"; sourceTree = "<group>"; };
+		000000000000000000002781 /* AcademicErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicErrors.swift"; sourceTree = "<group>"; };
+		000000000000000000002783 /* AcademicMastery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicMastery.swift"; sourceTree = "<group>"; };
+		000000000000000000002785 /* AcademicTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicTask.swift"; sourceTree = "<group>"; };
+		000000000000000000002787 /* AIMemoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIMemoryEntry.swift"; sourceTree = "<group>"; };
+		000000000000000000002789 /* AINoteVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AINoteVersion.swift"; sourceTree = "<group>"; };
+		00000000000000000000278B /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment.swift"; sourceTree = "<group>"; };
+		00000000000000000000278D /* AudioMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioMarker.swift"; sourceTree = "<group>"; };
+		00000000000000000000278F /* AudioRecordingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioRecordingMetadata.swift"; sourceTree = "<group>"; };
+		000000000000000000002791 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course.swift"; sourceTree = "<group>"; };
+		000000000000000000002793 /* Exam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exam.swift"; sourceTree = "<group>"; };
+		000000000000000000002795 /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flashcard.swift"; sourceTree = "<group>"; };
+		000000000000000000002797 /* GPARecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPARecord.swift"; sourceTree = "<group>"; };
+		000000000000000000002799 /* GraduationProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraduationProgress.swift"; sourceTree = "<group>"; };
+		00000000000000000000279B /* LectureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureSession.swift"; sourceTree = "<group>"; };
+		00000000000000000000279D /* NEUUniversityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUUniversityModels.swift"; sourceTree = "<group>"; };
+		00000000000000000000279F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note.swift"; sourceTree = "<group>"; };
+		0000000000000000000027A1 /* PipelineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PipelineState.swift"; sourceTree = "<group>"; };
+		0000000000000000000027A3 /* PortalDataTrustLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalDataTrustLevel.swift"; sourceTree = "<group>"; };
+		0000000000000000000027A5 /* Professor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Professor.swift"; sourceTree = "<group>"; };
+		0000000000000000000027A7 /* ProfessorEmphasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfessorEmphasis.swift"; sourceTree = "<group>"; };
+		0000000000000000000027A9 /* QueuedJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QueuedJob.swift"; sourceTree = "<group>"; };
+		0000000000000000000027AB /* RealUniversityConnectorConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealUniversityConnectorConfiguration.swift"; sourceTree = "<group>"; };
+		0000000000000000000027AD /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Semester.swift"; sourceTree = "<group>"; };
+		0000000000000000000027AF /* StudentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentProfile.swift"; sourceTree = "<group>"; };
+		0000000000000000000027B1 /* StudySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudySession.swift"; sourceTree = "<group>"; };
+		0000000000000000000027B3 /* Transcript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transcript.swift"; sourceTree = "<group>"; };
+		0000000000000000000027B5 /* UniversityPortalModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityPortalModels.swift"; sourceTree = "<group>"; };
+		0000000000000000000027B7 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkMonitor.swift"; sourceTree = "<group>"; };
+		0000000000000000000027B9 /* NetworkMonitorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkMonitorProtocol.swift"; sourceTree = "<group>"; };
+		0000000000000000000027BB /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatus.swift"; sourceTree = "<group>"; };
+		0000000000000000000027BD /* DomainPolicyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DomainPolicyService.swift"; sourceTree = "<group>"; };
+		0000000000000000000027BF /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainKey.swift"; sourceTree = "<group>"; };
+		0000000000000000000027C1 /* KeychainServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainServiceProtocol.swift"; sourceTree = "<group>"; };
+		0000000000000000000027C3 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainStorage.swift"; sourceTree = "<group>"; };
+		0000000000000000000027C5 /* SecurityActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SecurityActivityLog.swift"; sourceTree = "<group>"; };
+		0000000000000000000027C7 /* UniversityCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityCredentialManager.swift"; sourceTree = "<group>"; };
+		0000000000000000000027C9 /* UniversityWebSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityWebSessionManager.swift"; sourceTree = "<group>"; };
+		0000000000000000000027CB /* DocumentFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentFileManager.swift"; sourceTree = "<group>"; };
+		0000000000000000000027CD /* AICommandCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AICommandCenterView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027CF /* AICommandCenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AICommandCenterViewModel.swift"; sourceTree = "<group>"; };
+		0000000000000000000027D1 /* AgentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AgentCardView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027D3 /* AIRouterStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIRouterStatusBanner.swift"; sourceTree = "<group>"; };
+		0000000000000000000027D5 /* AIUsageTelemetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AIUsageTelemetryView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027D7 /* AcademicCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicCalendarView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027D9 /* AcademicCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicCalendarViewModel.swift"; sourceTree = "<group>"; };
+		0000000000000000000027DB /* EventScheduleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventScheduleRow.swift"; sourceTree = "<group>"; };
+		0000000000000000000027DD /* MonthCalendarOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthCalendarOverview.swift"; sourceTree = "<group>"; };
+		0000000000000000000027DF /* CommandDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandDashboardView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027E1 /* CommandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommandViewModel.swift"; sourceTree = "<group>"; };
+		0000000000000000000027E3 /* AcademicStatusGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicStatusGrid.swift"; sourceTree = "<group>"; };
+		0000000000000000000027E5 /* GraduationHeroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraduationHeroCard.swift"; sourceTree = "<group>"; };
+		0000000000000000000027E7 /* MissionTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MissionTimelineView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027E9 /* UpcomingEventsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpcomingEventsSection.swift"; sourceTree = "<group>"; };
+		0000000000000000000027EB /* AddCourseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddCourseSheet.swift"; sourceTree = "<group>"; };
+		0000000000000000000027ED /* AddLectureSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddLectureSheet.swift"; sourceTree = "<group>"; };
+		0000000000000000000027EF /* LectureIntelligenceResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureIntelligenceResultView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027F1 /* LectureRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureRecordingView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027F3 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEditorView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027F5 /* TranscriptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranscriptDetailView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027F7 /* CourseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027F9 /* CourseDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDetailViewModel.swift"; sourceTree = "<group>"; };
+		0000000000000000000027FB /* CoursesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoursesListView.swift"; sourceTree = "<group>"; };
+		0000000000000000000027FD /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoursesViewModel.swift"; sourceTree = "<group>"; };
+		0000000000000000000027FF /* CourseAISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseAISection.swift"; sourceTree = "<group>"; };
+		000000000000000000002801 /* CourseDocumentsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseDocumentsSection.swift"; sourceTree = "<group>"; };
+		000000000000000000002803 /* CourseExamsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseExamsSection.swift"; sourceTree = "<group>"; };
+		000000000000000000002805 /* CourseFlashcardsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseFlashcardsSection.swift"; sourceTree = "<group>"; };
+		000000000000000000002807 /* CourseLecturesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseLecturesSection.swift"; sourceTree = "<group>"; };
+		000000000000000000002809 /* CourseNotesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseNotesSection.swift"; sourceTree = "<group>"; };
+		00000000000000000000280B /* CourseOverviewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseOverviewSection.swift"; sourceTree = "<group>"; };
+		00000000000000000000280D /* CourseRecordingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseRecordingsSection.swift"; sourceTree = "<group>"; };
+		00000000000000000000280F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingView.swift"; sourceTree = "<group>"; };
+		000000000000000000002811 /* SettingsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListSection.swift"; sourceTree = "<group>"; };
+		000000000000000000002813 /* StudentOverviewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentOverviewHeader.swift"; sourceTree = "<group>"; };
+		000000000000000000002815 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileView.swift"; sourceTree = "<group>"; };
+		000000000000000000002817 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewModel.swift"; sourceTree = "<group>"; };
+		000000000000000000002819 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootTabView.swift"; sourceTree = "<group>"; };
+		00000000000000000000281B /* UniversityAnnouncementRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityAnnouncementRow.swift"; sourceTree = "<group>"; };
+		00000000000000000000281D /* UniversityGradeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityGradeCard.swift"; sourceTree = "<group>"; };
+		00000000000000000000281F /* ImportPreviewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImportPreviewSheet.swift"; sourceTree = "<group>"; };
+		000000000000000000002821 /* NEUConnectorDiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUConnectorDiagnosticsView.swift"; sourceTree = "<group>"; };
+		000000000000000000002823 /* NEUDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUDashboardView.swift"; sourceTree = "<group>"; };
+		000000000000000000002825 /* NEUMaterialImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUMaterialImportSheet.swift"; sourceTree = "<group>"; };
+		000000000000000000002827 /* NEUTranscriptImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUTranscriptImportSheet.swift"; sourceTree = "<group>"; };
+		000000000000000000002829 /* UniversityInboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityInboxView.swift"; sourceTree = "<group>"; };
+		00000000000000000000282B /* UniversityPortalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityPortalView.swift"; sourceTree = "<group>"; };
+		00000000000000000000282D /* UniversitySetupWizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversitySetupWizardView.swift"; sourceTree = "<group>"; };
+		00000000000000000000282F /* AcademicRepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicRepositoryProtocols.swift"; sourceTree = "<group>"; };
+		000000000000000000002831 /* CalendarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002833 /* CourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002835 /* DatabaseAIMemoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseAIMemoryRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002837 /* DatabaseCourseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseCourseRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002839 /* DatabaseExamRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseExamRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000283B /* DatabaseFlashcardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseFlashcardRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000283D /* DatabaseGraduationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseGraduationRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000283F /* DatabaseLectureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseLectureRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002841 /* DatabaseMasteryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseMasteryRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002843 /* DatabaseNotesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseNotesRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002845 /* DatabaseNoteVersionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseNoteVersionRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002847 /* DatabasePipelineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabasePipelineRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002849 /* DatabaseProfessorEmphasisRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseProfessorEmphasisRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000284B /* DatabaseRecordingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseRecordingRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000284D /* DatabaseSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseSearchRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000284F /* DatabaseSemesterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseSemesterRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002851 /* DatabaseStudentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseStudentRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002853 /* DatabaseTaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseTaskRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002855 /* DatabaseUniversityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseUniversityRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002857 /* GraduationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraduationRepository.swift"; sourceTree = "<group>"; };
+		000000000000000000002859 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000285B /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskRepository.swift"; sourceTree = "<group>"; };
+		00000000000000000000285D /* UniversityRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityRepositoryProtocol.swift"; sourceTree = "<group>"; };
+		00000000000000000000285F /* DocumentContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentContextService.swift"; sourceTree = "<group>"; };
+		000000000000000000002861 /* FlashcardGenerationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlashcardGenerationService.swift"; sourceTree = "<group>"; };
+		000000000000000000002863 /* InteractiveQuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InteractiveQuizService.swift"; sourceTree = "<group>"; };
+		000000000000000000002865 /* LectureIntelligencePipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LectureIntelligencePipeline.swift"; sourceTree = "<group>"; };
+		000000000000000000002867 /* MemoryPromotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoryPromotionService.swift"; sourceTree = "<group>"; };
+		000000000000000000002869 /* ProfessorEmphasisDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfessorEmphasisDetector.swift"; sourceTree = "<group>"; };
+		00000000000000000000286B /* AudioPlaybackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlaybackService.swift"; sourceTree = "<group>"; };
+		00000000000000000000286D /* AudioRecordingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioRecordingService.swift"; sourceTree = "<group>"; };
+		00000000000000000000286F /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TranscriptionService.swift"; sourceTree = "<group>"; };
+		000000000000000000002871 /* DataHealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHealthService.swift"; sourceTree = "<group>"; };
+		000000000000000000002873 /* MockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MockDataService.swift"; sourceTree = "<group>"; };
+		000000000000000000002875 /* SyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncCoordinator.swift"; sourceTree = "<group>"; };
+		000000000000000000002877 /* AcademicNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicNotificationService.swift"; sourceTree = "<group>"; };
+		000000000000000000002879 /* AcademicRelevanceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademicRelevanceEngine.swift"; sourceTree = "<group>"; };
+		00000000000000000000287B /* CourseReconciliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseReconciliationEngine.swift"; sourceTree = "<group>"; };
+		00000000000000000000287D /* CustomUniversityConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomUniversityConnector.swift"; sourceTree = "<group>"; };
+		00000000000000000000287F /* DemoUniversityConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DemoUniversityConnector.swift"; sourceTree = "<group>"; };
+		000000000000000000002881 /* GPACalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPACalculator.swift"; sourceTree = "<group>"; };
+		000000000000000000002883 /* GPAWeightingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPAWeightingPolicy.swift"; sourceTree = "<group>"; };
+		000000000000000000002885 /* NEUChangeHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUChangeHistoryService.swift"; sourceTree = "<group>"; };
+		000000000000000000002887 /* NEUCourseReconciliationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUCourseReconciliationService.swift"; sourceTree = "<group>"; };
+		000000000000000000002889 /* NEULivePortalCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEULivePortalCoordinator.swift"; sourceTree = "<group>"; };
+		00000000000000000000288B /* NEUMoodleConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUMoodleConnector.swift"; sourceTree = "<group>"; };
+		00000000000000000000288D /* NEUPortalInspectionExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUPortalInspectionExporter.swift"; sourceTree = "<group>"; };
+		00000000000000000000288F /* NEUStudentPortalConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUStudentPortalConnector.swift"; sourceTree = "<group>"; };
+		000000000000000000002891 /* NEUTranscriptParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUTranscriptParser.swift"; sourceTree = "<group>"; };
+		000000000000000000002893 /* NEUUniversityConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEUUniversityConnector.swift"; sourceTree = "<group>"; };
+		000000000000000000002895 /* PortalChangeDetectionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalChangeDetectionEngine.swift"; sourceTree = "<group>"; };
+		000000000000000000002897 /* PortalInspectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalInspectionService.swift"; sourceTree = "<group>"; };
+		000000000000000000002899 /* PortalPageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortalPageClassifier.swift"; sourceTree = "<group>"; };
+		00000000000000000000289B /* UniversityBackgroundRefreshService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityBackgroundRefreshService.swift"; sourceTree = "<group>"; };
+		00000000000000000000289D /* UniversityConnectorDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityConnectorDiagnostics.swift"; sourceTree = "<group>"; };
+		00000000000000000000289F /* UniversityConnectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityConnectorProtocol.swift"; sourceTree = "<group>"; };
+		0000000000000000000028A1 /* UniversityDocumentDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversityDocumentDownloader.swift"; sourceTree = "<group>"; };
+		0000000000000000000028A3 /* UniversitySyncEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UniversitySyncEngine.swift"; sourceTree = "<group>"; };
 		000000000000000000002711 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.framework"; name = "WebKit.framework"; path = "System/Library/Frameworks/WebKit.framework"; sourceTree = SDKROOT; };
 		000000000000000000002713 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.framework"; name = "Speech.framework"; path = "System/Library/Frameworks/Speech.framework"; sourceTree = SDKROOT; };
 		000000000000000000002715 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.framework"; name = "AVFoundation.framework"; path = "System/Library/Frameworks/AVFoundation.framework"; sourceTree = SDKROOT; };
@@ -442,12 +444,12 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000003 /* AcademicOS */,
-				0000000000000000000028A6 /* Frameworks */,
+				0000000000000000000028A8 /* Frameworks */,
 				000000000000000000000004 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0000000000000000000028A7 /* App */ = {
+		0000000000000000000028A9 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				000000000000000000002723 /* AcademicOSApp.swift */,
@@ -455,7 +457,7 @@
 			);
 			path = "App"; sourceTree = "<group>";
 		};
-		0000000000000000000028AA /* Agents */ = {
+		0000000000000000000028AC /* Agents */ = {
 			isa = PBXGroup;
 			children = (
 				000000000000000000002727 /* AcademicCommanderAgent.swift */,
@@ -469,18 +471,18 @@
 			);
 			path = "Agents"; sourceTree = "<group>";
 		};
-		0000000000000000000028AB /* Telemetry */ = {
+		0000000000000000000028AD /* Telemetry */ = {
 			isa = PBXGroup;
 			children = (
 				00000000000000000000275D /* AIUsageTelemetry.swift */,
 			);
 			path = "Telemetry"; sourceTree = "<group>";
 		};
-		0000000000000000000028A9 /* AI */ = {
+		0000000000000000000028AB /* AI */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028AA /* Agents */,
-				0000000000000000000028AB /* Telemetry */,
+				0000000000000000000028AC /* Agents */,
+				0000000000000000000028AD /* Telemetry */,
 				000000000000000000002737 /* AIModelConfiguration.swift */,
 				000000000000000000002739 /* AIPrivacyLevel.swift */,
 				00000000000000000000273B /* AIProvider.swift */,
@@ -503,7 +505,7 @@
 			);
 			path = "AI"; sourceTree = "<group>";
 		};
-		0000000000000000000028AC /* Database */ = {
+		0000000000000000000028AE /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				00000000000000000000275F /* InMemoryDatabaseManager.swift */,
@@ -514,387 +516,388 @@
 			);
 			path = "Database"; sourceTree = "<group>";
 		};
-		0000000000000000000028AE /* Components */ = {
+		0000000000000000000028B0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				00000000000000000000276B /* AcademicCard.swift */,
 				00000000000000000000276D /* ActionButton.swift */,
 				00000000000000000000276F /* EmptyStateView.swift */,
-				000000000000000000002771 /* MetricBadge.swift */,
-				000000000000000000002773 /* OfflineBanner.swift */,
-				000000000000000000002775 /* StatusBadge.swift */,
+				000000000000000000002771 /* FilterChip.swift */,
+				000000000000000000002773 /* MetricBadge.swift */,
+				000000000000000000002775 /* OfflineBanner.swift */,
+				000000000000000000002777 /* StatusBadge.swift */,
 			);
 			path = "Components"; sourceTree = "<group>";
 		};
-		0000000000000000000028AD /* DesignSystem */ = {
+		0000000000000000000028AF /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028AE /* Components */,
+				0000000000000000000028B0 /* Components */,
 				000000000000000000002769 /* Colors.swift */,
-				000000000000000000002777 /* CornerRadius.swift */,
-				000000000000000000002779 /* Spacing.swift */,
-				00000000000000000000277B /* Typography.swift */,
+				000000000000000000002779 /* CornerRadius.swift */,
+				00000000000000000000277B /* Spacing.swift */,
+				00000000000000000000277D /* Typography.swift */,
 			);
 			path = "DesignSystem"; sourceTree = "<group>";
 		};
-		0000000000000000000028AF /* Models */ = {
+		0000000000000000000028B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000277D /* AcademicDocument.swift */,
-				00000000000000000000277F /* AcademicErrors.swift */,
-				000000000000000000002781 /* AcademicMastery.swift */,
-				000000000000000000002783 /* AcademicTask.swift */,
-				000000000000000000002785 /* AIMemoryEntry.swift */,
-				000000000000000000002787 /* AINoteVersion.swift */,
-				000000000000000000002789 /* Assignment.swift */,
-				00000000000000000000278B /* AudioMarker.swift */,
-				00000000000000000000278D /* AudioRecordingMetadata.swift */,
-				00000000000000000000278F /* Course.swift */,
-				000000000000000000002791 /* Exam.swift */,
-				000000000000000000002793 /* Flashcard.swift */,
-				000000000000000000002795 /* GPARecord.swift */,
-				000000000000000000002797 /* GraduationProgress.swift */,
-				000000000000000000002799 /* LectureSession.swift */,
-				00000000000000000000279B /* NEUUniversityModels.swift */,
-				00000000000000000000279D /* Note.swift */,
-				00000000000000000000279F /* PipelineState.swift */,
-				0000000000000000000027A1 /* PortalDataTrustLevel.swift */,
-				0000000000000000000027A3 /* Professor.swift */,
-				0000000000000000000027A5 /* ProfessorEmphasis.swift */,
-				0000000000000000000027A7 /* QueuedJob.swift */,
-				0000000000000000000027A9 /* RealUniversityConnectorConfiguration.swift */,
-				0000000000000000000027AB /* Semester.swift */,
-				0000000000000000000027AD /* StudentProfile.swift */,
-				0000000000000000000027AF /* StudySession.swift */,
-				0000000000000000000027B1 /* Transcript.swift */,
-				0000000000000000000027B3 /* UniversityPortalModels.swift */,
+				00000000000000000000277F /* AcademicDocument.swift */,
+				000000000000000000002781 /* AcademicErrors.swift */,
+				000000000000000000002783 /* AcademicMastery.swift */,
+				000000000000000000002785 /* AcademicTask.swift */,
+				000000000000000000002787 /* AIMemoryEntry.swift */,
+				000000000000000000002789 /* AINoteVersion.swift */,
+				00000000000000000000278B /* Assignment.swift */,
+				00000000000000000000278D /* AudioMarker.swift */,
+				00000000000000000000278F /* AudioRecordingMetadata.swift */,
+				000000000000000000002791 /* Course.swift */,
+				000000000000000000002793 /* Exam.swift */,
+				000000000000000000002795 /* Flashcard.swift */,
+				000000000000000000002797 /* GPARecord.swift */,
+				000000000000000000002799 /* GraduationProgress.swift */,
+				00000000000000000000279B /* LectureSession.swift */,
+				00000000000000000000279D /* NEUUniversityModels.swift */,
+				00000000000000000000279F /* Note.swift */,
+				0000000000000000000027A1 /* PipelineState.swift */,
+				0000000000000000000027A3 /* PortalDataTrustLevel.swift */,
+				0000000000000000000027A5 /* Professor.swift */,
+				0000000000000000000027A7 /* ProfessorEmphasis.swift */,
+				0000000000000000000027A9 /* QueuedJob.swift */,
+				0000000000000000000027AB /* RealUniversityConnectorConfiguration.swift */,
+				0000000000000000000027AD /* Semester.swift */,
+				0000000000000000000027AF /* StudentProfile.swift */,
+				0000000000000000000027B1 /* StudySession.swift */,
+				0000000000000000000027B3 /* Transcript.swift */,
+				0000000000000000000027B5 /* UniversityPortalModels.swift */,
 			);
 			path = "Models"; sourceTree = "<group>";
 		};
-		0000000000000000000028B0 /* Networking */ = {
+		0000000000000000000028B2 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000027B5 /* NetworkMonitor.swift */,
-				0000000000000000000027B7 /* NetworkMonitorProtocol.swift */,
-				0000000000000000000027B9 /* NetworkStatus.swift */,
+				0000000000000000000027B7 /* NetworkMonitor.swift */,
+				0000000000000000000027B9 /* NetworkMonitorProtocol.swift */,
+				0000000000000000000027BB /* NetworkStatus.swift */,
 			);
 			path = "Networking"; sourceTree = "<group>";
 		};
-		0000000000000000000028B1 /* Security */ = {
+		0000000000000000000028B3 /* Security */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000027BB /* DomainPolicyService.swift */,
-				0000000000000000000027BD /* KeychainKey.swift */,
-				0000000000000000000027BF /* KeychainServiceProtocol.swift */,
-				0000000000000000000027C1 /* KeychainStorage.swift */,
-				0000000000000000000027C3 /* SecurityActivityLog.swift */,
-				0000000000000000000027C5 /* UniversityCredentialManager.swift */,
-				0000000000000000000027C7 /* UniversityWebSessionManager.swift */,
+				0000000000000000000027BD /* DomainPolicyService.swift */,
+				0000000000000000000027BF /* KeychainKey.swift */,
+				0000000000000000000027C1 /* KeychainServiceProtocol.swift */,
+				0000000000000000000027C3 /* KeychainStorage.swift */,
+				0000000000000000000027C5 /* SecurityActivityLog.swift */,
+				0000000000000000000027C7 /* UniversityCredentialManager.swift */,
+				0000000000000000000027C9 /* UniversityWebSessionManager.swift */,
 			);
 			path = "Security"; sourceTree = "<group>";
 		};
-		0000000000000000000028B2 /* Storage */ = {
+		0000000000000000000028B4 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000027C9 /* DocumentFileManager.swift */,
+				0000000000000000000027CB /* DocumentFileManager.swift */,
 			);
 			path = "Storage"; sourceTree = "<group>";
 		};
-		0000000000000000000028A8 /* Core */ = {
+		0000000000000000000028AA /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028A9 /* AI */,
-				0000000000000000000028AC /* Database */,
-				0000000000000000000028AD /* DesignSystem */,
-				0000000000000000000028AF /* Models */,
-				0000000000000000000028B0 /* Networking */,
-				0000000000000000000028B1 /* Security */,
-				0000000000000000000028B2 /* Storage */,
+				0000000000000000000028AB /* AI */,
+				0000000000000000000028AE /* Database */,
+				0000000000000000000028AF /* DesignSystem */,
+				0000000000000000000028B1 /* Models */,
+				0000000000000000000028B2 /* Networking */,
+				0000000000000000000028B3 /* Security */,
+				0000000000000000000028B4 /* Storage */,
 			);
 			path = "Core"; sourceTree = "<group>";
-		};
-		0000000000000000000028B5 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				0000000000000000000027CF /* AgentCardView.swift */,
-				0000000000000000000027D1 /* AIRouterStatusBanner.swift */,
-				0000000000000000000027D3 /* AIUsageTelemetryView.swift */,
-			);
-			path = "Components"; sourceTree = "<group>";
-		};
-		0000000000000000000028B4 /* AI */ = {
-			isa = PBXGroup;
-			children = (
-				0000000000000000000028B5 /* Components */,
-				0000000000000000000027CB /* AICommandCenterView.swift */,
-				0000000000000000000027CD /* AICommandCenterViewModel.swift */,
-			);
-			path = "AI"; sourceTree = "<group>";
 		};
 		0000000000000000000028B7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000027D9 /* EventScheduleRow.swift */,
-				0000000000000000000027DB /* MonthCalendarOverview.swift */,
+				0000000000000000000027D1 /* AgentCardView.swift */,
+				0000000000000000000027D3 /* AIRouterStatusBanner.swift */,
+				0000000000000000000027D5 /* AIUsageTelemetryView.swift */,
 			);
 			path = "Components"; sourceTree = "<group>";
 		};
-		0000000000000000000028B6 /* Calendar */ = {
+		0000000000000000000028B6 /* AI */ = {
 			isa = PBXGroup;
 			children = (
 				0000000000000000000028B7 /* Components */,
-				0000000000000000000027D5 /* AcademicCalendarView.swift */,
-				0000000000000000000027D7 /* AcademicCalendarViewModel.swift */,
+				0000000000000000000027CD /* AICommandCenterView.swift */,
+				0000000000000000000027CF /* AICommandCenterViewModel.swift */,
 			);
-			path = "Calendar"; sourceTree = "<group>";
+			path = "AI"; sourceTree = "<group>";
 		};
 		0000000000000000000028B9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000027E1 /* AcademicStatusGrid.swift */,
-				0000000000000000000027E3 /* GraduationHeroCard.swift */,
-				0000000000000000000027E5 /* MissionTimelineView.swift */,
-				0000000000000000000027E7 /* UpcomingEventsSection.swift */,
+				0000000000000000000027DB /* EventScheduleRow.swift */,
+				0000000000000000000027DD /* MonthCalendarOverview.swift */,
 			);
 			path = "Components"; sourceTree = "<group>";
 		};
-		0000000000000000000028B8 /* Command */ = {
+		0000000000000000000028B8 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				0000000000000000000028B9 /* Components */,
-				0000000000000000000027DD /* CommandDashboardView.swift */,
-				0000000000000000000027DF /* CommandViewModel.swift */,
+				0000000000000000000027D7 /* AcademicCalendarView.swift */,
+				0000000000000000000027D9 /* AcademicCalendarViewModel.swift */,
 			);
-			path = "Command"; sourceTree = "<group>";
+			path = "Calendar"; sourceTree = "<group>";
 		};
 		0000000000000000000028BB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000027E9 /* AddCourseSheet.swift */,
-				0000000000000000000027EB /* AddLectureSheet.swift */,
-				0000000000000000000027ED /* LectureIntelligenceResultView.swift */,
-				0000000000000000000027EF /* LectureRecordingView.swift */,
-				0000000000000000000027F1 /* NoteEditorView.swift */,
-				0000000000000000000027F3 /* TranscriptDetailView.swift */,
+				0000000000000000000027E3 /* AcademicStatusGrid.swift */,
+				0000000000000000000027E5 /* GraduationHeroCard.swift */,
+				0000000000000000000027E7 /* MissionTimelineView.swift */,
+				0000000000000000000027E9 /* UpcomingEventsSection.swift */,
 			);
 			path = "Components"; sourceTree = "<group>";
 		};
-		0000000000000000000028BC /* Subsections */ = {
-			isa = PBXGroup;
-			children = (
-				0000000000000000000027FD /* CourseAISection.swift */,
-				0000000000000000000027FF /* CourseDocumentsSection.swift */,
-				000000000000000000002801 /* CourseExamsSection.swift */,
-				000000000000000000002803 /* CourseFlashcardsSection.swift */,
-				000000000000000000002805 /* CourseLecturesSection.swift */,
-				000000000000000000002807 /* CourseNotesSection.swift */,
-				000000000000000000002809 /* CourseOverviewSection.swift */,
-				00000000000000000000280B /* CourseRecordingsSection.swift */,
-			);
-			path = "Subsections"; sourceTree = "<group>";
-		};
-		0000000000000000000028BA /* Courses */ = {
+		0000000000000000000028BA /* Command */ = {
 			isa = PBXGroup;
 			children = (
 				0000000000000000000028BB /* Components */,
-				0000000000000000000028BC /* Subsections */,
-				0000000000000000000027F5 /* CourseDetailView.swift */,
-				0000000000000000000027F7 /* CourseDetailViewModel.swift */,
-				0000000000000000000027F9 /* CoursesListView.swift */,
-				0000000000000000000027FB /* CoursesViewModel.swift */,
+				0000000000000000000027DF /* CommandDashboardView.swift */,
+				0000000000000000000027E1 /* CommandViewModel.swift */,
+			);
+			path = "Command"; sourceTree = "<group>";
+		};
+		0000000000000000000028BD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000027EB /* AddCourseSheet.swift */,
+				0000000000000000000027ED /* AddLectureSheet.swift */,
+				0000000000000000000027EF /* LectureIntelligenceResultView.swift */,
+				0000000000000000000027F1 /* LectureRecordingView.swift */,
+				0000000000000000000027F3 /* NoteEditorView.swift */,
+				0000000000000000000027F5 /* TranscriptDetailView.swift */,
+			);
+			path = "Components"; sourceTree = "<group>";
+		};
+		0000000000000000000028BE /* Subsections */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000027FF /* CourseAISection.swift */,
+				000000000000000000002801 /* CourseDocumentsSection.swift */,
+				000000000000000000002803 /* CourseExamsSection.swift */,
+				000000000000000000002805 /* CourseFlashcardsSection.swift */,
+				000000000000000000002807 /* CourseLecturesSection.swift */,
+				000000000000000000002809 /* CourseNotesSection.swift */,
+				00000000000000000000280B /* CourseOverviewSection.swift */,
+				00000000000000000000280D /* CourseRecordingsSection.swift */,
+			);
+			path = "Subsections"; sourceTree = "<group>";
+		};
+		0000000000000000000028BC /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				0000000000000000000028BD /* Components */,
+				0000000000000000000028BE /* Subsections */,
+				0000000000000000000027F7 /* CourseDetailView.swift */,
+				0000000000000000000027F9 /* CourseDetailViewModel.swift */,
+				0000000000000000000027FB /* CoursesListView.swift */,
+				0000000000000000000027FD /* CoursesViewModel.swift */,
 			);
 			path = "Courses"; sourceTree = "<group>";
 		};
-		0000000000000000000028BD /* Onboarding */ = {
+		0000000000000000000028BF /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000280D /* OnboardingView.swift */,
+				00000000000000000000280F /* OnboardingView.swift */,
 			);
 			path = "Onboarding"; sourceTree = "<group>";
 		};
-		0000000000000000000028BF /* Components */ = {
+		0000000000000000000028C1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000280F /* SettingsListSection.swift */,
-				000000000000000000002811 /* StudentOverviewHeader.swift */,
+				000000000000000000002811 /* SettingsListSection.swift */,
+				000000000000000000002813 /* StudentOverviewHeader.swift */,
 			);
 			path = "Components"; sourceTree = "<group>";
 		};
-		0000000000000000000028BE /* Profile */ = {
+		0000000000000000000028C0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028BF /* Components */,
-				000000000000000000002813 /* ProfileView.swift */,
-				000000000000000000002815 /* ProfileViewModel.swift */,
+				0000000000000000000028C1 /* Components */,
+				000000000000000000002815 /* ProfileView.swift */,
+				000000000000000000002817 /* ProfileViewModel.swift */,
 			);
 			path = "Profile"; sourceTree = "<group>";
 		};
-		0000000000000000000028C0 /* Root */ = {
+		0000000000000000000028C2 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000002817 /* RootTabView.swift */,
+				000000000000000000002819 /* RootTabView.swift */,
 			);
 			path = "Root"; sourceTree = "<group>";
 		};
-		0000000000000000000028C2 /* Components */ = {
+		0000000000000000000028C4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000002819 /* UniversityAnnouncementRow.swift */,
-				00000000000000000000281B /* UniversityGradeCard.swift */,
+				00000000000000000000281B /* UniversityAnnouncementRow.swift */,
+				00000000000000000000281D /* UniversityGradeCard.swift */,
 			);
 			path = "Components"; sourceTree = "<group>";
 		};
-		0000000000000000000028C3 /* NEU */ = {
+		0000000000000000000028C5 /* NEU */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000281F /* NEUConnectorDiagnosticsView.swift */,
-				000000000000000000002821 /* NEUDashboardView.swift */,
-				000000000000000000002823 /* NEUMaterialImportSheet.swift */,
-				000000000000000000002825 /* NEUTranscriptImportSheet.swift */,
+				000000000000000000002821 /* NEUConnectorDiagnosticsView.swift */,
+				000000000000000000002823 /* NEUDashboardView.swift */,
+				000000000000000000002825 /* NEUMaterialImportSheet.swift */,
+				000000000000000000002827 /* NEUTranscriptImportSheet.swift */,
 			);
 			path = "NEU"; sourceTree = "<group>";
 		};
-		0000000000000000000028C1 /* University */ = {
+		0000000000000000000028C3 /* University */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028C2 /* Components */,
-				0000000000000000000028C3 /* NEU */,
-				00000000000000000000281D /* ImportPreviewSheet.swift */,
-				000000000000000000002827 /* UniversityInboxView.swift */,
-				000000000000000000002829 /* UniversityPortalView.swift */,
-				00000000000000000000282B /* UniversitySetupWizardView.swift */,
+				0000000000000000000028C4 /* Components */,
+				0000000000000000000028C5 /* NEU */,
+				00000000000000000000281F /* ImportPreviewSheet.swift */,
+				000000000000000000002829 /* UniversityInboxView.swift */,
+				00000000000000000000282B /* UniversityPortalView.swift */,
+				00000000000000000000282D /* UniversitySetupWizardView.swift */,
 			);
 			path = "University"; sourceTree = "<group>";
 		};
-		0000000000000000000028B3 /* Features */ = {
+		0000000000000000000028B5 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028B4 /* AI */,
-				0000000000000000000028B6 /* Calendar */,
-				0000000000000000000028B8 /* Command */,
-				0000000000000000000028BA /* Courses */,
-				0000000000000000000028BD /* Onboarding */,
-				0000000000000000000028BE /* Profile */,
-				0000000000000000000028C0 /* Root */,
-				0000000000000000000028C1 /* University */,
+				0000000000000000000028B6 /* AI */,
+				0000000000000000000028B8 /* Calendar */,
+				0000000000000000000028BA /* Command */,
+				0000000000000000000028BC /* Courses */,
+				0000000000000000000028BF /* Onboarding */,
+				0000000000000000000028C0 /* Profile */,
+				0000000000000000000028C2 /* Root */,
+				0000000000000000000028C3 /* University */,
 			);
 			path = "Features"; sourceTree = "<group>";
 		};
-		0000000000000000000028C4 /* Repositories */ = {
+		0000000000000000000028C6 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000282D /* AcademicRepositoryProtocols.swift */,
-				00000000000000000000282F /* CalendarRepository.swift */,
-				000000000000000000002831 /* CourseRepository.swift */,
-				000000000000000000002833 /* DatabaseAIMemoryRepository.swift */,
-				000000000000000000002835 /* DatabaseCourseRepository.swift */,
-				000000000000000000002837 /* DatabaseExamRepository.swift */,
-				000000000000000000002839 /* DatabaseFlashcardRepository.swift */,
-				00000000000000000000283B /* DatabaseGraduationRepository.swift */,
-				00000000000000000000283D /* DatabaseLectureRepository.swift */,
-				00000000000000000000283F /* DatabaseMasteryRepository.swift */,
-				000000000000000000002841 /* DatabaseNotesRepository.swift */,
-				000000000000000000002843 /* DatabaseNoteVersionRepository.swift */,
-				000000000000000000002845 /* DatabasePipelineRepository.swift */,
-				000000000000000000002847 /* DatabaseProfessorEmphasisRepository.swift */,
-				000000000000000000002849 /* DatabaseRecordingRepository.swift */,
-				00000000000000000000284B /* DatabaseSearchRepository.swift */,
-				00000000000000000000284D /* DatabaseSemesterRepository.swift */,
-				00000000000000000000284F /* DatabaseStudentRepository.swift */,
-				000000000000000000002851 /* DatabaseTaskRepository.swift */,
-				000000000000000000002853 /* DatabaseUniversityRepository.swift */,
-				000000000000000000002855 /* GraduationRepository.swift */,
-				000000000000000000002857 /* ProfileRepository.swift */,
-				000000000000000000002859 /* TaskRepository.swift */,
-				00000000000000000000285B /* UniversityRepositoryProtocol.swift */,
+				00000000000000000000282F /* AcademicRepositoryProtocols.swift */,
+				000000000000000000002831 /* CalendarRepository.swift */,
+				000000000000000000002833 /* CourseRepository.swift */,
+				000000000000000000002835 /* DatabaseAIMemoryRepository.swift */,
+				000000000000000000002837 /* DatabaseCourseRepository.swift */,
+				000000000000000000002839 /* DatabaseExamRepository.swift */,
+				00000000000000000000283B /* DatabaseFlashcardRepository.swift */,
+				00000000000000000000283D /* DatabaseGraduationRepository.swift */,
+				00000000000000000000283F /* DatabaseLectureRepository.swift */,
+				000000000000000000002841 /* DatabaseMasteryRepository.swift */,
+				000000000000000000002843 /* DatabaseNotesRepository.swift */,
+				000000000000000000002845 /* DatabaseNoteVersionRepository.swift */,
+				000000000000000000002847 /* DatabasePipelineRepository.swift */,
+				000000000000000000002849 /* DatabaseProfessorEmphasisRepository.swift */,
+				00000000000000000000284B /* DatabaseRecordingRepository.swift */,
+				00000000000000000000284D /* DatabaseSearchRepository.swift */,
+				00000000000000000000284F /* DatabaseSemesterRepository.swift */,
+				000000000000000000002851 /* DatabaseStudentRepository.swift */,
+				000000000000000000002853 /* DatabaseTaskRepository.swift */,
+				000000000000000000002855 /* DatabaseUniversityRepository.swift */,
+				000000000000000000002857 /* GraduationRepository.swift */,
+				000000000000000000002859 /* ProfileRepository.swift */,
+				00000000000000000000285B /* TaskRepository.swift */,
+				00000000000000000000285D /* UniversityRepositoryProtocol.swift */,
 			);
 			path = "Repositories"; sourceTree = "<group>";
 		};
-		0000000000000000000028C6 /* AI */ = {
+		0000000000000000000028C8 /* AI */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000285D /* DocumentContextService.swift */,
-				00000000000000000000285F /* FlashcardGenerationService.swift */,
-				000000000000000000002861 /* InteractiveQuizService.swift */,
-				000000000000000000002863 /* LectureIntelligencePipeline.swift */,
-				000000000000000000002865 /* MemoryPromotionService.swift */,
-				000000000000000000002867 /* ProfessorEmphasisDetector.swift */,
+				00000000000000000000285F /* DocumentContextService.swift */,
+				000000000000000000002861 /* FlashcardGenerationService.swift */,
+				000000000000000000002863 /* InteractiveQuizService.swift */,
+				000000000000000000002865 /* LectureIntelligencePipeline.swift */,
+				000000000000000000002867 /* MemoryPromotionService.swift */,
+				000000000000000000002869 /* ProfessorEmphasisDetector.swift */,
 			);
 			path = "AI"; sourceTree = "<group>";
 		};
-		0000000000000000000028C7 /* Audio */ = {
+		0000000000000000000028C9 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000002869 /* AudioPlaybackService.swift */,
-				00000000000000000000286B /* AudioRecordingService.swift */,
-				00000000000000000000286D /* TranscriptionService.swift */,
+				00000000000000000000286B /* AudioPlaybackService.swift */,
+				00000000000000000000286D /* AudioRecordingService.swift */,
+				00000000000000000000286F /* TranscriptionService.swift */,
 			);
 			path = "Audio"; sourceTree = "<group>";
 		};
-		0000000000000000000028C9 /* NEU */ = {
+		0000000000000000000028CB /* NEU */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000002883 /* NEUChangeHistoryService.swift */,
-				000000000000000000002885 /* NEUCourseReconciliationService.swift */,
-				000000000000000000002887 /* NEULivePortalCoordinator.swift */,
-				000000000000000000002889 /* NEUMoodleConnector.swift */,
-				00000000000000000000288B /* NEUPortalInspectionExporter.swift */,
-				00000000000000000000288D /* NEUStudentPortalConnector.swift */,
-				00000000000000000000288F /* NEUTranscriptParser.swift */,
-				000000000000000000002891 /* NEUUniversityConnector.swift */,
+				000000000000000000002885 /* NEUChangeHistoryService.swift */,
+				000000000000000000002887 /* NEUCourseReconciliationService.swift */,
+				000000000000000000002889 /* NEULivePortalCoordinator.swift */,
+				00000000000000000000288B /* NEUMoodleConnector.swift */,
+				00000000000000000000288D /* NEUPortalInspectionExporter.swift */,
+				00000000000000000000288F /* NEUStudentPortalConnector.swift */,
+				000000000000000000002891 /* NEUTranscriptParser.swift */,
+				000000000000000000002893 /* NEUUniversityConnector.swift */,
 			);
 			path = "NEU"; sourceTree = "<group>";
 		};
-		0000000000000000000028C8 /* University */ = {
+		0000000000000000000028CA /* University */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028C9 /* NEU */,
-				000000000000000000002875 /* AcademicNotificationService.swift */,
-				000000000000000000002877 /* AcademicRelevanceEngine.swift */,
-				000000000000000000002879 /* CourseReconciliationEngine.swift */,
-				00000000000000000000287B /* CustomUniversityConnector.swift */,
-				00000000000000000000287D /* DemoUniversityConnector.swift */,
-				00000000000000000000287F /* GPACalculator.swift */,
-				000000000000000000002881 /* GPAWeightingPolicy.swift */,
-				000000000000000000002893 /* PortalChangeDetectionEngine.swift */,
-				000000000000000000002895 /* PortalInspectionService.swift */,
-				000000000000000000002897 /* PortalPageClassifier.swift */,
-				000000000000000000002899 /* UniversityBackgroundRefreshService.swift */,
-				00000000000000000000289B /* UniversityConnectorDiagnostics.swift */,
-				00000000000000000000289D /* UniversityConnectorProtocol.swift */,
-				00000000000000000000289F /* UniversityDocumentDownloader.swift */,
-				0000000000000000000028A1 /* UniversitySyncEngine.swift */,
+				0000000000000000000028CB /* NEU */,
+				000000000000000000002877 /* AcademicNotificationService.swift */,
+				000000000000000000002879 /* AcademicRelevanceEngine.swift */,
+				00000000000000000000287B /* CourseReconciliationEngine.swift */,
+				00000000000000000000287D /* CustomUniversityConnector.swift */,
+				00000000000000000000287F /* DemoUniversityConnector.swift */,
+				000000000000000000002881 /* GPACalculator.swift */,
+				000000000000000000002883 /* GPAWeightingPolicy.swift */,
+				000000000000000000002895 /* PortalChangeDetectionEngine.swift */,
+				000000000000000000002897 /* PortalInspectionService.swift */,
+				000000000000000000002899 /* PortalPageClassifier.swift */,
+				00000000000000000000289B /* UniversityBackgroundRefreshService.swift */,
+				00000000000000000000289D /* UniversityConnectorDiagnostics.swift */,
+				00000000000000000000289F /* UniversityConnectorProtocol.swift */,
+				0000000000000000000028A1 /* UniversityDocumentDownloader.swift */,
+				0000000000000000000028A3 /* UniversitySyncEngine.swift */,
 			);
 			path = "University"; sourceTree = "<group>";
 		};
-		0000000000000000000028C5 /* Services */ = {
+		0000000000000000000028C7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028C6 /* AI */,
-				0000000000000000000028C7 /* Audio */,
-				0000000000000000000028C8 /* University */,
-				00000000000000000000286F /* DataHealthService.swift */,
-				000000000000000000002871 /* MockDataService.swift */,
-				000000000000000000002873 /* SyncCoordinator.swift */,
+				0000000000000000000028C8 /* AI */,
+				0000000000000000000028C9 /* Audio */,
+				0000000000000000000028CA /* University */,
+				000000000000000000002871 /* DataHealthService.swift */,
+				000000000000000000002873 /* MockDataService.swift */,
+				000000000000000000002875 /* SyncCoordinator.swift */,
 			);
 			path = "Services"; sourceTree = "<group>";
 		};
 		000000000000000000000003 /* AcademicOS */ = {
 			isa = PBXGroup;
 			children = (
-				0000000000000000000028A7 /* App */,
-				0000000000000000000028A8 /* Core */,
-				0000000000000000000028B3 /* Features */,
-				0000000000000000000028C4 /* Repositories */,
-				0000000000000000000028C5 /* Services */,
-				0000000000000000000028A3 /* Assets.xcassets */,
-				0000000000000000000028A5 /* Info.plist */,
+				0000000000000000000028A9 /* App */,
+				0000000000000000000028AA /* Core */,
+				0000000000000000000028B5 /* Features */,
+				0000000000000000000028C6 /* Repositories */,
+				0000000000000000000028C7 /* Services */,
+				0000000000000000000028A5 /* Assets.xcassets */,
+				0000000000000000000028A7 /* Info.plist */,
 			);
 			path = AcademicOS;
 			sourceTree = "<group>";
 		};
 
-		0000000000000000000028A6 /* Frameworks */ = {
+		0000000000000000000028A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				000000000000000000002711 /* WebKit.framework */,
@@ -976,7 +979,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0000000000000000000028A4 /* Assets.xcassets in Resources */,
+				0000000000000000000028A6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,159 +1029,160 @@
 				00000000000000000000276C /* AcademicCard.swift in Sources */,
 				00000000000000000000276E /* ActionButton.swift in Sources */,
 				000000000000000000002770 /* EmptyStateView.swift in Sources */,
-				000000000000000000002772 /* MetricBadge.swift in Sources */,
-				000000000000000000002774 /* OfflineBanner.swift in Sources */,
-				000000000000000000002776 /* StatusBadge.swift in Sources */,
-				000000000000000000002778 /* CornerRadius.swift in Sources */,
-				00000000000000000000277A /* Spacing.swift in Sources */,
-				00000000000000000000277C /* Typography.swift in Sources */,
-				00000000000000000000277E /* AcademicDocument.swift in Sources */,
-				000000000000000000002780 /* AcademicErrors.swift in Sources */,
-				000000000000000000002782 /* AcademicMastery.swift in Sources */,
-				000000000000000000002784 /* AcademicTask.swift in Sources */,
-				000000000000000000002786 /* AIMemoryEntry.swift in Sources */,
-				000000000000000000002788 /* AINoteVersion.swift in Sources */,
-				00000000000000000000278A /* Assignment.swift in Sources */,
-				00000000000000000000278C /* AudioMarker.swift in Sources */,
-				00000000000000000000278E /* AudioRecordingMetadata.swift in Sources */,
-				000000000000000000002790 /* Course.swift in Sources */,
-				000000000000000000002792 /* Exam.swift in Sources */,
-				000000000000000000002794 /* Flashcard.swift in Sources */,
-				000000000000000000002796 /* GPARecord.swift in Sources */,
-				000000000000000000002798 /* GraduationProgress.swift in Sources */,
-				00000000000000000000279A /* LectureSession.swift in Sources */,
-				00000000000000000000279C /* NEUUniversityModels.swift in Sources */,
-				00000000000000000000279E /* Note.swift in Sources */,
-				0000000000000000000027A0 /* PipelineState.swift in Sources */,
-				0000000000000000000027A2 /* PortalDataTrustLevel.swift in Sources */,
-				0000000000000000000027A4 /* Professor.swift in Sources */,
-				0000000000000000000027A6 /* ProfessorEmphasis.swift in Sources */,
-				0000000000000000000027A8 /* QueuedJob.swift in Sources */,
-				0000000000000000000027AA /* RealUniversityConnectorConfiguration.swift in Sources */,
-				0000000000000000000027AC /* Semester.swift in Sources */,
-				0000000000000000000027AE /* StudentProfile.swift in Sources */,
-				0000000000000000000027B0 /* StudySession.swift in Sources */,
-				0000000000000000000027B2 /* Transcript.swift in Sources */,
-				0000000000000000000027B4 /* UniversityPortalModels.swift in Sources */,
-				0000000000000000000027B6 /* NetworkMonitor.swift in Sources */,
-				0000000000000000000027B8 /* NetworkMonitorProtocol.swift in Sources */,
-				0000000000000000000027BA /* NetworkStatus.swift in Sources */,
-				0000000000000000000027BC /* DomainPolicyService.swift in Sources */,
-				0000000000000000000027BE /* KeychainKey.swift in Sources */,
-				0000000000000000000027C0 /* KeychainServiceProtocol.swift in Sources */,
-				0000000000000000000027C2 /* KeychainStorage.swift in Sources */,
-				0000000000000000000027C4 /* SecurityActivityLog.swift in Sources */,
-				0000000000000000000027C6 /* UniversityCredentialManager.swift in Sources */,
-				0000000000000000000027C8 /* UniversityWebSessionManager.swift in Sources */,
-				0000000000000000000027CA /* DocumentFileManager.swift in Sources */,
-				0000000000000000000027CC /* AICommandCenterView.swift in Sources */,
-				0000000000000000000027CE /* AICommandCenterViewModel.swift in Sources */,
-				0000000000000000000027D0 /* AgentCardView.swift in Sources */,
-				0000000000000000000027D2 /* AIRouterStatusBanner.swift in Sources */,
-				0000000000000000000027D4 /* AIUsageTelemetryView.swift in Sources */,
-				0000000000000000000027D6 /* AcademicCalendarView.swift in Sources */,
-				0000000000000000000027D8 /* AcademicCalendarViewModel.swift in Sources */,
-				0000000000000000000027DA /* EventScheduleRow.swift in Sources */,
-				0000000000000000000027DC /* MonthCalendarOverview.swift in Sources */,
-				0000000000000000000027DE /* CommandDashboardView.swift in Sources */,
-				0000000000000000000027E0 /* CommandViewModel.swift in Sources */,
-				0000000000000000000027E2 /* AcademicStatusGrid.swift in Sources */,
-				0000000000000000000027E4 /* GraduationHeroCard.swift in Sources */,
-				0000000000000000000027E6 /* MissionTimelineView.swift in Sources */,
-				0000000000000000000027E8 /* UpcomingEventsSection.swift in Sources */,
-				0000000000000000000027EA /* AddCourseSheet.swift in Sources */,
-				0000000000000000000027EC /* AddLectureSheet.swift in Sources */,
-				0000000000000000000027EE /* LectureIntelligenceResultView.swift in Sources */,
-				0000000000000000000027F0 /* LectureRecordingView.swift in Sources */,
-				0000000000000000000027F2 /* NoteEditorView.swift in Sources */,
-				0000000000000000000027F4 /* TranscriptDetailView.swift in Sources */,
-				0000000000000000000027F6 /* CourseDetailView.swift in Sources */,
-				0000000000000000000027F8 /* CourseDetailViewModel.swift in Sources */,
-				0000000000000000000027FA /* CoursesListView.swift in Sources */,
-				0000000000000000000027FC /* CoursesViewModel.swift in Sources */,
-				0000000000000000000027FE /* CourseAISection.swift in Sources */,
-				000000000000000000002800 /* CourseDocumentsSection.swift in Sources */,
-				000000000000000000002802 /* CourseExamsSection.swift in Sources */,
-				000000000000000000002804 /* CourseFlashcardsSection.swift in Sources */,
-				000000000000000000002806 /* CourseLecturesSection.swift in Sources */,
-				000000000000000000002808 /* CourseNotesSection.swift in Sources */,
-				00000000000000000000280A /* CourseOverviewSection.swift in Sources */,
-				00000000000000000000280C /* CourseRecordingsSection.swift in Sources */,
-				00000000000000000000280E /* OnboardingView.swift in Sources */,
-				000000000000000000002810 /* SettingsListSection.swift in Sources */,
-				000000000000000000002812 /* StudentOverviewHeader.swift in Sources */,
-				000000000000000000002814 /* ProfileView.swift in Sources */,
-				000000000000000000002816 /* ProfileViewModel.swift in Sources */,
-				000000000000000000002818 /* RootTabView.swift in Sources */,
-				00000000000000000000281A /* UniversityAnnouncementRow.swift in Sources */,
-				00000000000000000000281C /* UniversityGradeCard.swift in Sources */,
-				00000000000000000000281E /* ImportPreviewSheet.swift in Sources */,
-				000000000000000000002820 /* NEUConnectorDiagnosticsView.swift in Sources */,
-				000000000000000000002822 /* NEUDashboardView.swift in Sources */,
-				000000000000000000002824 /* NEUMaterialImportSheet.swift in Sources */,
-				000000000000000000002826 /* NEUTranscriptImportSheet.swift in Sources */,
-				000000000000000000002828 /* UniversityInboxView.swift in Sources */,
-				00000000000000000000282A /* UniversityPortalView.swift in Sources */,
-				00000000000000000000282C /* UniversitySetupWizardView.swift in Sources */,
-				00000000000000000000282E /* AcademicRepositoryProtocols.swift in Sources */,
-				000000000000000000002830 /* CalendarRepository.swift in Sources */,
-				000000000000000000002832 /* CourseRepository.swift in Sources */,
-				000000000000000000002834 /* DatabaseAIMemoryRepository.swift in Sources */,
-				000000000000000000002836 /* DatabaseCourseRepository.swift in Sources */,
-				000000000000000000002838 /* DatabaseExamRepository.swift in Sources */,
-				00000000000000000000283A /* DatabaseFlashcardRepository.swift in Sources */,
-				00000000000000000000283C /* DatabaseGraduationRepository.swift in Sources */,
-				00000000000000000000283E /* DatabaseLectureRepository.swift in Sources */,
-				000000000000000000002840 /* DatabaseMasteryRepository.swift in Sources */,
-				000000000000000000002842 /* DatabaseNotesRepository.swift in Sources */,
-				000000000000000000002844 /* DatabaseNoteVersionRepository.swift in Sources */,
-				000000000000000000002846 /* DatabasePipelineRepository.swift in Sources */,
-				000000000000000000002848 /* DatabaseProfessorEmphasisRepository.swift in Sources */,
-				00000000000000000000284A /* DatabaseRecordingRepository.swift in Sources */,
-				00000000000000000000284C /* DatabaseSearchRepository.swift in Sources */,
-				00000000000000000000284E /* DatabaseSemesterRepository.swift in Sources */,
-				000000000000000000002850 /* DatabaseStudentRepository.swift in Sources */,
-				000000000000000000002852 /* DatabaseTaskRepository.swift in Sources */,
-				000000000000000000002854 /* DatabaseUniversityRepository.swift in Sources */,
-				000000000000000000002856 /* GraduationRepository.swift in Sources */,
-				000000000000000000002858 /* ProfileRepository.swift in Sources */,
-				00000000000000000000285A /* TaskRepository.swift in Sources */,
-				00000000000000000000285C /* UniversityRepositoryProtocol.swift in Sources */,
-				00000000000000000000285E /* DocumentContextService.swift in Sources */,
-				000000000000000000002860 /* FlashcardGenerationService.swift in Sources */,
-				000000000000000000002862 /* InteractiveQuizService.swift in Sources */,
-				000000000000000000002864 /* LectureIntelligencePipeline.swift in Sources */,
-				000000000000000000002866 /* MemoryPromotionService.swift in Sources */,
-				000000000000000000002868 /* ProfessorEmphasisDetector.swift in Sources */,
-				00000000000000000000286A /* AudioPlaybackService.swift in Sources */,
-				00000000000000000000286C /* AudioRecordingService.swift in Sources */,
-				00000000000000000000286E /* TranscriptionService.swift in Sources */,
-				000000000000000000002870 /* DataHealthService.swift in Sources */,
-				000000000000000000002872 /* MockDataService.swift in Sources */,
-				000000000000000000002874 /* SyncCoordinator.swift in Sources */,
-				000000000000000000002876 /* AcademicNotificationService.swift in Sources */,
-				000000000000000000002878 /* AcademicRelevanceEngine.swift in Sources */,
-				00000000000000000000287A /* CourseReconciliationEngine.swift in Sources */,
-				00000000000000000000287C /* CustomUniversityConnector.swift in Sources */,
-				00000000000000000000287E /* DemoUniversityConnector.swift in Sources */,
-				000000000000000000002880 /* GPACalculator.swift in Sources */,
-				000000000000000000002882 /* GPAWeightingPolicy.swift in Sources */,
-				000000000000000000002884 /* NEUChangeHistoryService.swift in Sources */,
-				000000000000000000002886 /* NEUCourseReconciliationService.swift in Sources */,
-				000000000000000000002888 /* NEULivePortalCoordinator.swift in Sources */,
-				00000000000000000000288A /* NEUMoodleConnector.swift in Sources */,
-				00000000000000000000288C /* NEUPortalInspectionExporter.swift in Sources */,
-				00000000000000000000288E /* NEUStudentPortalConnector.swift in Sources */,
-				000000000000000000002890 /* NEUTranscriptParser.swift in Sources */,
-				000000000000000000002892 /* NEUUniversityConnector.swift in Sources */,
-				000000000000000000002894 /* PortalChangeDetectionEngine.swift in Sources */,
-				000000000000000000002896 /* PortalInspectionService.swift in Sources */,
-				000000000000000000002898 /* PortalPageClassifier.swift in Sources */,
-				00000000000000000000289A /* UniversityBackgroundRefreshService.swift in Sources */,
-				00000000000000000000289C /* UniversityConnectorDiagnostics.swift in Sources */,
-				00000000000000000000289E /* UniversityConnectorProtocol.swift in Sources */,
-				0000000000000000000028A0 /* UniversityDocumentDownloader.swift in Sources */,
-				0000000000000000000028A2 /* UniversitySyncEngine.swift in Sources */,
+				000000000000000000002772 /* FilterChip.swift in Sources */,
+				000000000000000000002774 /* MetricBadge.swift in Sources */,
+				000000000000000000002776 /* OfflineBanner.swift in Sources */,
+				000000000000000000002778 /* StatusBadge.swift in Sources */,
+				00000000000000000000277A /* CornerRadius.swift in Sources */,
+				00000000000000000000277C /* Spacing.swift in Sources */,
+				00000000000000000000277E /* Typography.swift in Sources */,
+				000000000000000000002780 /* AcademicDocument.swift in Sources */,
+				000000000000000000002782 /* AcademicErrors.swift in Sources */,
+				000000000000000000002784 /* AcademicMastery.swift in Sources */,
+				000000000000000000002786 /* AcademicTask.swift in Sources */,
+				000000000000000000002788 /* AIMemoryEntry.swift in Sources */,
+				00000000000000000000278A /* AINoteVersion.swift in Sources */,
+				00000000000000000000278C /* Assignment.swift in Sources */,
+				00000000000000000000278E /* AudioMarker.swift in Sources */,
+				000000000000000000002790 /* AudioRecordingMetadata.swift in Sources */,
+				000000000000000000002792 /* Course.swift in Sources */,
+				000000000000000000002794 /* Exam.swift in Sources */,
+				000000000000000000002796 /* Flashcard.swift in Sources */,
+				000000000000000000002798 /* GPARecord.swift in Sources */,
+				00000000000000000000279A /* GraduationProgress.swift in Sources */,
+				00000000000000000000279C /* LectureSession.swift in Sources */,
+				00000000000000000000279E /* NEUUniversityModels.swift in Sources */,
+				0000000000000000000027A0 /* Note.swift in Sources */,
+				0000000000000000000027A2 /* PipelineState.swift in Sources */,
+				0000000000000000000027A4 /* PortalDataTrustLevel.swift in Sources */,
+				0000000000000000000027A6 /* Professor.swift in Sources */,
+				0000000000000000000027A8 /* ProfessorEmphasis.swift in Sources */,
+				0000000000000000000027AA /* QueuedJob.swift in Sources */,
+				0000000000000000000027AC /* RealUniversityConnectorConfiguration.swift in Sources */,
+				0000000000000000000027AE /* Semester.swift in Sources */,
+				0000000000000000000027B0 /* StudentProfile.swift in Sources */,
+				0000000000000000000027B2 /* StudySession.swift in Sources */,
+				0000000000000000000027B4 /* Transcript.swift in Sources */,
+				0000000000000000000027B6 /* UniversityPortalModels.swift in Sources */,
+				0000000000000000000027B8 /* NetworkMonitor.swift in Sources */,
+				0000000000000000000027BA /* NetworkMonitorProtocol.swift in Sources */,
+				0000000000000000000027BC /* NetworkStatus.swift in Sources */,
+				0000000000000000000027BE /* DomainPolicyService.swift in Sources */,
+				0000000000000000000027C0 /* KeychainKey.swift in Sources */,
+				0000000000000000000027C2 /* KeychainServiceProtocol.swift in Sources */,
+				0000000000000000000027C4 /* KeychainStorage.swift in Sources */,
+				0000000000000000000027C6 /* SecurityActivityLog.swift in Sources */,
+				0000000000000000000027C8 /* UniversityCredentialManager.swift in Sources */,
+				0000000000000000000027CA /* UniversityWebSessionManager.swift in Sources */,
+				0000000000000000000027CC /* DocumentFileManager.swift in Sources */,
+				0000000000000000000027CE /* AICommandCenterView.swift in Sources */,
+				0000000000000000000027D0 /* AICommandCenterViewModel.swift in Sources */,
+				0000000000000000000027D2 /* AgentCardView.swift in Sources */,
+				0000000000000000000027D4 /* AIRouterStatusBanner.swift in Sources */,
+				0000000000000000000027D6 /* AIUsageTelemetryView.swift in Sources */,
+				0000000000000000000027D8 /* AcademicCalendarView.swift in Sources */,
+				0000000000000000000027DA /* AcademicCalendarViewModel.swift in Sources */,
+				0000000000000000000027DC /* EventScheduleRow.swift in Sources */,
+				0000000000000000000027DE /* MonthCalendarOverview.swift in Sources */,
+				0000000000000000000027E0 /* CommandDashboardView.swift in Sources */,
+				0000000000000000000027E2 /* CommandViewModel.swift in Sources */,
+				0000000000000000000027E4 /* AcademicStatusGrid.swift in Sources */,
+				0000000000000000000027E6 /* GraduationHeroCard.swift in Sources */,
+				0000000000000000000027E8 /* MissionTimelineView.swift in Sources */,
+				0000000000000000000027EA /* UpcomingEventsSection.swift in Sources */,
+				0000000000000000000027EC /* AddCourseSheet.swift in Sources */,
+				0000000000000000000027EE /* AddLectureSheet.swift in Sources */,
+				0000000000000000000027F0 /* LectureIntelligenceResultView.swift in Sources */,
+				0000000000000000000027F2 /* LectureRecordingView.swift in Sources */,
+				0000000000000000000027F4 /* NoteEditorView.swift in Sources */,
+				0000000000000000000027F6 /* TranscriptDetailView.swift in Sources */,
+				0000000000000000000027F8 /* CourseDetailView.swift in Sources */,
+				0000000000000000000027FA /* CourseDetailViewModel.swift in Sources */,
+				0000000000000000000027FC /* CoursesListView.swift in Sources */,
+				0000000000000000000027FE /* CoursesViewModel.swift in Sources */,
+				000000000000000000002800 /* CourseAISection.swift in Sources */,
+				000000000000000000002802 /* CourseDocumentsSection.swift in Sources */,
+				000000000000000000002804 /* CourseExamsSection.swift in Sources */,
+				000000000000000000002806 /* CourseFlashcardsSection.swift in Sources */,
+				000000000000000000002808 /* CourseLecturesSection.swift in Sources */,
+				00000000000000000000280A /* CourseNotesSection.swift in Sources */,
+				00000000000000000000280C /* CourseOverviewSection.swift in Sources */,
+				00000000000000000000280E /* CourseRecordingsSection.swift in Sources */,
+				000000000000000000002810 /* OnboardingView.swift in Sources */,
+				000000000000000000002812 /* SettingsListSection.swift in Sources */,
+				000000000000000000002814 /* StudentOverviewHeader.swift in Sources */,
+				000000000000000000002816 /* ProfileView.swift in Sources */,
+				000000000000000000002818 /* ProfileViewModel.swift in Sources */,
+				00000000000000000000281A /* RootTabView.swift in Sources */,
+				00000000000000000000281C /* UniversityAnnouncementRow.swift in Sources */,
+				00000000000000000000281E /* UniversityGradeCard.swift in Sources */,
+				000000000000000000002820 /* ImportPreviewSheet.swift in Sources */,
+				000000000000000000002822 /* NEUConnectorDiagnosticsView.swift in Sources */,
+				000000000000000000002824 /* NEUDashboardView.swift in Sources */,
+				000000000000000000002826 /* NEUMaterialImportSheet.swift in Sources */,
+				000000000000000000002828 /* NEUTranscriptImportSheet.swift in Sources */,
+				00000000000000000000282A /* UniversityInboxView.swift in Sources */,
+				00000000000000000000282C /* UniversityPortalView.swift in Sources */,
+				00000000000000000000282E /* UniversitySetupWizardView.swift in Sources */,
+				000000000000000000002830 /* AcademicRepositoryProtocols.swift in Sources */,
+				000000000000000000002832 /* CalendarRepository.swift in Sources */,
+				000000000000000000002834 /* CourseRepository.swift in Sources */,
+				000000000000000000002836 /* DatabaseAIMemoryRepository.swift in Sources */,
+				000000000000000000002838 /* DatabaseCourseRepository.swift in Sources */,
+				00000000000000000000283A /* DatabaseExamRepository.swift in Sources */,
+				00000000000000000000283C /* DatabaseFlashcardRepository.swift in Sources */,
+				00000000000000000000283E /* DatabaseGraduationRepository.swift in Sources */,
+				000000000000000000002840 /* DatabaseLectureRepository.swift in Sources */,
+				000000000000000000002842 /* DatabaseMasteryRepository.swift in Sources */,
+				000000000000000000002844 /* DatabaseNotesRepository.swift in Sources */,
+				000000000000000000002846 /* DatabaseNoteVersionRepository.swift in Sources */,
+				000000000000000000002848 /* DatabasePipelineRepository.swift in Sources */,
+				00000000000000000000284A /* DatabaseProfessorEmphasisRepository.swift in Sources */,
+				00000000000000000000284C /* DatabaseRecordingRepository.swift in Sources */,
+				00000000000000000000284E /* DatabaseSearchRepository.swift in Sources */,
+				000000000000000000002850 /* DatabaseSemesterRepository.swift in Sources */,
+				000000000000000000002852 /* DatabaseStudentRepository.swift in Sources */,
+				000000000000000000002854 /* DatabaseTaskRepository.swift in Sources */,
+				000000000000000000002856 /* DatabaseUniversityRepository.swift in Sources */,
+				000000000000000000002858 /* GraduationRepository.swift in Sources */,
+				00000000000000000000285A /* ProfileRepository.swift in Sources */,
+				00000000000000000000285C /* TaskRepository.swift in Sources */,
+				00000000000000000000285E /* UniversityRepositoryProtocol.swift in Sources */,
+				000000000000000000002860 /* DocumentContextService.swift in Sources */,
+				000000000000000000002862 /* FlashcardGenerationService.swift in Sources */,
+				000000000000000000002864 /* InteractiveQuizService.swift in Sources */,
+				000000000000000000002866 /* LectureIntelligencePipeline.swift in Sources */,
+				000000000000000000002868 /* MemoryPromotionService.swift in Sources */,
+				00000000000000000000286A /* ProfessorEmphasisDetector.swift in Sources */,
+				00000000000000000000286C /* AudioPlaybackService.swift in Sources */,
+				00000000000000000000286E /* AudioRecordingService.swift in Sources */,
+				000000000000000000002870 /* TranscriptionService.swift in Sources */,
+				000000000000000000002872 /* DataHealthService.swift in Sources */,
+				000000000000000000002874 /* MockDataService.swift in Sources */,
+				000000000000000000002876 /* SyncCoordinator.swift in Sources */,
+				000000000000000000002878 /* AcademicNotificationService.swift in Sources */,
+				00000000000000000000287A /* AcademicRelevanceEngine.swift in Sources */,
+				00000000000000000000287C /* CourseReconciliationEngine.swift in Sources */,
+				00000000000000000000287E /* CustomUniversityConnector.swift in Sources */,
+				000000000000000000002880 /* DemoUniversityConnector.swift in Sources */,
+				000000000000000000002882 /* GPACalculator.swift in Sources */,
+				000000000000000000002884 /* GPAWeightingPolicy.swift in Sources */,
+				000000000000000000002886 /* NEUChangeHistoryService.swift in Sources */,
+				000000000000000000002888 /* NEUCourseReconciliationService.swift in Sources */,
+				00000000000000000000288A /* NEULivePortalCoordinator.swift in Sources */,
+				00000000000000000000288C /* NEUMoodleConnector.swift in Sources */,
+				00000000000000000000288E /* NEUPortalInspectionExporter.swift in Sources */,
+				000000000000000000002890 /* NEUStudentPortalConnector.swift in Sources */,
+				000000000000000000002892 /* NEUTranscriptParser.swift in Sources */,
+				000000000000000000002894 /* NEUUniversityConnector.swift in Sources */,
+				000000000000000000002896 /* PortalChangeDetectionEngine.swift in Sources */,
+				000000000000000000002898 /* PortalInspectionService.swift in Sources */,
+				00000000000000000000289A /* PortalPageClassifier.swift in Sources */,
+				00000000000000000000289C /* UniversityBackgroundRefreshService.swift in Sources */,
+				00000000000000000000289E /* UniversityConnectorDiagnostics.swift in Sources */,
+				0000000000000000000028A0 /* UniversityConnectorProtocol.swift in Sources */,
+				0000000000000000000028A2 /* UniversityDocumentDownloader.swift in Sources */,
+				0000000000000000000028A4 /* UniversitySyncEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,6 +54,6 @@ public final class DatabaseNotesRepository: NotesRepositoryProtocol, @unchecked 
     }
 
     public func deleteNote(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(Note.self, id: id)
     }
 }

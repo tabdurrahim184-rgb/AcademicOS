@@ -30,8 +30,8 @@ public actor InMemoryDatabaseManager: LocalStoreProtocol {
         }
     }
 
-    public func fetch<T: Identifiable & Codable & Sendable>(id: T.ID) async throws -> T? {
-        let typeKey = keyForType(T.self)
+    public func fetch<T: Identifiable & Codable & Sendable>(_ type: T.Type, id: T.ID) async throws -> T? {
+        let typeKey = keyForType(type)
         let itemIdString = String(describing: id)
         guard let data = storage[typeKey]?[itemIdString] else {
             return nil
@@ -41,8 +41,12 @@ public actor InMemoryDatabaseManager: LocalStoreProtocol {
         return try decoder.decode(T.self, from: data)
     }
 
-    public func fetchAll<T: Identifiable & Codable & Sendable>() async throws -> [T] {
-        let typeKey = keyForType(T.self)
+    public func fetch<T: Identifiable & Codable & Sendable>(id: T.ID) async throws -> T? {
+        try await fetch(T.self, id: id)
+    }
+
+    public func fetchAll<T: Identifiable & Codable & Sendable>(_ type: T.Type) async throws -> [T] {
+        let typeKey = keyForType(type)
         guard let dict = storage[typeKey] else { return [] }
 
         let decoder = JSONDecoder()
@@ -56,10 +60,18 @@ public actor InMemoryDatabaseManager: LocalStoreProtocol {
         return results
     }
 
-    public func delete<T: Identifiable & Codable & Sendable>(id: T.ID) async throws {
-        let typeKey = keyForType(T.self)
+    public func fetchAll<T: Identifiable & Codable & Sendable>() async throws -> [T] {
+        try await fetchAll(T.self)
+    }
+
+    public func delete<T: Identifiable & Codable & Sendable>(_ type: T.Type, id: T.ID) async throws {
+        let typeKey = keyForType(type)
         let itemIdString = String(describing: id)
         storage[typeKey]?.removeValue(forKey: itemIdString)
+    }
+
+    public func delete<T: Identifiable & Codable & Sendable>(type: T.Type, id: T.ID) async throws {
+        try await delete(type, id: id)
     }
 
     public func deleteAll<T: Identifiable & Codable & Sendable>(_ type: T.Type) async throws {

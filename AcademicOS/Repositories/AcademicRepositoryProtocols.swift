@@ -33,6 +33,21 @@ public protocol CourseRepositoryProtocol: Sendable {
     func deleteCourse(id: UUID) async throws
 }
 
+public extension CourseRepositoryProtocol {
+    func getAllCourses() async throws -> [Course] {
+        try await getCourses()
+    }
+}
+
+/// Repository contract for calendar milestones, scheduled exams, assignments, and study sessions.
+public protocol CalendarRepositoryProtocol: Sendable {
+    func getAllExams() async throws -> [Exam]
+    func getAllAssignments() async throws -> [Assignment]
+    func getAllLectures() async throws -> [LectureSession]
+    func getAllStudySessions() async throws -> [StudySession]
+    func saveStudySession(_ session: StudySession) async throws
+}
+
 /// Repository contract for scheduled lecture sessions.
 public protocol LectureRepositoryProtocol: Sendable {
     func getLectures(forCourseId courseId: UUID) async throws -> [LectureSession]
@@ -94,6 +109,12 @@ public protocol TaskRepositoryProtocol: Sendable {
     func getAllAssignments() async throws -> [Assignment]
     func saveAssignment(_ assignment: Assignment) async throws
     func deleteAssignment(id: UUID) async throws
+}
+
+public extension TaskRepositoryProtocol {
+    func getAllTasks() async throws -> [AcademicTask] {
+        try await getTasks()
+    }
 }
 
 /// Repository contract for spaced repetition flashcards.

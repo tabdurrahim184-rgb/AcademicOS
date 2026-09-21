@@ -23,7 +23,7 @@ public final class DatabaseRecordingRepository: RecordingRepositoryProtocol, @un
     }
 
     public func deleteRecording(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(AudioRecordingMetadata.self, id: id)
     }
 
     // Transcripts
@@ -63,6 +63,6 @@ public final class DatabaseRecordingRepository: RecordingRepositoryProtocol, @un
     }
 
     public func deleteMarker(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(AudioMarker.self, id: id)
     }
 }

@@ -24,7 +24,7 @@ for (const line of lines) {
     if (/firebase/i.test(line)) {
       categories['Firebase'].push(line.trim());
       matched = true;
-    } else if (/foundationmodels/i.test(line)) {
+    } else if (/foundationmodels|applefoundationmodel|languagemodel/i.test(line)) {
       categories['FoundationModels'].push(line.trim());
       matched = true;
     } else if (/webkit/i.test(line)) {

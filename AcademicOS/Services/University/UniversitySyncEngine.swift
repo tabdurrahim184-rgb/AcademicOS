@@ -108,7 +108,7 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
             let payload = try await connector.fetchFullPayload()
 
             // 2. Fetch local active courses for code-to-ID mapping
-            let localCourses = try await courseRepo.getAllCourses()
+            let localCourses = try await courseRepo.getCourses()
             var courseCodeMap: [String: Course] = [:]
             for course in localCourses {
                 let normalizedCode = course.code.replacingOccurrences(of: " ", with: "").uppercased()
@@ -185,7 +185,7 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
             }
 
             // 4. Process Assignments -> AcademicTasks (Read Only)
-            let existingTasks = try await taskRepo.getAllTasks()
+            let existingTasks = try await taskRepo.getTasks()
             for remoteAsg in payload.assignments {
                 let normalized = remoteAsg.courseCode.replacingOccurrences(of: " ", with: "").uppercased()
                 let targetCourseId = courseCodeMap[normalized]?.id ?? localCourses.first?.id ?? UUID()
@@ -199,7 +199,7 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
                         id: UUID(),
                         courseId: targetCourseId,
                         title: "\(remoteAsg.courseCode): \(remoteAsg.title)",
-                        scheduledTime: remoteAsg.dueDate,
+                        scheduledTime: nil,
                         dueDate: remoteAsg.dueDate,
                         estimatedMinutes: 90,
                         isCompleted: false,

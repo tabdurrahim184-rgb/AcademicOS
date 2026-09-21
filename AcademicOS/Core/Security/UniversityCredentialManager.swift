@@ -90,12 +90,12 @@ public final class UniversityCredentialManager: UniversityCredentialManagerProto
         lock.lock()
         defer { lock.unlock() }
 
-        try keychain.save(key: .lmsUsername, value: username)
+        try keychain.set(username, for: .lmsUsername)
 
         if let p = password, !p.isEmpty {
-            try keychain.save(key: .lmsPassword, value: p)
+            try keychain.set(p, for: .lmsPassword)
         } else {
-            try? keychain.delete(key: .lmsPassword)
+            try? keychain.delete(.lmsPassword)
         }
     }
 
@@ -103,18 +103,18 @@ public final class UniversityCredentialManager: UniversityCredentialManagerProto
         lock.lock()
         defer { lock.unlock() }
 
-        guard let username = try keychain.read(key: .lmsUsername), !username.isEmpty else {
+        guard let username = try keychain.get(.lmsUsername), !username.isEmpty else {
             return nil
         }
 
-        let hasPassword = (try? keychain.read(key: .lmsPassword))?.isEmpty == false
+        let hasPassword = (try? keychain.get(.lmsPassword))?.isEmpty == false
         return StoredCredential(username: username, hasPasswordStored: hasPassword)
     }
 
     public func getRawPassword() throws -> String? {
         lock.lock()
         defer { lock.unlock() }
-        return try keychain.read(key: .lmsPassword)
+        return try keychain.get(.lmsPassword)
     }
 
     public func updateLastUsed() throws {
@@ -124,9 +124,9 @@ public final class UniversityCredentialManager: UniversityCredentialManagerProto
     public func clearKeychainCredentials() throws {
         lock.lock()
         defer { lock.unlock() }
-        try? keychain.delete(key: .lmsUsername)
-        try? keychain.delete(key: .lmsPassword)
-        try? keychain.delete(key: .lmsAuthToken)
+        try? keychain.delete(.lmsUsername)
+        try? keychain.delete(.lmsPassword)
+        try? keychain.delete(.lmsAuthToken)
     }
 
     // MARK: - WebKit Session Tracking

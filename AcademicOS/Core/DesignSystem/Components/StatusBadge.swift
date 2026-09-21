@@ -56,3 +56,6 @@ public struct StatusBadge: View {
         )
     }
 }
+
+/// Global alias for semantic status badge styles.
+public typealias StatusBadgeStyle = StatusBadge.Style

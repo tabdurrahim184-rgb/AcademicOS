@@ -432,11 +432,11 @@ public struct UniversitySetupWizardView: View {
         let lmsURL = URL(string: lmsBaseURLString)
         let obsURL = URL(string: obsBaseURLString)
 
-        let hosts: Set<String> = [
+        let hosts: Set<String> = Set([
             portalURL.host?.lowercased() ?? "portal",
             loginURL.host?.lowercased() ?? "login",
             obsURL?.host?.lowercased() ?? "obs"
-        ].filter { !$0.isEmpty }
+        ].filter { !$0.isEmpty })
 
         let config = RealUniversityConnectorConfiguration(
             universityName: universityName.isEmpty ? "Üniversitem" : universityName,

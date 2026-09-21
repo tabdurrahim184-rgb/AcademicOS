@@ -30,6 +30,6 @@ public final class DatabaseLectureRepository: LectureRepositoryProtocol, @unchec
     }
 
     public func deleteLecture(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(LectureSession.self, id: id)
     }
 }

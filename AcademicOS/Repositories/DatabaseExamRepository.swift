@@ -27,6 +27,6 @@ public final class DatabaseExamRepository: ExamRepositoryProtocol, @unchecked Se
     }
 
     public func deleteExam(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(Exam.self, id: id)
     }
 }

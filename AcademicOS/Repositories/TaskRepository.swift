@@ -33,6 +33,25 @@ public final class TaskRepository: TaskRepositoryProtocol, @unchecked Sendable {
     }
 
     public func deleteTask(id: UUID) async throws {
-        try await localStore.delete(id: id)
+        try await localStore.delete(AcademicTask.self, id: id)
+    }
+
+    // Assignments
+    public func getAssignments(forCourseId courseId: UUID) async throws -> [Assignment] {
+        let assignments: [Assignment] = try await localStore.fetchAll()
+        return assignments.filter { $0.courseId == courseId }.sorted { $0.dueDate < $1.dueDate }
+    }
+
+    public func getAllAssignments() async throws -> [Assignment] {
+        let assignments: [Assignment] = try await localStore.fetchAll()
+        return assignments.sorted { $0.dueDate < $1.dueDate }
+    }
+
+    public func saveAssignment(_ assignment: Assignment) async throws {
+        try await localStore.save(assignment)
+    }
+
+    public func deleteAssignment(id: UUID) async throws {
+        try await localStore.delete(Assignment.self, id: id)
     }
 }
