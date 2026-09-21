@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcademicOS - Visual Preview Environment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Studio Top Bar for Windows Developer -->
+  <header class="preview-header">
+    <div class="header-brand">
+      <div class="header-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="header-title">AcademicOS Visual Prototype</div>
+        <div class="header-badge">iPhone 16 Pro (6.1") Canvas &bull; Windows Companion</div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Select -->
+    <div class="screen-selector-group">
+      <span class="screen-selector-label">JUMP SCREEN:</span>
+      <select id="screen-selector" class="screen-selector" onchange="jumpToScreen(this.value)">
+        <option value="command">1. Command (Command Center)</option>
+        <option value="courses">2. Courses (List & Management)</option>
+        <option value="course_detail">2b. Course Detail (CENG 311)</option>
+        <option value="recording">3. Lecture Recording (01:12:36 Studio)</option>
+        <option value="transcript">4. Lecture Transcript (00:37:16 Quote)</option>
+        <option value="intelligence">5. Lecture Intelligence (AI Analysis)</option>
+        <option value="notes_full">6a. Full Lecture Notes</option>
+        <option value="notes_nokta">6b. Nokta Atışı Cram Sheet</option>
+        <option value="course_ai">7. Course AI Chat (Sourced RAG)</option>
+        <option value="exam_agent">8. Exam Agent (Practice Quiz)</option>
+        <option value="flashcards">9. Flashcards (Accept / Reject)</option>
+        <option value="calendar">10. Academic Calendar</option>
+        <option value="university">11. University Portal (Sync)</option>
+        <option value="ai_command">12. AI Command Center (6 Agents)</option>
+        <option value="profile">13. Profile & Settings</option>
+        <option value="offline">14. Offline Simulation State</option>
+      </select>
+    </div>
+
+    <!-- Control Actions -->
+    <div class="header-controls">
+      <button class="preview-btn" onclick="toggleTheme()" title="Switch Light/Dark Mode">
+        <span id="theme-btn-icon">☀️</span>
+        <span id="theme-btn-label">Light Mode</span>
+      </button>
+
+      <button id="network-toggle-btn" class="preview-btn" onclick="toggleOfflineSimulation()" title="Toggle simulated network connectivity">
+        <span id="network-btn-icon">⚡</span>
+        <span id="network-btn-label">Simulate Offline</span>
+      </button>
+
+      <button class="preview-btn" onclick="toggleBezel()" title="Show/Hide iPhone Titanium Frame">
+        📱 <span id="bezel-btn-label">Hide Bezel</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Canvas Preview -->
+  <main class="preview-container">
+    <div class="iphone-frame" id="iphone-frame">
+      <!-- Dynamic Island with status pill -->
+      <div class="dynamic-island">
+        <div class="island-camera"></div>
+        <div class="island-sensor"></div>
+      </div>
+
+      <!-- iOS Native Status Bar -->
+      <div class="ios-status-bar">
+        <div class="status-time" id="status-time">9:41</div>
+        <div class="status-icons">
+          <!-- Signal Icon -->
+          <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor">
+            <rect x="0" y="8" width="3" height="3" rx="0.7"/>
+            <rect x="4.5" y="5.5" width="3" height="5.5" rx="0.7"/>
+            <rect x="9" y="3" width="3" height="8" rx="0.7"/>
+            <rect x="13.5" y="0" width="3" height="11" rx="0.7"/>
+          </svg>
+          <!-- 5G / WiFi Icon -->
+          <span style="font-size: 11px; font-weight: 700; margin-left: 2px;">5G</span>
+          <!-- Battery Icon -->
+          <svg width="24" height="11.5" viewBox="0 0 24 11.5" fill="none">
+            <rect x="0.5" y="0.5" width="20" height="10.5" rx="3" stroke="currentColor" stroke-width="1"/>
+            <rect x="2" y="2" width="15" height="7.5" rx="1.8" fill="currentColor"/>
+            <path d="M22 4C22.6 4.3 23 5.1 23 6C23 6.9 22.6 7.7 22 8V4Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Scrollable iOS App Screen Content -->
+      <div class="viewport-content" id="viewport-content">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- iOS Native Bottom Tab Bar -->
+      <nav class="ios-tab-bar" id="bottom-tab-bar">
+        <!-- Command Tab -->
+        <button class="tab-item active" onclick="switchTab('command')">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+          <span class="tab-label">Command</span>
+        </button>
+
+        <!-- Courses Tab -->
+        <button class="tab-item" onclick="switchTab('courses')">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          <span class="tab-label">Courses</span>
+        </button>
+
+        <!-- Calendar Tab -->
+        <button class="tab-item" onclick="switchTab('calendar')">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="tab-label">Calendar</span>
+        </button>
+
+        <!-- AI Tab -->
+        <button class="tab-item" onclick="switchTab('ai_command')">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span class="tab-label">AI</span>
+        </button>
+
+        <!-- Profile Tab -->
+        <button class="tab-item" onclick="switchTab('profile')">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="tab-label">Profile</span>
+        </button>
+      </nav>
+
+      <!-- iOS Home Indicator Bar -->
+      <div class="home-indicator"></div>
+
+      <!-- Modal Sheets Container -->
+      <div class="sheet-overlay" id="sheet-overlay" onclick="closeSheetOnBackdrop(event)">
+        <div class="sheet-modal" id="sheet-modal">
+          <div class="sheet-handle"></div>
+          <div id="sheet-content"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script Application Entrypoint -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,701 @@
+/* AcademicOS High-Fidelity Visual Preview Design System */
+:root {
+    /* AcademicOS Palette */
+    --academic-primary: #4F46E5;
+    --academic-secondary: #6366F1;
+    --academic-cyan: #06B6D4;
+    --academic-emerald: #10B981;
+    --academic-amber: #F59E0B;
+    --academic-crimson: #EF4444;
+
+    /* Theme: Dark Mode (Default) */
+    --bg-page: #0B0B0E;
+    --bg-phone: #000000;
+    --bg-canvas: #121214;
+    --bg-card: #1C1C1E;
+    --bg-card-secondary: #2C2C2E;
+    --bg-input: #242426;
+    --bg-glass: rgba(28, 28, 30, 0.78);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-prominent: rgba(255, 255, 255, 0.16);
+    --text-primary: #FFFFFF;
+    --text-secondary: #98989F;
+    --text-tertiary: #636366;
+    --phone-bezel: #222225;
+    --phone-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] {
+    --bg-page: #E5E7EB;
+    --bg-phone: #F2F2F7;
+    --bg-canvas: #F2F2F7;
+    --bg-card: #FFFFFF;
+    --bg-card-secondary: #E5E5EA;
+    --bg-input: #E3E3E8;
+    --bg-glass: rgba(255, 255, 255, 0.82);
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-prominent: rgba(0, 0, 0, 0.15);
+    --text-primary: #000000;
+    --text-secondary: #6B7280;
+    --text-tertiary: #9CA3AF;
+    --phone-bezel: #D1D5DB;
+    --phone-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Studio Header / Outer Controls */
+.preview-studio-bar {
+    width: 100%;
+    max-width: 1400px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(18, 18, 20, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 100;
+    position: sticky;
+    top: 0;
+}
+
+.studio-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.studio-badge {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(79, 70, 229, 0.2);
+    color: var(--academic-secondary);
+    border: 1px solid rgba(79, 70, 229, 0.4);
+    text-transform: uppercase;
+}
+
+.studio-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.studio-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quick-jump-select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+.studio-btn {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.18s ease;
+}
+
+.studio-btn:hover {
+    background: var(--bg-card-secondary);
+    border-color: var(--border-prominent);
+}
+
+.studio-btn.active {
+    background: var(--academic-primary);
+    color: #FFFFFF;
+    border-color: var(--academic-primary);
+}
+
+/* Device Stage Layout */
+.device-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px 40px;
+    width: 100%;
+}
+
+/* iPhone 15/16 Pro Frame (6.1 inch) */
+.iphone-frame {
+    width: 390px;
+    height: 844px;
+    background: var(--bg-phone);
+    border-radius: 54px;
+    position: relative;
+    box-shadow: var(--phone-shadow);
+    border: 11px solid var(--phone-bezel);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.iphone-frame.no-bezel {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    height: 844px;
+    width: 390px;
+}
+
+/* Status Bar & Dynamic Island */
+.ios-status-bar {
+    height: 47px;
+    width: 100%;
+    padding: 12px 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ios-time {
+    font-variant-numeric: tabular-nums;
+}
+
+.dynamic-island {
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 32px;
+    background: #000000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 60;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.dynamic-island.expanded {
+    width: 220px;
+    height: 48px;
+    border-radius: 24px;
+    padding: 0 14px;
+}
+
+.island-camera {
+    width: 11px;
+    height: 11px;
+    background: #111;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.island-icon {
+    font-size: 11px;
+    color: var(--academic-emerald);
+}
+
+.ios-status-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+/* App Viewport Container */
+.app-viewport {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding-top: 47px;
+    padding-bottom: 82px;
+    background-color: var(--bg-canvas);
+}
+
+/* Scrollable Screen Content Container */
+.screen-scroll-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 16px 16px 30px;
+    scroll-behavior: smooth;
+}
+
+.screen-scroll-container::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* Header & Nav Bars */
+.ios-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.nav-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-pretitle {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.nav-main-title {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.nav-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.nav-action-btn:active {
+    transform: scale(0.92);
+}
+
+/* Cards & Surfaces */
+.academic-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 14px;
+    position: relative;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.academic-card:active {
+    transform: scale(0.99);
+}
+
+.card-clickable {
+    cursor: pointer;
+}
+
+.card-clickable:hover {
+    border-color: var(--border-prominent);
+}
+
+/* Operation Graduation Hero Banner */
+.hero-graduation-card {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(6, 182, 212, 0.12) 100%), var(--bg-card);
+    border: 1px solid rgba(79, 70, 229, 0.35);
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-graduation-card::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 110px;
+    height: 110px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.countdown-display {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 8px 0 14px;
+}
+
+.countdown-value {
+    font-size: 34px;
+    font-weight: 900;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: -1px;
+    color: #FFFFFF;
+}
+
+.countdown-sub {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.progress-track {
+    height: 7px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--academic-primary), var(--academic-cyan));
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.badge-indigo {
+    background: rgba(79, 70, 229, 0.2);
+    color: #818CF8;
+    border: 1px solid rgba(79, 70, 229, 0.4);
+}
+
+.badge-emerald {
+    background: rgba(16, 185, 129, 0.18);
+    color: #34D399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.badge-amber {
+    background: rgba(245, 158, 11, 0.18);
+    color: #FBBF24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.badge-crimson {
+    background: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-cyan {
+    background: rgba(6, 182, 212, 0.18);
+    color: #22D3EE;
+    border: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.badge-neutral {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+}
+
+/* Grid & Section Lists */
+.metric-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.metric-card-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.metric-label {
+    font-size: 10px;
+    font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+}
+
+.metric-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Segmented Control / Tab Switcher (SwiftUI Picker style) */
+.segmented-control {
+    display: flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 3px;
+    margin-bottom: 16px;
+    gap: 2px;
+}
+
+.segment-item {
+    flex: 1;
+    text-align: center;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.segment-item.active {
+    background: var(--bg-card-secondary);
+    color: var(--text-primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Bottom Tab Bar */
+.ios-tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 82px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(25px);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 8px;
+    z-index: 50;
+    user-select: none;
+}
+
+.tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    width: 60px;
+    transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.tab-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.tab-btn span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+}
+
+.tab-btn.active {
+    color: var(--academic-secondary);
+}
+
+.tab-btn:active {
+    transform: scale(0.93);
+}
+
+/* Home Indicator Pill */
+.home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 135px;
+    height: 5px;
+    background: var(--text-primary);
+    opacity: 0.35;
+    border-radius: 10px;
+    z-index: 70;
+    pointer-events: none;
+}
+
+/* Audio Recording Studio View */
+.recording-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 20px;
+}
+
+.waveform-box {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin: 20px 0;
+}
+
+.waveform-bar {
+    width: 4px;
+    background: var(--academic-primary);
+    border-radius: 3px;
+    height: 20px;
+    animation: waveAnimation 1.2s infinite ease-in-out;
+}
+
+@keyframes waveAnimation {
+    0%, 100% { height: 12px; opacity: 0.4; }
+    50% { height: 65px; opacity: 1; }
+}
+
+.recording-timer-large {
+    font-size: 48px;
+    font-weight: 800;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    margin: 10px 0;
+}
+
+/* Quiz Screen */
+.quiz-option-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.quiz-option-card:hover {
+    border-color: var(--border-prominent);
+}
+
+.quiz-option-card.correct {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--academic-emerald);
+}
+
+.quiz-option-card.incorrect {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--academic-crimson);
+}
+
+/* Modal Sheets */
+.ios-sheet-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.ios-sheet-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ios-sheet-card {
+    background: var(--bg-card);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    padding: 16px 20px 34px;
+    max-height: 80%;
+    overflow-y: auto;
+    border-top: 1px solid var(--border-prominent);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-sheet-overlay.active .ios-sheet-card {
+    transform: translateY(0);
+}
+
+.sheet-grabber {
+    width: 36px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+    margin: 0 auto 16px;
+}

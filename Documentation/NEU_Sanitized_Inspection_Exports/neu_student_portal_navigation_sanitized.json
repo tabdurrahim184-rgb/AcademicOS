@@ -1,0 +1,24 @@
+{
+  "detectedClasses": [
+    "nav-item",
+    "dropdown-menu",
+    "menu-title",
+    "sidebar-menu",
+    "treeview",
+    "icon-graduation"
+  ],
+  "detectedContainers": [
+    ".sidebar-menu",
+    ".nav-sidebar",
+    "#menu-content",
+    ".navbar-nav"
+  ],
+  "detectedTableHeaders": [],
+  "exportedAt": "2026-09-21T18:30:00Z",
+  "originalURL": "https://register.neu.edu.tr/Home/Index",
+  "pageType": "Genius Student Navigation Sidebar & Main Menu",
+  "portalSource": "NEU Student Portal (https://register.neu.edu.tr/)",
+  "sampleRowSnippet": "<li class=\"treeview\"><a href=\"#\"><i class=\"fa fa-graduation-cap\"></i> <span>Öğrenci Ders İşlemleri</span> <i class=\"fa fa-angle-left pull-right\"></i></a><ul class=\"treeview-menu\"><li><a href=\"/StudentCourse/Transcript\"><i class=\"fa fa-circle-o\"></i> Transkript</a></li><li><a href=\"/StudentCourse/CourseRegistration\"><i class=\"fa fa-circle-o\"></i> Ders Kayıt</a></li></ul></li>",
+  "sanitizedDOMSummary": "Genius Student 2.0.0 ASP.NET MVC Bootstrap navigation layout. Dropdown menu with StudentCourse actions including /StudentCourse/Transcript.",
+  "securityNotice": "ALL CREDENTIALS, COOKIES, TOKENS, AND PII REDACTED BEFORE EXPORT"
+}

@@ -1,0 +1,26 @@
+{
+  "detectedClasses": [
+    "activityinstance",
+    "instancename",
+    "modtype_assign",
+    "modtype_resource",
+    "modtype_forum",
+    "contentafterlink",
+    "sectionname"
+  ],
+  "detectedContainers": [
+    ".course-content",
+    "ul.topics",
+    "ul.weeks",
+    "li.activity",
+    ".mod-indent-outer"
+  ],
+  "detectedTableHeaders": [],
+  "exportedAt": "2026-09-21T18:30:00Z",
+  "originalURL": "https://debim.neu.edu.tr/course/view.php?id=[COURSE_ID]",
+  "pageType": "Course Section Materials & Assignments",
+  "portalSource": "DEBİM Moodle Course View",
+  "sampleRowSnippet": "<li class=\"activity resource modtype_resource\" id=\"module-4501\"><div class=\"mod-indent-outer\"><div class=\"activityinstance\"><a href=\"https://debim.neu.edu.tr/mod/resource/view.php?id=4501\"><img class=\"iconlarge activityicon\" src=\".../pdf-24.png\" alt=\"File\"><span class=\"instancename\">Chapter 1 - Introduction to Systems Analysis.pdf</span></a></div></div></li>",
+  "sanitizedDOMSummary": "Weekly and topic sections containing resources (PDFs, PPTXs), assignments, deadlines, and announcement forums.",
+  "securityNotice": "ALL CREDENTIALS, COOKIES, TOKENS, AND PII REDACTED BEFORE EXPORT"
+}

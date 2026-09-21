@@ -1,0 +1,24 @@
+{
+  "detectedClasses": [
+    "coursename",
+    "dashboard-card",
+    "multiline",
+    "text-truncate",
+    "card-body",
+    "progress-bar"
+  ],
+  "detectedContainers": [
+    ".dashboard-card-deck",
+    ".course-info-container",
+    ".block_myoverview",
+    "#region-main"
+  ],
+  "detectedTableHeaders": [],
+  "exportedAt": "2026-09-21T18:30:00Z",
+  "originalURL": "https://debim.neu.edu.tr/my/",
+  "pageType": "Dashboard / My Courses",
+  "portalSource": "DEBİM Moodle (https://debim.neu.edu.tr/my/)",
+  "sampleRowSnippet": "<div class=\"card dashboard-card\" data-course-id=\"1204\"><div class=\"card-body pr-1 course-info-container\"><span class=\"coursename\"><a href=\"https://debim.neu.edu.tr/course/view.php?id=1204\" class=\"aalink\"><span class=\"multiline\">CENG 311 System Analysis and Design</span></a></span></div></div>",
+  "sanitizedDOMSummary": "Moodle modern boost theme dashboard with card dashboard and course grid. Authenticated via Google SAML callback to debim.neu.edu.tr.",
+  "securityNotice": "ALL CREDENTIALS, COOKIES, TOKENS, AND PII REDACTED BEFORE EXPORT"
+}

@@ -1,0 +1,33 @@
+{
+  "detectedClasses": [
+    "table",
+    "table-striped",
+    "table-bordered",
+    "grade-cell",
+    "passed-course",
+    "failed-course",
+    "gpa-summary-card"
+  ],
+  "detectedContainers": [
+    ".table-responsive",
+    "table.table-striped",
+    "#transcriptTable",
+    ".panel-body"
+  ],
+  "detectedTableHeaders": [
+    "Dönem / Semester",
+    "Ders Kodu / Code",
+    "Ders Adı / Name",
+    "Kredi / Credit",
+    "AKTS / ECTS",
+    "Harf Notu / Grade",
+    "Durum / Status"
+  ],
+  "exportedAt": "2026-09-21T18:30:00Z",
+  "originalURL": "https://register.neu.edu.tr/StudentCourse/Transcript",
+  "pageType": "Academic Transcript Table",
+  "portalSource": "NEU Student Portal Transcript (https://register.neu.edu.tr/StudentCourse/Transcript)",
+  "sampleRowSnippet": "<tr><td>2023-2024 Güz</td><td>CENG 311</td><td>System Analysis and Design</td><td>3</td><td>5</td><td>AA</td><td>Geçti</td></tr>",
+  "sanitizedDOMSummary": "Genius Student 2.0.0 ASP.NET MVC Transcript page. Contains historical course enrollment tables by academic semester, credit values, and cumulative GPA box.",
+  "securityNotice": "ALL CREDENTIALS, COOKIES, TOKENS, AND PII REDACTED BEFORE EXPORT"
+}

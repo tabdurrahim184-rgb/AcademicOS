@@ -1,0 +1,51 @@
+# macOS & Xcode
+.DS_Store
+*.swp
+*~
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserdatad
+*.moved-builder
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+.swiftpm/
+
+# Fastlane & CI Artifacts
+*.ipa
+*.dSYM.zip
+*.dSYM
+Payload/
+Symbols/
+
+# Sensitive Configuration & Credentials
+GoogleService-Info.plist
+*.p12
+*.mobileprovision
+*.cer
+*.key
+*.pem
+*.token
+*.jks
+.env
+.env.*
+
+# Node / Preview Environment
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
