@@ -90,7 +90,7 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
         lock.lock()
         if isSyncing {
             lock.unlock()
-            throw AcademicOSError.networkError("Import and reconciliation cycle already running.")
+            throw AcademicOSError.invalidInput("Import and reconciliation cycle already running.")
         }
         isSyncing = true
         lock.unlock()
@@ -138,16 +138,19 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
                     $0.courseId == targetCourseId && $0.title.caseInsensitiveCompare(remoteExam.title) == .orderedSame
                 }
 
+                let mappedType = mapRemoteExamType(remoteExam.examType)
+                let safeRoom = remoteExam.room ?? "TBA"
+
                 if let existingExam = existing {
                     // Update if date or room changed
-                    if existingExam.examDate != remoteExam.date || existingExam.room != remoteExam.room {
+                    if existingExam.examDate != remoteExam.date || existingExam.room != safeRoom {
                         let updated = Exam(
                             id: existingExam.id,
                             courseId: targetCourseId,
                             title: existingExam.title,
-                            examType: remoteExam.examType,
+                            examType: mappedType,
                             examDate: remoteExam.date,
-                            room: remoteExam.room,
+                            room: safeRoom,
                             weightPercentage: remoteExam.weightPercentage
                         )
                         try await examRepo.saveExam(updated)
@@ -158,9 +161,9 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
                         id: UUID(),
                         courseId: targetCourseId,
                         title: remoteExam.title,
-                        examType: remoteExam.examType,
+                        examType: mappedType,
                         examDate: remoteExam.date,
-                        room: remoteExam.room,
+                        room: safeRoom,
                         weightPercentage: remoteExam.weightPercentage
                     )
                     try await examRepo.saveExam(exam)
@@ -380,6 +383,21 @@ public final class UniversityImportReconciliationEngine: @unchecked Sendable {
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: date)
+    }
+
+    private func mapRemoteExamType(_ raw: String) -> ExamType {
+        let lower = raw.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        if lower.contains("final") {
+            return .finalExam
+        } else if lower.contains("quiz") || lower.contains("kısa") {
+            return .quiz
+        } else if lower.contains("büt") || lower.contains("makeup") || lower.contains("make-up") || lower.contains("bütünleme") {
+            return .makeup
+        } else if lower.contains("oral") || lower.contains("sözlü") || lower.contains("defense") {
+            return .oralDefense
+        } else {
+            return .midterm
+        }
     }
 }
 

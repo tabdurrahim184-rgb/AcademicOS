@@ -18,7 +18,7 @@ public final class MockDataService: Sendable {
             academicYear: "2026 - 2027",
             startDate: Calendar.current.date(byAdding: .month, value: -1, to: Date()) ?? Date(),
             endDate: Calendar.current.date(byAdding: .month, value: 3, to: Date()) ?? Date(),
-            isCurrent: true,
+            isActive: true,
             targetGPA: 3.85
         )
         try await store.save(semester)
@@ -40,7 +40,9 @@ public final class MockDataService: Sendable {
             colorHex: "#4F46E5",
             aiMemorySummary: "Focused on Turkish press code, digital copyright, GDPR/KVKK compliance, and defamation precedents.",
             lectureRoom: "Amphi 1",
-            weeklySchedule: "Mon 09:00 - 12:00"
+            weeklyClassDay: "Monday",
+            startTime: "09:00",
+            endTime: "12:00"
         )
 
         let commTheories = Course(
@@ -53,7 +55,9 @@ public final class MockDataService: Sendable {
             colorHex: "#06B6D4",
             aiMemorySummary: "Covers Frankfurt School, Agenda Setting theory, Cultivation Theory, and Network Society paradigms.",
             lectureRoom: "Amphi 3",
-            weeklySchedule: "Tue 10:00 - 13:00"
+            weeklyClassDay: "Tuesday",
+            startTime: "10:00",
+            endTime: "13:00"
         )
 
         let researchMethods = Course(
@@ -66,7 +70,9 @@ public final class MockDataService: Sendable {
             colorHex: "#10B981",
             aiMemorySummary: "Quantitative survey methodology, SPSS/Python regression analytics, and qualitative discourse analysis.",
             lectureRoom: "Seminar Hall 4",
-            weeklySchedule: "Wed 14:00 - 17:00"
+            weeklyClassDay: "Wednesday",
+            startTime: "14:00",
+            endTime: "17:00"
         )
 
         let newsWorkshop = Course(
@@ -79,7 +85,9 @@ public final class MockDataService: Sendable {
             colorHex: "#F59E0B",
             aiMemorySummary: "Hands-on investigative journalism, multimedia storytelling, deadline management, and editorial review.",
             lectureRoom: "Newsroom Lab",
-            weeklySchedule: "Thu 11:00 - 14:00"
+            weeklyClassDay: "Thursday",
+            startTime: "11:00",
+            endTime: "14:00"
         )
 
         let mediaEthics = Course(
@@ -91,7 +99,9 @@ public final class MockDataService: Sendable {
             colorHex: "#8B5CF6",
             aiMemorySummary: "Journalistic independence, whistleblowing safeguards, verification protocols against disinformation.",
             lectureRoom: "Room 204",
-            weeklySchedule: "Fri 09:30 - 12:30"
+            weeklyClassDay: "Friday",
+            startTime: "09:30",
+            endTime: "12:30"
         )
 
         let digitalJournalism = Course(
@@ -103,7 +113,9 @@ public final class MockDataService: Sendable {
             colorHex: "#EC4899",
             aiMemorySummary: "Algorithmic curation, automated fact checking, synthetic media detection, and LLM news assistants.",
             lectureRoom: "Tech Lab 1",
-            weeklySchedule: "Wed 09:00 - 12:00"
+            weeklyClassDay: "Wednesday",
+            startTime: "09:00",
+            endTime: "12:00"
         )
 
         let graduationProject = Course(
@@ -115,14 +127,16 @@ public final class MockDataService: Sendable {
             colorHex: "#EF4444",
             aiMemorySummary: "Graduation capstone: comprehensive investigative documentary and interactive web feature.",
             lectureRoom: "Studio A",
-            weeklySchedule: "Flexible Advising"
+            weeklyClassDay: "Friday",
+            startTime: "14:00",
+            endTime: "17:00"
         )
 
-        let courses = [commLaw, commTheories, researchMethods, newsWorkshop, mediaEthics, digitalJournalism, graduationProject]
+        let courses: [Course] = [commLaw, commTheories, researchMethods, newsWorkshop, mediaEthics, digitalJournalism, graduationProject]
         try await store.saveAll(courses)
 
         // Today's Missions & Tasks
-        let missions = [
+        let missions: [AcademicTask] = [
             AcademicTask(
                 courseId: commLaw.id,
                 title: "09:00 Communication Law",
@@ -163,7 +177,7 @@ public final class MockDataService: Sendable {
         try await store.saveAll(missions)
 
         // Academic Tasks (3 tasks today)
-        let generalTasks = [
+        let generalTasks: [AcademicTask] = [
             AcademicTask(
                 courseId: commLaw.id,
                 title: "Review Defamation Case Briefs (Pages 45-72)",
@@ -214,7 +228,8 @@ public final class MockDataService: Sendable {
             targetGrade: 90.0,
             topicsCovered: ["Two-Step Flow", "Cultivation Theory", "Uses and Gratifications", "Structuralism"]
         )
-        try await store.saveAll([examLaw, examTheories])
+        let exams: [Exam] = [examLaw, examTheories]
+        try await store.saveAll(exams)
 
         // Upcoming Assignment (1 assignment due)
         let assignmentNews = Assignment(
@@ -258,7 +273,8 @@ public final class MockDataService: Sendable {
             question: "Who formulated the Agenda Setting Theory and what is its core premise?",
             answer: "Maxwell McCombs and Donald Shaw (1972). Core premise: The media does not tell people what to think, but what to think about."
         )
-        try await store.saveAll([flashcard1, flashcard2])
+        let flashcards: [Flashcard] = [flashcard1, flashcard2]
+        try await store.saveAll(flashcards)
 
         // Graduation Progress (OPERATION GRADUATION D-126, 87%)
         let grad = GraduationProgress(
@@ -278,7 +294,8 @@ public final class MockDataService: Sendable {
 
         // Student Profile & GPA
         let profile = StudentProfile(
-            fullName: "Student Commander",
+            firstName: "Student",
+            lastName: "Commander",
             universityName: "Istanbul University",
             faculty: "Faculty of Communication",
             department: "Journalism",

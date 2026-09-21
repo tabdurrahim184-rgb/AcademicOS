@@ -155,14 +155,14 @@ public final class UniversityDocumentDownloader: UniversityDocumentDownloaderPro
 
     public func downloadDocument(from remoteDoc: RemoteDocument, forCourseId courseId: UUID) async throws -> AcademicDocument {
         guard let host = remoteDoc.downloadURL.host?.lowercased() else {
-            throw AcademicOSError.networkError("Invalid document download URL: \(remoteDoc.downloadURL)")
+            throw AcademicOSError.invalidInput("Invalid document download URL: \(remoteDoc.downloadURL)")
         }
 
         // 1. Strict Domain Policy & Host Verification:
         // Must be allowed for navigation AND match an approved document/portal host
         guard domainPolicy.navigationPolicy.isAllowedForNavigation(url: remoteDoc.downloadURL),
               approvedDocumentHosts.contains(host) else {
-            throw AcademicOSError.networkError("Unauthorized document download domain: \(host). Must match approved portal/document host.")
+            throw AcademicOSError.unauthorized
         }
 
         let folder = try documentsDirectory(for: courseId)
@@ -198,7 +198,7 @@ public final class UniversityDocumentDownloader: UniversityDocumentDownloaderPro
 
             let (tempURL, response) = try await session.download(for: request)
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                throw AcademicOSError.networkError("Failed to download document: HTTP error")
+                throw AcademicOSError.networkUnavailable
             }
 
             if fileManager.fileExists(atPath: destinationURL.path) {

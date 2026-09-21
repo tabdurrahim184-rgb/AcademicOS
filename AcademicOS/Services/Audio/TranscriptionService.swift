@@ -46,6 +46,7 @@ public protocol TranscriptionProvider: Sendable {
 }
 
 /// Protocol defining speech transcription services.
+@MainActor
 public protocol TranscriptionServiceProtocol: AnyObject, Sendable {
     func checkCapability() -> TranscriptionCapability
     func transcribeRecording(recording: AudioRecordingMetadata, requireOnDevice: Bool) async throws -> Transcript
@@ -116,39 +117,73 @@ public final class AppleSpeechTranscriptionProvider: TranscriptionProvider, @unc
             throw AcademicOSError.aiProviderUnavailable("On-device speech recognition is not supported on this device/locale.")
         }
 
-        let recognitionRequest = SFSpeechURLRecognitionRequest(url: audioURL)
+        let asset = AVURLAsset(url: audioURL)
+        let assetDurationCM = try await asset.load(.duration)
+        let totalAssetSeconds = CMTimeGetSeconds(assetDurationCM)
+
+        let targetURL: URL
+        let isTemporaryFile: Bool
+
+        if chunkDurationSeconds > 0 && chunkDurationSeconds < totalAssetSeconds {
+            let start = CMTime(seconds: startTimeSeconds, preferredTimescale: 600)
+            let remaining = max(0.1, totalAssetSeconds - startTimeSeconds)
+            let duration = CMTime(seconds: min(chunkDurationSeconds, remaining), preferredTimescale: 600)
+            let timeRange = CMTimeRange(start: start, duration: duration)
+
+            guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A) else {
+                throw AcademicOSError.fileSystemError("Failed to initialize audio chunk export session.")
+            }
+
+            let tempChunkURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent("chunk_\(recordingId.uuidString)_\(Int(startTimeSeconds))_\(UUID().uuidString).m4a")
+            exportSession.outputURL = tempChunkURL
+            exportSession.outputFileType = .m4a
+            exportSession.timeRange = timeRange
+
+            await withCheckedContinuation { continuation in
+                exportSession.exportAsynchronously {
+                    continuation.resume()
+                }
+            }
+
+            guard exportSession.status == .completed else {
+                if let err = exportSession.error {
+                    throw err
+                }
+                throw AcademicOSError.fileSystemError("Audio chunk export failed with status: \(exportSession.status.rawValue)")
+            }
+
+            targetURL = tempChunkURL
+            isTemporaryFile = true
+        } else {
+            targetURL = audioURL
+            isTemporaryFile = false
+        }
+
+        defer {
+            if isTemporaryFile {
+                try? FileManager.default.removeItem(at: targetURL)
+            }
+        }
+
+        let recognitionRequest = SFSpeechURLRecognitionRequest(url: targetURL)
         recognitionRequest.shouldReportPartialResults = false
         if recognizer.supportsOnDeviceRecognition && requireOnDevice {
             recognitionRequest.requiresOnDeviceRecognition = true
         }
 
-        // Set safe window chunk range
-        if chunkDurationSeconds > 0 {
-            let start = CMTime(seconds: startTimeSeconds, preferredTimescale: 600)
-            let duration = CMTime(seconds: chunkDurationSeconds, preferredTimescale: 600)
-            recognitionRequest.timeRange = CMTimeRange(start: start, duration: duration)
-        }
-
         return try await withCheckedThrowingContinuation { continuation in
-            var hasResumed = false
-            let lock = NSLock()
+            let state = SpeechRecognitionState()
 
-            _ = recognizer.recognitionTask(with: recognitionRequest) { result, error in
-                lock.lock()
-                defer { lock.unlock() }
-
+            let task = recognizer.recognitionTask(with: recognitionRequest) { result, error in
                 if let err = error {
-                    if !hasResumed {
-                        hasResumed = true
-                        continuation.resume(throwing: err)
-                    }
+                    state.resumeOnce(with: .failure(err), continuation: continuation)
                     return
                 }
 
                 guard let res = result else { return }
 
-                if res.isFinal && !hasResumed {
-                    hasResumed = true
+                if res.isFinal {
                     let segments: [TranscriptSegment] = res.bestTranscription.segments.map { seg in
                         TranscriptSegment(
                             recordingId: recordingId,
@@ -159,10 +194,24 @@ public final class AppleSpeechTranscriptionProvider: TranscriptionProvider, @unc
                             confidence: Double(seg.confidence)
                         )
                     }
-                    continuation.resume(returning: segments)
+                    state.resumeOnce(with: .success(segments), continuation: continuation)
                 }
             }
+            _ = task
         }
+    }
+}
+
+private final class SpeechRecognitionState: @unchecked Sendable {
+    private let lock = NSLock()
+    private var hasResumed = false
+
+    func resumeOnce(with result: Result<[TranscriptSegment], Error>, continuation: CheckedContinuation<[TranscriptSegment], Error>) {
+        lock.lock()
+        defer { lock.unlock() }
+        guard !hasResumed else { return }
+        hasResumed = true
+        continuation.resume(with: result)
     }
 }
 
@@ -225,7 +274,8 @@ public final class TranscriptionService: ObservableObject, TranscriptionServiceP
         try? await recordingRepo.saveRecording(updatedMeta)
 
         let asset = AVURLAsset(url: fullURL)
-        let totalDuration = max(1.0, CMTimeGetSeconds(asset.duration))
+        let assetDuration = try await asset.load(.duration)
+        let totalDuration = max(1.0, CMTimeGetSeconds(assetDuration))
         let chunkDuration: Double = 180.0 // 3-minute chunk windows for safety
 
         var currentOffset = updatedMeta.lastProcessedAudioTime

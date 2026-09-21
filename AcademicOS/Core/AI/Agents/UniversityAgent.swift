@@ -60,7 +60,8 @@ public final class UniversityAgent: Agent, @unchecked Sendable {
 
         // 3. Grades Query
         if lower.contains("not") || lower.contains("grade") || lower.contains("harf") {
-            if let grades = try? await universityRepo?.fetchGrades(), !grades.isEmpty {
+            let courseId = context["course_id"].flatMap { UUID(uuidString: $0) }
+            if let grades = try? await universityRepo?.fetchGrades(courseId: courseId), !grades.isEmpty {
                 let list = grades.prefix(6).map { "• \($0.courseCode) \($0.evaluationName): \($0.score)/\($0.maxScore) (Ağırlık: %\(Int($0.weightPercentage)))" }.joined(separator: "\n")
                 return "Resmi Öğrenci Bilgi Sistemi (OBS) not dökümünüz:\n\n\(list)"
             }

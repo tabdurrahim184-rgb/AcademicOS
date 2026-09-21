@@ -111,4 +111,8 @@ public final class DataHealthService: DataHealthServiceProtocol, @unchecked Send
             totalDocumentBytes: totalDocSize
         )
     }
+
+    public func runDiagnostics() async throws -> DataHealthReport {
+        return try await auditHealth()
+    }
 }

@@ -77,8 +77,8 @@ public actor NEUUniversityConnector {
     public private(set) var recentChanges: [PortalChangeRecord] = []
 
     public init(
-        debimConnector: NEUMoodleConnector = .shared,
-        studentPortalConnector: NEUStudentPortalConnector = .shared,
+        debimConnector: NEUMoodleConnector = NEUMoodleConnector(),
+        studentPortalConnector: NEUStudentPortalConnector = NEUStudentPortalConnector(),
         reconciliationService: NEUCourseReconciliationService = .shared,
         transcriptParser: NEUTranscriptParser = .shared,
         changeHistoryService: NEUChangeHistoryService = .shared
@@ -127,10 +127,11 @@ public actor NEUUniversityConnector {
         // 2. Sync Student Portal (OBS)
         studentPortalState = .syncInProgress
         do {
-            _ = try await studentPortalConnector.fetchEnrolledCourses()
-            if let cachedHtml = studentPortalConnector.cachedTranscriptHTML {
-                portalTranscript = transcriptParser.parseTranscript(html: cachedHtml)
-                self.cachedTranscriptSummary = portalTranscript
+            _ = try await studentPortalConnector.fetchCourses()
+            let summary = studentPortalConnector.fetchTranscriptSummary()
+            if !summary.courses.isEmpty {
+                portalTranscript = summary
+                self.cachedTranscriptSummary = summary
                 portalChangesCount = 1
             }
             self.studentPortalLastSync = Date()

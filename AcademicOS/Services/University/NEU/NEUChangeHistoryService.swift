@@ -78,17 +78,17 @@ public actor NEUChangeHistoryService {
         var detected: [PortalChangeRecord] = []
 
         // 1. Detect New Grades
-        let prevGradeIds = Set(prev.grades.map { "\($0.courseCode)_\($0.name)" })
+        let prevGradeIds = Set(prev.grades.map { "\($0.courseCode)_\($0.evaluationName)" })
         for grade in freshPayload.grades {
-            let key = "\(grade.courseCode)_\(grade.name)"
+            let key = "\(grade.courseCode)_\(grade.evaluationName)"
             if !prevGradeIds.contains(key) {
                 let rec = PortalChangeRecord(
                     changeType: .gradePublished,
                     entityId: key,
                     courseCode: grade.courseCode,
-                    title: "\(grade.courseCode) - \(grade.name) Notu Açıklandı",
+                    title: "\(grade.courseCode) - \(grade.evaluationName) Notu Açıklandı",
                     oldValue: nil,
-                    newValue: "\(grade.letterGrade ?? String(grade.score ?? 0))",
+                    newValue: "\(grade.letterGrade ?? String(grade.score))",
                     source: source
                 )
                 detected.append(rec)

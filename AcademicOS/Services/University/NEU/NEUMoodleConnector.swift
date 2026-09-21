@@ -10,7 +10,14 @@ import Foundation
 /// 2. Google SSO authentication is 100% manual in a secure WKWebView.
 /// 3. Never inspect or capture Google passwords, session tokens, SAML payload contents, Google cookies, or MFA data.
 /// 4. Detection of authentication success occurs ONLY after redirect back to debim.neu.edu.tr using deterministic signals (no AI).
-/// 5. Strictly READ-ONLY. No assignment/quiz submissions or forum postings.
+/// Types of pages identified during DEBİM navigation
+public enum NEUMoodlePageType: String, Sendable {
+    case loginPage
+    case googleSAMLRedirect
+    case courseList
+    case other
+}
+
 public final class NEUMoodleConnector: UniversityConnectorProtocol, @unchecked Sendable {
     public let portalType: UniversityPortalType = .moodle
     public let displayName: String = "NEU DEBİM (Moodle LMS)"
@@ -42,6 +49,26 @@ public final class NEUMoodleConnector: UniversityConnectorProtocol, @unchecked S
     public func canAutofillCredentials(into host: String) -> Bool {
         // Explicitly forbidden on accounts.google.com and any third-party SSO host
         return false
+    }
+
+    public func canAutofillCredentials(on url: URL) -> Bool {
+        guard let host = url.host else { return false }
+        return canAutofillCredentials(into: host)
+    }
+
+    public func identifyPageType(url: URL) -> NEUMoodlePageType {
+        let host = url.host?.lowercased() ?? ""
+        let path = url.path.lowercased()
+        if host == approvedSSOHost || url.absoluteString.contains("accounts.google.com") {
+            return .googleSAMLRedirect
+        }
+        if path.contains("/login") || url.absoluteString.contains("login/index.php") {
+            return .loginPage
+        }
+        if path.contains("/my") || path.contains("/course") {
+            return .courseList
+        }
+        return .other
     }
 
     /// Evaluates whether the user has successfully authenticated into Moodle using deterministic signals.

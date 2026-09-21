@@ -108,7 +108,7 @@ final class Phase2FNEULiveConnectorTests: XCTestCase {
 
     // 6. DEBİM session detects Google SAML and enforces manual login
     func test_debim_session_detects_google_saml_and_enforces_manual_login() {
-        let moodle = NEUMoodleConnector.shared
+        let moodle = NEUMoodleConnector()
         let googleURL = URL(string: "https://accounts.google.com/o/saml2/initsso?idpid=C03neu")!
         XCTAssertEqual(moodle.identifyPageType(url: googleURL), .googleSAMLRedirect)
         XCTAssertFalse(moodle.canAutofillCredentials(on: googleURL), "Autofill must NEVER be permitted on Google SAML")
@@ -116,11 +116,11 @@ final class Phase2FNEULiveConnectorTests: XCTestCase {
 
     // 7. Session validation is deterministic without AI
     func test_session_validation_deterministic_without_ai() {
-        let debim = NEUMoodleConnector.shared
+        let debim = NEUMoodleConnector()
         let authDashboard = URL(string: "https://debim.neu.edu.tr/my/")!
         XCTAssertTrue(debim.identifyPageType(url: authDashboard) == .courseList)
 
-        let portal = NEUStudentPortalConnector.shared
+        let portal = NEUStudentPortalConnector()
         let authRoute = URL(string: "https://register.neu.edu.tr/StudentCourse/Transcript")!
         XCTAssertTrue(portal.isApprovedPortalURL(authRoute))
     }

@@ -79,6 +79,19 @@ public final class NEUStudentPortalConnector: UniversityConnectorProtocol, @unch
         return false
     }
 
+    public func isApprovedPortalURL(_ url: URL) -> Bool {
+        guard url.scheme?.lowercased() == "https" else { return false }
+        guard let host = url.host?.lowercased() else { return false }
+        return host == approvedHost
+    }
+
+    public var cachedTranscriptHTML: String? {
+        lock.lock()
+        defer { lock.unlock() }
+        let html = cachedPages[transcriptRoute] ?? cachedPages["transcript"]
+        return html?.isEmpty == false ? html : nil
+    }
+
     // MARK: - Ingestion for Parsing
 
     public func setCachedHTML(_ html: String, forRoute route: String) {
@@ -98,7 +111,7 @@ public final class NEUStudentPortalConnector: UniversityConnectorProtocol, @unch
         let transcriptHTML = cachedPages[transcriptRoute] ?? cachedPages["transcript"] ?? ""
         lock.unlock()
 
-        let summary = transcriptParser.parseTranscript(from: transcriptHTML)
+        let summary = transcriptParser.parseTranscript(html: transcriptHTML)
         var seen = Set<String>()
         var courses: [RemoteCourse] = []
 
@@ -116,6 +129,10 @@ public final class NEUStudentPortalConnector: UniversityConnectorProtocol, @unch
             }
         }
         return courses
+    }
+
+    public func fetchEnrolledCourses() async throws -> [RemoteCourse] {
+        return try await fetchCourses()
     }
 
     public func fetchAnnouncements(courseCode: String?) async throws -> [RemoteAnnouncement] {
@@ -166,7 +183,7 @@ public final class NEUStudentPortalConnector: UniversityConnectorProtocol, @unch
         let transcriptHTML = cachedPages[transcriptRoute] ?? cachedPages["transcript"] ?? ""
         lock.unlock()
 
-        let summary = transcriptParser.parseTranscript(from: transcriptHTML)
+        let summary = transcriptParser.parseTranscript(html: transcriptHTML)
         var grades: [RemoteGrade] = []
 
         for (idx, c) in summary.courses.enumerated() {
@@ -214,7 +231,7 @@ public final class NEUStudentPortalConnector: UniversityConnectorProtocol, @unch
         lock.lock()
         let html = cachedPages[transcriptRoute] ?? cachedPages["transcript"] ?? ""
         lock.unlock()
-        return transcriptParser.parseTranscript(from: html)
+        return transcriptParser.parseTranscript(html: html)
     }
 
     private func gradeToScore(_ letterGrade: String) -> Double {

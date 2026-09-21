@@ -164,11 +164,13 @@ public final class ProfessorEmphasisDetector: Sendable {
                 classification = .assignmentInstruction
             case .question:
                 classification = .reviewRecommendation
-            case .bookmark:
-                classification = .professorEmphasis
+            case .definition:
+                classification = .importantDefinition
+            case .reviewLater:
+                classification = .reviewRecommendation
             }
 
-            let snippet = matchedSegment?.text ?? marker.noteText ?? "Manual Student Bookmark"
+            let snippet = matchedSegment?.text ?? (marker.noteText.isEmpty ? "Manual Student Marker" : marker.noteText)
             let item = ProfessorEmphasis(
                 courseId: courseId,
                 lectureSessionId: lectureSessionId,
