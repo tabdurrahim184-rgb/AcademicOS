@@ -55,7 +55,7 @@ public final class GeminiAIProvider: OnlineAIProvider, @unchecked Sendable {
             case .disabledByPolicy(let reason):
                 throw AIProviderError.privacyRestricted(reason)
             case .ready:
-                break
+                throw AIProviderError.temporaryServiceUnavailable("Gemini AI provider is temporarily unavailable.")
             }
         }
 
