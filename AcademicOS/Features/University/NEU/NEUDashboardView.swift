@@ -626,7 +626,7 @@ public struct NEUDashboardView: View {
         isSyncing = true
         syncStatusMessage = "Syncing DEBİM and Student Portal..."
 
-        let localCourses = (try? await container.databaseManager.fetchAllCourses()) ?? []
+        let localCourses = (try? await container.courseRepository.getCourses()) ?? []
         let result = await NEUUniversityConnector.shared.syncAll(localCourses: localCourses)
 
         await refreshLocalState()

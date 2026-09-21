@@ -48,7 +48,7 @@ public struct LectureRecordingView: View {
                 Spacer()
 
                 // "MARK IMPORTANT" Moment Tagger
-                if recorder.state == .recording || recorder.state == .paused {
+                if recorder.state == .recording || recorder.state == .pausedByUser {
                     markerActionButtons
                 }
 

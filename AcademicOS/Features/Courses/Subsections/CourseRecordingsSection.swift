@@ -159,7 +159,10 @@ public struct CourseRecordingsSection: View {
             } else {
                 // Trigger speech transcription
                 do {
-                    let transcript = try await container.transcriptionService.transcribeRecording(recording: rec)
+                    let transcript = try await container.transcriptionService.transcribeRecording(
+                        recording: rec,
+                        requireOnDevice: true
+                    )
                     await MainActor.run {
                         self.selectedAudioForTranscript = rec
                         self.selectedTranscript = transcript

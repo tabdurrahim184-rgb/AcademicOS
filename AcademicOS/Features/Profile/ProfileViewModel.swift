@@ -25,19 +25,20 @@ public final class ProfileViewModel: ObservableObject {
     private let appContainer: AppContainer
 
     public init(
-        studentRepo: StudentRepositoryProtocol = AppContainer.shared.studentRepository,
-        profileRepo: ProfileRepositoryProtocol = AppContainer.shared.profileRepository,
-        gradRepo: GraduationRepositoryProtocol = AppContainer.shared.graduationRepository,
-        queueManager: OfflineQueueManager = AppContainer.shared.queueManager,
-        dataHealthService: DataHealthServiceProtocol = AppContainer.shared.dataHealthService,
-        appContainer: AppContainer = AppContainer.shared
+        studentRepo: StudentRepositoryProtocol? = nil,
+        profileRepo: ProfileRepositoryProtocol? = nil,
+        gradRepo: GraduationRepositoryProtocol? = nil,
+        queueManager: OfflineQueueManager? = nil,
+        dataHealthService: DataHealthServiceProtocol? = nil,
+        appContainer: AppContainer? = nil
     ) {
-        self.studentRepo = studentRepo
-        self.profileRepo = profileRepo
-        self.gradRepo = gradRepo
-        self.queueManager = queueManager
-        self.dataHealthService = dataHealthService
-        self.appContainer = appContainer
+        let container = appContainer ?? AppContainer.shared
+        self.studentRepo = studentRepo ?? container.studentRepository
+        self.profileRepo = profileRepo ?? container.profileRepository
+        self.gradRepo = gradRepo ?? container.graduationRepository
+        self.queueManager = queueManager ?? container.queueManager
+        self.dataHealthService = dataHealthService ?? container.dataHealthService
+        self.appContainer = container
     }
 
     public func loadProfileData() async {

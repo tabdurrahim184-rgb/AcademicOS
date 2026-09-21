@@ -6,10 +6,7 @@ public struct CourseDetailView: View {
     @StateObject private var viewModel: CourseDetailViewModel
 
     public init(course: Course) {
-        _viewModel = StateObject(wrappedValue: CourseDetailViewModel(
-            course: course,
-            courseRepo: AppContainer.shared.courseRepository
-        ))
+        _viewModel = StateObject(wrappedValue: CourseDetailViewModel(course: course))
     }
 
     public var body: some View {
@@ -28,7 +25,7 @@ public struct CourseDetailView: View {
                     case .lectures:
                         CourseLecturesSection(course: viewModel.course)
                     case .recordings:
-                        CourseRecordingsSection(courseId: viewModel.course.id)
+                        CourseRecordingsSection(course: viewModel.course)
                     case .documents:
                         CourseDocumentsSection(documents: viewModel.documents)
                     case .exams:

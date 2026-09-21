@@ -15,10 +15,20 @@ public extension Color {
     static let commandBackground = Color("CommandBackground", bundle: nil, fallback: Color(uiColor: .systemBackground))
     static let cardBackground = Color("CardBackground", bundle: nil, fallback: Color(uiColor: .secondarySystemBackground))
     static let elevatedBackground = Color("ElevatedBackground", bundle: nil, fallback: Color(uiColor: .tertiarySystemBackground))
+    static let backgroundPrimary = commandBackground
+    static let backgroundSecondary = cardBackground
+    static let backgroundTertiary = elevatedBackground
 
     // Borders & Separators
     static let borderSubtle = Color(uiColor: .separator).opacity(0.4)
     static let borderProminent = Color(uiColor: .separator)
+    static let separatorPrimary = borderProminent
+    static let separatorSecondary = borderSubtle
+
+    // Status Semantics
+    static let statusSuccess = academicEmerald
+    static let statusWarning = academicAmber
+    static let statusCritical = academicCrimson
 
     // Text Semantics
     static let textPrimary = Color(uiColor: .label)

@@ -39,21 +39,39 @@ public final class CourseDetailViewModel: ObservableObject {
     @Published public var isLoading: Bool = false
 
     public let course: Course
-    private let courseRepo: CourseRepositoryProtocol
+    private let notesRepo: NotesRepositoryProtocol
+    private let lectureRepo: LectureRepositoryProtocol
+    private let examRepo: ExamRepositoryProtocol
+    private let flashcardRepo: FlashcardRepositoryProtocol
+    private let localStore: LocalStoreProtocol
 
-    public init(course: Course, courseRepo: CourseRepositoryProtocol) {
+    public init(
+        course: Course,
+        notesRepo: NotesRepositoryProtocol? = nil,
+        lectureRepo: LectureRepositoryProtocol? = nil,
+        examRepo: ExamRepositoryProtocol? = nil,
+        flashcardRepo: FlashcardRepositoryProtocol? = nil,
+        localStore: LocalStoreProtocol? = nil
+    ) {
         self.course = course
-        self.courseRepo = courseRepo
+        self.notesRepo = notesRepo ?? AppContainer.shared.notesRepository
+        self.lectureRepo = lectureRepo ?? AppContainer.shared.lectureRepository
+        self.examRepo = examRepo ?? AppContainer.shared.examRepository
+        self.flashcardRepo = flashcardRepo ?? AppContainer.shared.flashcardRepository
+        self.localStore = localStore ?? AppContainer.shared.localStore
     }
 
     public func loadCourseData() async {
         isLoading = true
         do {
-            async let notesTask = courseRepo.getNotes(forCourseId: course.id)
-            async let lecturesTask = courseRepo.getLectures(forCourseId: course.id)
-            async let examsTask = courseRepo.getExams(forCourseId: course.id)
-            async let flashcardsTask = courseRepo.getFlashcards(forCourseId: course.id)
-            async let docsTask = courseRepo.getDocuments(forCourseId: course.id)
+            async let notesTask = notesRepo.getNotes(forCourseId: course.id)
+            async let lecturesTask = lectureRepo.getLectures(forCourseId: course.id)
+            async let examsTask = examRepo.getExams(forCourseId: course.id)
+            async let flashcardsTask = flashcardRepo.getFlashcards(forCourseId: course.id)
+            async let docsTask: [AcademicDocument] = {
+                let all: [AcademicDocument] = (try? await localStore.fetchAll()) ?? []
+                return all.filter { $0.courseId == course.id }
+            }()
 
             let (n, l, e, f, d) = try await (notesTask, lecturesTask, examsTask, flashcardsTask, docsTask)
 

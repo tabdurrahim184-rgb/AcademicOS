@@ -51,6 +51,12 @@ public protocol TranscriptionServiceProtocol: AnyObject, Sendable {
     func transcribeRecording(recording: AudioRecordingMetadata, requireOnDevice: Bool) async throws -> Transcript
 }
 
+public extension TranscriptionServiceProtocol {
+    func transcribeRecording(recording: AudioRecordingMetadata) async throws -> Transcript {
+        try await transcribeRecording(recording: recording, requireOnDevice: true)
+    }
+}
+
 /// Production-ready Speech-to-Text provider leveraging Apple's native Speech.framework.
 /// Enforces on-device checks and processes audio in safe window chunks for long 60–180 min lectures.
 public final class AppleSpeechTranscriptionProvider: TranscriptionProvider, @unchecked Sendable {

@@ -7,6 +7,13 @@ public protocol StudentRepositoryProtocol: Sendable {
     func deleteStudent() async throws
 }
 
+/// Repository contract for user profile and GPA statistics.
+public protocol ProfileRepositoryProtocol: Sendable {
+    func getProfile() async throws -> StudentProfile
+    func updateProfile(_ profile: StudentProfile) async throws
+    func getGPARecord() async throws -> GPARecord
+}
+
 /// Repository contract for academic semesters.
 public protocol SemesterRepositoryProtocol: Sendable {
     func getSemesters() async throws -> [Semester]
