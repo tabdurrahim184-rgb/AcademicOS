@@ -1,7 +1,7 @@
 import { Flash } from "@/components/Flash";
 import { AiTestForm } from "@/components/AiTestForm";
 import { ANTHROPIC_MODELS } from "@/lib/ai/config";
-import { getAIStatus } from "@/lib/ai/provider";
+import { connectionSummary, getUserAIStatus } from "@/lib/ai/chatgpt";
 import { usageSummary } from "@/lib/ai/usage";
 import { withUser } from "@/lib/db";
 import { requireUser } from "@/lib/auth";
@@ -12,7 +12,8 @@ export const dynamic = "force-dynamic";
 export default async function SettingsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const user = await requireUser();
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
+  const chatgpt = await connectionSummary(user.id);
   const usage = await withUser(user.id, (tx) => usageSummary(tx, ai.enabled ? ai.provider : null, ai.enabled ? ai.model : null));
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -22,6 +23,30 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
       <section className="card space-y-2" aria-labelledby="hesap">
         <h2 id="hesap">Hesap</h2>
         <p className="text-sm">{user.name} · {user.email} · Saat dilimi: {user.timezone} (Kıbrıs, yaz/kış saati otomatik)</p>
+      </section>
+
+      <section className="card space-y-3" aria-labelledby="chatgpt-hesap">
+        <h2 id="chatgpt-hesap">ChatGPT hesabını bağla</h2>
+        <p className="text-sm">Kendi bilgisayarında 127.0.0.1 üzerinden çalışan açık kaynaklı AcademicOS için resmî ChatGPT girişi. Şifren AcademicOS'a verilmez. Uygun hesaplarda ChatGPT plan kullanım hakkı ile API anahtarı gerekmeden öğretmen çalışabilir; erişim ve model izinleri OpenAI tarafından belirlenir.</p>
+        {chatgpt ? (
+          <>
+            <p className="badge-ok">Bağlı hesap: {chatgpt.email || "ChatGPT kullanıcısı"} {chatgpt.authorized ? "· Plan kullanım izni var" : "· Kullanım izni yok"}</p>
+            <form action="/api/chatgpt/yonet" method="post" className="space-y-2">
+              <input type="hidden" name="action" value="model" />
+              <label className="text-sm">Model kimliği (hesabında kullanılabilir olmalı)
+                <input className="input mt-1" name="model" defaultValue={chatgpt.model} required />
+              </label>
+              <button className="btn-secondary" type="submit">Modeli kaydet</button>
+            </form>
+            <form action="/api/chatgpt/yonet" method="post">
+              <input type="hidden" name="action" value="disconnect" />
+              <button className="btn-danger" type="submit">ChatGPT bağlantısını kaldır</button>
+            </form>
+          </>
+        ) : (
+          <a href="/api/chatgpt/baglan" className="btn">ChatGPT ile devam et</a>
+        )}
+        <p className="muted">OpenAI hesabında giriş ve izin verme işlemini sen yaparsın. Uygunluk hesabına bağlıdır. Bu bağlantı eski sohbet geçmişini AcademicOS'a aktarmaz. Abonelik üzerinden kullanılamazsa isteğe bağlı, ayrıca ücretli API yolu korunur.</p>
       </section>
 
       <section className="card space-y-3" aria-labelledby="yz">
@@ -37,7 +62,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         </p>
         {ai.enabled && <AiTestForm />}
         <div className="alert-info space-y-2">
-          <p><strong>&quot;Sign in with ChatGPT&quot; durumu:</strong> OpenAI, ChatGPT Plus/Pro aboneliğinin üçüncü taraf uygulamalarda kullanılmasını yalnızca başvurusu kabul edilen sınırlı sayıda ortak uygulamaya açtı (Ekim 2026). Bu özel uygulama için resmî bir erişim yolu yoktur; bu yüzden AcademicOS yalnızca resmî OpenAI API anahtarıyla (<code>AI_PROVIDER=openai</code>) çalışır. OpenAI isteklerinde <code>store: false</code> kullanılır.</p>
+          <p><strong>ChatGPT plan kullanımı:</strong> Yerel açık kaynaklı istemciler için resmî OAuth bağlantısı mevcuttur. Bu hesap bağlantısı plan kullanım izniyle çalışır; normal OpenAI API anahtarı yolu ayrıca ücretlendirilir.</p>
           <p><strong>Abonelik ≠ API erişimi.</strong> ChatGPT Plus/Pro ve Claude Pro/Max abonelikleri yalnızca sohbet uygulamalarını kapsar; bu uygulamanın kullanabileceği API erişimi içermez. API kullanımı ayrıca ücretlendirilir.</p>
           <p>Bağlamak için sunucu ortam değişkenlerinde <code>AI_PROVIDER</code>, ilgili API anahtarı ve <strong>bilinçli olarak seçilmiş</strong> <code>AI_MODEL</code> gerekir; varsayılan model yoktur. Anahtarlar tarayıcıya gönderilmez.</p>
           <p>Yapay zekâ açıkken seçili kaynak metinlerin ilgili bölümleri, mesajların ve cevapların seçilen sağlayıcıya gönderilir. Kapalıyken hiçbir veri dışarı gönderilmez.</p>
