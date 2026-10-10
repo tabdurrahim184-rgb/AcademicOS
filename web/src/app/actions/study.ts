@@ -12,7 +12,8 @@ import {
   updateSessionSources, type StudyMode,
 } from "@/lib/data/study";
 import { QUESTION_TYPES, type QuestionType } from "@/lib/grading";
-import { AIRequestError, AIUnavailableError, getProvider } from "@/lib/ai/provider";
+import { AIRequestError, AIUnavailableError } from "@/lib/ai/provider";
+import { getUserProvider } from "@/lib/ai/chatgpt";
 import { explainMistake, generateQuestions, generateTutorReply, gradeAttemptWithAI, saveStudentMessage, testConnection } from "@/lib/ai/tutor";
 
 const str = (f: FormData, k: string) => String(f.get(k) ?? "").trim();
@@ -47,7 +48,7 @@ export async function startSessionAction(form: FormData) {
   if (starter) {
     await saveStudentMessage(user.id, id, starter);
     try {
-      await generateTutorReply(user.id, id, getProvider());
+      await generateTutorReply(user.id, id, await getUserProvider(user.id));
     } catch (e) {
       error = `Öğretmen yanıtı alınamadı: ${aiMessage(e)}`;
     }
@@ -71,7 +72,7 @@ export async function sendMessageAction(_: ChatState, form: FormData): Promise<C
   }
   revalidatePath(`/oturum/${sessionId}`);
   try {
-    await generateTutorReply(user.id, sessionId, getProvider());
+    await generateTutorReply(user.id, sessionId, await getUserProvider(user.id));
   } catch (e) {
     return { error: `Mesajın kaydedildi, ancak öğretmen yanıtı alınamadı: ${aiMessage(e)}` };
   }
@@ -188,7 +189,7 @@ export async function aiGradeAction(form: FormData) {
   const user = await requireUser();
   const returnTo = str(form, "returnTo");
   try {
-    await gradeAttemptWithAI(user.id, str(form, "attemptId"), getProvider());
+    await gradeAttemptWithAI(user.id, str(form, "attemptId"), await getUserProvider(user.id));
   } catch (e) {
     redirect(withParams(returnTo, { hata: `Yapay zekâ değerlendirmesi yapılamadı: ${aiMessage(e)}`, sonuc: str(form, "attemptId") }));
   }
@@ -205,7 +206,7 @@ export async function generateQuestionsAction(form: FormData) {
     r = await generateQuestions(
       user.id,
       { courseId: str(form, "courseId"), topicId: isUuid(topicId) ? topicId : null, sourceIds: form.getAll("sourceIds").map(String), count: Number(str(form, "count") || 5) },
-      getProvider(),
+      await getUserProvider(user.id),
     );
   } catch (e) {
     redirect(withParams(returnTo, { hata: `Soru üretilemedi: ${aiMessage(e)}` }));
@@ -278,7 +279,7 @@ export async function explainMistakeAction(form: FormData) {
   const user = await requireUser();
   const returnTo = str(form, "returnTo") || "/yanlislar";
   try {
-    await explainMistake(user.id, str(form, "mistakeId"), getProvider());
+    await explainMistake(user.id, str(form, "mistakeId"), await getUserProvider(user.id));
   } catch (e) {
     redirect(withParams(returnTo, { hata: `Açıklama alınamadı: ${aiMessage(e)}` }));
   }
@@ -293,7 +294,7 @@ export async function testAiConnectionAction(_: AiTestState, form: FormData): Pr
   const user = await requireUser();
   if (form.get("consent") !== "on") return { error: "Ücretli test isteği için onay kutusunu işaretleyin." };
   try {
-    const r = await testConnection(user.id, getProvider());
+    const r = await testConnection(user.id, await getUserProvider(user.id));
     return { ok: `Yanıt alındı (${r.model}, ${r.inputTokens} girdi + ${r.outputTokens} çıktı token): "${r.text}"` };
   } catch (e) {
     return { error: aiMessage(e) };
