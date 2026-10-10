@@ -15,6 +15,7 @@ export type DemandInput = {
   meetings: Array<{ course_id: string; weekday: number; end_time: string }>;
   dueByCourseDate: Array<{ course_id: string; date: string; count: number }>; // tarihi geçmiş kartlar bugüne yazılır
   assessments: Array<{ id: string; course_id: string; title: string; due_date: string | null }>;
+  projectDeadlines?: Array<{ id: string; course_id: string; title: string; due_date: string }>;
   completedKeys: Set<string>;
 };
 
@@ -104,6 +105,18 @@ export function buildDemands(i: DemandInput): Demand[] {
         title: `Sınav hazırlığı ${n}/${sessions}: ${code(a.course_id)} — ${a.title}`,
         detail: "Zayıf konular ve yanlışlar defterinden başla; deneme soruları çöz.",
         earliest, deadline: prepEnd, catchUp: false,
+      });
+    }
+  }
+  // 5) Bölüm Projesi teslimleri: teslimden önce 2 çalışma oturumu
+  for (const p of i.projectDeadlines ?? []) {
+    if (p.due_date < i.today || p.due_date > addDays(i.today, EXAM_LOOKAHEAD_DAYS)) continue;
+    const prepEnd = p.due_date;
+    for (let n = 1; n <= 2; n++) {
+      push({
+        key: `proje:${p.id}:${n}`, courseId: p.course_id, topicId: null, kind: "sinav", minutes: 50, priority: 90,
+        title: `Bölüm Projesi ${n}/2: ${p.title}`, detail: "Proje çalışma alanındaki notlar ve danışman geri bildirimleriyle ilerle.",
+        earliest: maxDate(i.today, addDays(p.due_date, -(3 - n) * 3)), deadline: prepEnd, catchUp: false,
       });
     }
   }

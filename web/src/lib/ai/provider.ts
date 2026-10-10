@@ -78,6 +78,8 @@ class OpenAIProvider implements AIProvider {
         instructions: req.system,
         input: req.messages.map((m) => ({ role: m.role, content: m.content })),
         max_output_tokens: req.maxTokens ?? 8000,
+        // Öğrencinin ders içeriği OpenAI tarafında yanıt geçmişi olarak saklanmasın.
+        store: false,
       });
       const text = (res.output_text ?? "").trim();
       if (!text) throw new AIRequestError("Yapay zekâ boş yanıt döndürdü.");

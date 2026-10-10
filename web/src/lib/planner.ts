@@ -137,6 +137,8 @@ export type PlanInput = {
   meetings: Meeting[];
   fixed: FixedTask[];
   demands: Demand[];
+  /** Kapasiteden düşülmeyen ama kullanılamayan zamanlar (iş taahhütleri, planlanmış iş görevleri). */
+  busy?: Array<{ date: string; start: string; minutes: number }>;
 };
 
 export function plan(input: PlanInput): { placed: Placed[]; unplaced: Unplaced[] } {
@@ -171,6 +173,7 @@ export function plan(input: PlanInput): { placed: Placed[]; unplaced: Unplaced[]
     const busy: Interval[] = [
       ...input.meetings.filter((m) => m.weekday === wd).map((m) => [toMinutes(m.start), toMinutes(m.end) + s.breakMin] as Interval),
       ...fixedToday.map((f) => [toMinutes(f.start), toMinutes(f.start) + f.minutes + s.breakMin] as Interval),
+      ...(input.busy ?? []).filter((b) => b.date === date).map((b) => [toMinutes(b.start), toMinutes(b.start) + b.minutes + s.breakMin] as Interval),
     ];
     if (date === input.startDate && input.nowTime) busy.push([0, toMinutes(input.nowTime)]);
     let free = subtract(windows, busy);

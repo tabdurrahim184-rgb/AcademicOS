@@ -4,9 +4,10 @@
  */
 import type { Tx } from "../db";
 import {
-  addDays, DEFAULT_WINDOWS, plan, weekdayOf, type FixedTask, type PlanSettings, type Unplaced, type Window,
+  addDays, dateRange, DEFAULT_WINDOWS, plan, weekdayOf, type FixedTask, type PlanSettings, type Unplaced, type Window,
 } from "../planner";
 import { buildDemands } from "../planner-demand";
+import { projectDeadlines } from "./project";
 import { localParts, toMinutes } from "../schedule";
 import { advanceTopicStatus, getCourse, getTopic, isUuid, listCourses, listMeetings, listTopics } from "./courses";
 
@@ -169,6 +170,10 @@ export async function regeneratePlan(tx: Tx, userId: string, now = new Date()) {
     meetings: meetings.map((m) => ({ course_id: m.course_id, weekday: m.weekday, end_time: m.end_time })),
     dueByCourseDate: [...dueMap.entries()].map(([k, count]) => ({ course_id: k.split("|")[0], date: k.split("|")[1], count })),
     assessments: assess,
+    projectDeadlines: await (async () => {
+      const gzt = courses.find((c) => c.code.toUpperCase().startsWith("GZT440"));
+      return gzt ? (await projectDeadlines(tx)).map((p) => ({ ...p, course_id: gzt.id })) : [];
+    })(),
     completedKeys: new Set(done.map((d) => d.origin_key)),
   })
     .filter((d) => !keptKeys.has(d.key) && ![...keptKeys].some((k) => k.startsWith(`${d.key}#`)))
@@ -182,6 +187,7 @@ export async function regeneratePlan(tx: Tx, userId: string, now = new Date()) {
     windows: windows.map(({ weekday, start, end }) => ({ weekday, start, end })),
     meetings: meetings.map((m) => ({ weekday: m.weekday, start: m.start_time, end: m.end_time })),
     fixed, demands,
+    busy: await workBusy(tx, today),
   });
   for (const p of result.placed) {
     await tx.query(
@@ -301,4 +307,23 @@ export function modeForTask(t: Pick<PlanTask, "kind" | "origin_key">) {
   if (t.kind === "eksik") return "eksik_tamamlama";
   if (t.origin_key.startsWith("hatirla:")) return "aktif_hatirlama";
   return "okuma";
+}
+
+/** Sabit iş taahhütleri ve zamanı belirlenmiş iş görevleri çalışma planında meşgul sayılır. */
+async function workBusy(tx: Tx, today: string) {
+  const out: Array<{ date: string; start: string; minutes: number }> = [];
+  const { rows: commits } = await tx.query<{ weekday: number; start: string; end: string | null }>(
+    "SELECT weekday, to_char(start_time,'HH24:MI') AS start, to_char(end_time,'HH24:MI') AS end FROM work_commitments",
+  );
+  for (const date of dateRange(today, PLAN_DAYS)) {
+    for (const c of commits.filter((x) => x.weekday === weekdayOf(date))) {
+      out.push({ date, start: c.start, minutes: c.end ? toMinutes(c.end) - toMinutes(c.start) : 120 });
+    }
+  }
+  const { rows: work } = await tx.query<{ date: string; start: string; minutes: number }>(
+    `SELECT to_char(scheduled_date,'YYYY-MM-DD') AS date, to_char(start_time,'HH24:MI') AS start, estimate_min AS minutes
+     FROM work_tasks WHERE scheduled_date >= $1 AND start_time IS NOT NULL AND status NOT IN ('teslim_edildi','iptal')`,
+    [today],
+  );
+  return [...out, ...work];
 }

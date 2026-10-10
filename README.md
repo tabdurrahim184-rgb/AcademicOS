@@ -4,9 +4,18 @@ Bulutta çalışmak üzere tasarlanmış, öğrenme odaklı akademik platform. �
 materyalleriyle **gerçekten ders çalışmasını**, cevaplarının değerlendirilmesini, yanlışlarının
 takibini ve aralıklı tekrarını sağlar.
 
-> Durum: **web v0.2.0** — akademik temel, ders çalışma motoru, telafi sistemi, 14 günlük plan ve akademik
-> takvim çalışıyor ve testlerle doğrulandı. Yapay zekâ öğretmeni gerçek bir sağlayıcıyla henüz denenmedi.
-> Henüz internette yayımlanmadı. Ayrıntılar: [PROJECT_STATUS.md](PROJECT_STATUS.md).
+> Durum: **web v0.3.0** — ders çalışma motoru, telafi ve plan, takvim, OCR, kayıtlar, Bölüm Projesi,
+> akademik tartışmalar ve İş Merkezi çalışıyor ve testlerle doğrulandı. Yapay zekâ öğretmeni, deşifre ve
+> DEBİM bağlantısı gerçek dış hizmetlerle henüz denenmedi. Yayımlanmadı. Ayrıntılar: [PROJECT_STATUS.md](PROJECT_STATUS.md).
+
+## En kolay kullanım: kendi bilgisayarında Docker ile
+
+```bash
+cd web
+cp .env.docker.example .env.docker      # APP_ENCRYPTION_KEY vb. doldur
+export POSTGRES_PASSWORD=... APP_DB_PASSWORD=... OWNER_DB_PASSWORD=...
+docker compose up --build               # http://127.0.0.1:3000 (yalnızca bu bilgisayardan erişilir)
+```
 
 ## Depo yapısı
 
@@ -18,7 +27,7 @@ takibini ve aralıklı tekrarını sağlar.
 
 ## Web uygulamasını yerelde çalıştırma
 
-Gereksinimler: Node.js 20+ (22 önerilir), PostgreSQL 16.
+Gereksinimler: Node.js 20+ (22 önerilir), PostgreSQL 16, ffmpeg (ses/video için).
 
 ```bash
 # 1) Veritabanı rolleri (bir kez)

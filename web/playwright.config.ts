@@ -15,7 +15,7 @@ export default defineConfig({
   testDir: "tests/e2e",
   fullyParallel: false,
   workers: 1,
-  timeout: 30_000,
+  timeout: 60_000,
   reporter: [["list"]],
   globalSetup: "./tests/e2e/global-setup.ts",
   use: {
@@ -34,9 +34,14 @@ export default defineConfig({
       command: "npx next start -p 3100",
       port: 3100,
       reuseExistingServer: false,
-      env: { DATABASE_URL: E2E_DB, AI_PROVIDER: "", NEXT_TELEMETRY_DISABLED: "1" },
+      env: {
+        DATABASE_URL: E2E_DB, AI_PROVIDER: "", NEXT_TELEMETRY_DISABLED: "1",
+        // DEBİM uçtan uca testi yerel Moodle test ikizine bağlanır (gerçek DEBİM doğrulanmaz)
+        APP_ENCRYPTION_KEY: "ZTJlLXRlc3QtYW5haHRhcmktMzItYmF5dC1kZWdlcmk=", LMS_ALLOWED_HOSTS: "127.0.0.1", LMS_ALLOW_HTTP: "true",
+      },
     },
     { command: "node tests/e2e/mock-anthropic.mjs", port: 3199, reuseExistingServer: false },
+    { command: "node tests/e2e/mock-moodle.mjs", port: 3198, reuseExistingServer: false },
     {
       command: "npx next start -p 3101",
       port: 3101,

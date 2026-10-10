@@ -47,7 +47,7 @@ test.describe("Telafi, 14 günlük plan, takvim ve konu çalışması", () => {
     const nextTuesday = await page.evaluate(() => {
       const d = new Date();
       d.setDate(d.getDate() + ((2 - d.getDay() + 7) % 7 || 7));
-      return d.toISOString().slice(0, 10);
+      return d.toLocaleDateString("sv-SE"); // yerel (Kıbrıs) tarih; UTC dönüşümü gece yarısı bir gün kaydırır
     });
     await task.getByLabel("Tarih").fill(nextTuesday);
     await task.getByLabel("Saat").fill("14:00");

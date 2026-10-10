@@ -9,8 +9,8 @@ import { randomUUID } from "node:crypto";
 import type { Tx } from "../db";
 
 export const BACKUP_FORMAT = "academicos-yedek";
-export const BACKUP_VERSION = 2;
-const SUPPORTED_VERSIONS = [1, 2];
+export const BACKUP_VERSION = 3;
+const SUPPORTED_VERSIONS = [1, 2, 3];
 
 type TableSpec = {
   table: string;
@@ -22,7 +22,7 @@ type TableSpec = {
 };
 
 const TIME_COLS = new Set(["start_time", "end_time"]);
-const DATE_COLS = new Set(["scheduled_date", "semester_end", "last_generated_on"]);
+const DATE_COLS = new Set(["scheduled_date", "semester_end", "last_generated_on", "event_date", "due_date"]);
 
 const TABLES: TableSpec[] = [
   { table: "courses", pk: "id", cols: ["id", "code", "name", "instructor", "delivery", "notes", "created_at"] },
@@ -35,7 +35,7 @@ const TABLES: TableSpec[] = [
     fks: { course_id: "courses", topic_id: "topics" },
   },
   { table: "source_files", cols: ["source_id", "content"], fks: { source_id: "sources" }, bytea: ["content"] },
-  { table: "source_chunks", pk: "id", cols: ["id", "source_id", "ord", "locator_type", "locator", "content"], fks: { source_id: "sources" } },
+  { table: "source_chunks", pk: "id", cols: ["id", "source_id", "ord", "locator_type", "locator", "content", "raw_ocr"], fks: { source_id: "sources" } },
   { table: "notes", pk: "id", cols: ["id", "course_id", "topic_id", "title", "body", "origin", "created_at", "updated_at"], fks: { course_id: "courses", topic_id: "topics" } },
   { table: "assessments", pk: "id", cols: ["id", "course_id", "kind", "title", "due_at", "weight", "score", "notes", "created_at"], fks: { course_id: "courses" } },
   {
@@ -71,9 +71,39 @@ const TABLES: TableSpec[] = [
     cols: ["id", "course_id", "topic_id", "kind", "title", "detail", "origin_key", "scheduled_date", "start_time", "duration_min", "status", "locked", "completed_at", "created_at"],
     fks: { course_id: "courses", topic_id: "topics" },
   },
+  // ---- sürüm 3: Bölüm Projesi, tartışmalar, iş merkezi, kayıtlar
+  { table: "project_profiles", singleton: true, cols: ["title", "aim", "research_questions", "method", "format", "advisor"] },
+  {
+    table: "project_entries", pk: "id",
+    cols: ["id", "kind", "title", "body", "event_date", "due_date", "status", "source_id", "created_at"], fks: { source_id: "sources" },
+  },
+  {
+    table: "debates", pk: "id",
+    cols: ["id", "course_id", "theme", "title", "claim", "academic_context", "counter_arguments", "islamic_perspective", "class_answer", "weaknesses", "uncertainties", "created_at"],
+    fks: { course_id: "courses" },
+  },
+  { table: "debate_sources", pk: "id", cols: ["id", "debate_id", "kind", "reference", "quote", "note", "verified", "created_at"], fks: { debate_id: "debates" } },
+  { table: "work_clients", pk: "id", cols: ["id", "name", "note", "created_at"] },
+  { table: "work_commitments", pk: "id", cols: ["id", "client_id", "title", "weekday", "start_time", "end_time"], fks: { client_id: "work_clients" } },
+  {
+    table: "work_tasks", pk: "id",
+    cols: ["id", "client_id", "kind", "title", "requested_by", "description", "due_at", "priority", "estimate_min", "status", "scheduled_date", "start_time", "minute_list", "created_at"],
+    fks: { client_id: "work_clients" },
+  },
+  { table: "work_task_history", cols: ["task_id", "event", "note", "created_at"], fks: { task_id: "work_tasks" } },
+  {
+    table: "recordings", pk: "id",
+    cols: ["id", "archive", "course_id", "client_id", "title", "filename", "mime", "size_bytes", "duration_sec", "status", "created_at"],
+    fks: { course_id: "courses", client_id: "work_clients" },
+  },
+  { table: "recording_files", cols: ["recording_id", "content"], fks: { recording_id: "recordings" }, bytea: ["content"] },
+  {
+    table: "transcript_segments", pk: "id",
+    cols: ["id", "recording_id", "ord", "start_sec", "end_sec", "raw_text", "text", "speaker"], fks: { recording_id: "recordings" },
+  },
 ];
 
-const JSON_COLS = new Set(["citations", "options", "answer", "response"]);
+const JSON_COLS = new Set(["citations", "options", "answer", "response", "minute_list"]);
 
 export type Backup = { format: string; version: number; created_at: string; data: Record<string, Record<string, unknown>[]> };
 
@@ -110,8 +140,9 @@ export function validateBackup(b: unknown): asserts b is Backup {
 export async function restoreBackup(tx: Tx, userId: string, backup: unknown) {
   validateBackup(backup);
   await tx.query("DELETE FROM courses"); // RLS: yalnızca bu kullanıcının dersleri; derse bağlı tablolar CASCADE ile silinir
-  await tx.query("DELETE FROM availability_windows");
-  await tx.query("DELETE FROM planner_settings");
+  for (const t of ["availability_windows", "planner_settings", "project_entries", "project_profiles", "debates", "recordings", "work_clients"]) {
+    await tx.query(`DELETE FROM ${t}`); // RLS: yalnızca bu kullanıcının satırları
+  }
   const idMap = new Map<string, Map<string, string>>();
   const mapOf = (t: string) => idMap.get(t) ?? idMap.set(t, new Map()).get(t)!;
   const remap = (table: string, old: unknown) => {

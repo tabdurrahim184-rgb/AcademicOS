@@ -1,6 +1,5 @@
-import { restoreBackupAction } from "@/app/actions/study";
 import { Flash } from "@/components/Flash";
-import { SubmitButton } from "@/components/SubmitButton";
+import { AiTestForm } from "@/components/AiTestForm";
 import { ANTHROPIC_MODELS } from "@/lib/ai/config";
 import { getAIStatus } from "@/lib/ai/provider";
 import { usageSummary } from "@/lib/ai/usage";
@@ -36,7 +35,9 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           <strong>Doğrulama durumu:</strong> Yapay zekâ öğretmeni yalnızca yerel bir test ikiziyle denendi; gerçek bir sağlayıcıyla henüz
           doğrulanmadı. İlk gerçek kullanımda yanıt kalitesini ve kaynak atıflarını kontrol et.
         </p>
+        {ai.enabled && <AiTestForm />}
         <div className="alert-info space-y-2">
+          <p><strong>&quot;Sign in with ChatGPT&quot; durumu:</strong> OpenAI, ChatGPT Plus/Pro aboneliğinin üçüncü taraf uygulamalarda kullanılmasını yalnızca başvurusu kabul edilen sınırlı sayıda ortak uygulamaya açtı (Ekim 2026). Bu özel uygulama için resmî bir erişim yolu yoktur; bu yüzden AcademicOS yalnızca resmî OpenAI API anahtarıyla (<code>AI_PROVIDER=openai</code>) çalışır. OpenAI isteklerinde <code>store: false</code> kullanılır.</p>
           <p><strong>Abonelik ≠ API erişimi.</strong> ChatGPT Plus/Pro ve Claude Pro/Max abonelikleri yalnızca sohbet uygulamalarını kapsar; bu uygulamanın kullanabileceği API erişimi içermez. API kullanımı ayrıca ücretlendirilir.</p>
           <p>Bağlamak için sunucu ortam değişkenlerinde <code>AI_PROVIDER</code>, ilgili API anahtarı ve <strong>bilinçli olarak seçilmiş</strong> <code>AI_MODEL</code> gerekir; varsayılan model yoktur. Anahtarlar tarayıcıya gönderilmez.</p>
           <p>Yapay zekâ açıkken seçili kaynak metinlerin ilgili bölümleri, mesajların ve cevapların seçilen sağlayıcıya gönderilir. Kapalıyken hiçbir veri dışarı gönderilmez.</p>
@@ -67,23 +68,24 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         <h2 id="yedek">Yedekleme ve geri yükleme</h2>
         <p className="text-sm">Yedek; derslerini, konularını, yüklediğin dosyaların kendisini, notlarını, çalışma oturumlarını, sorularını, cevaplarını, yanlışlar defterini ve tekrar planını tek bir JSON dosyasında içerir. Dosyayı güvenli bir yerde sakla; kişisel akademik verilerini içerir.</p>
         <a href="/api/yedek" className="btn" download>Yedeği indir</a>
-        <form action={restoreBackupAction} className="space-y-3 border-t border-slate-200 pt-4 dark:border-slate-800">
+        <form action="/api/yedek" method="post" encType="multipart/form-data" className="space-y-3 border-t border-slate-200 pt-4 dark:border-slate-800">
           <h3 className="font-semibold">Yedekten geri yükle</h3>
           <p className="alert-err">Dikkat: Geri yükleme, bu hesaptaki mevcut bütün akademik verilerini siler ve yerine yedektekileri koyar. İşlem tek adımda yapılır; hata olursa hiçbir değişiklik uygulanmaz. Önce güncel bir yedek indirmen önerilir.</p>
           <input type="file" name="file" accept="application/json,.json" required className="input" aria-label="Yedek dosyası" />
           <label className="block text-sm">Onaylamak için <strong>GERİ YÜKLE</strong> yaz
             <input name="confirm" className="input mt-1" autoComplete="off" />
           </label>
-          <SubmitButton pendingText="Geri yükleniyor…" className="btn-danger">Geri yükle</SubmitButton>
+          <button className="btn-danger">Geri yükle</button>
         </form>
       </section>
 
       <section className="card space-y-2 text-sm" aria-labelledby="durum">
-        <h2 id="durum">Henüz olmayan özellikler</h2>
+        <h2 id="durum">Entegrasyonların gerçek durumu</h2>
         <ul className="list-disc space-y-1 pl-5">
-          <li>DEBİM / UZEM otomatik aktarımı yok; materyaller elle yüklenir.</li>
-          <li>Görsel ve taranmış PDF için metin okuma (OCR), ses/video transkripsiyonu yok.</li>
-          <li>İş merkezi (Ahmet Özsoy / Hasan Bey) ve Bölüm Projesi çalışma alanı sonraki aşamalarda.</li>
+          <li>DEBİM: Moodle web servisleriyle bağlantı ve aktarım hazır; gerçek DEBİM ile henüz denenmedi. Web servisleri kapalıysa ZIP / toplu yükleme kullanılabilir.</li>
+          <li>OCR: sunucuda çevrimdışı çalışır (Türkçe); el yazısı ve düşük kaliteli taramalarda hata oranı yüksektir.</li>
+          <li>Deşifre: ücretli OpenAI sağlayıcısı yapılandırılırsa ve her iş için onay verirsen çalışır; gerçek sağlayıcıyla henüz denenmedi.</li>
+          <li>Parola sıfırlama ve hesap silme henüz yok.</li>
         </ul>
       </section>
     </div>

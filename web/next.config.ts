@@ -9,7 +9,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  serverExternalPackages: ["pg", "unpdf", "mammoth"],
+  serverExternalPackages: ["pg", "unpdf", "mammoth", "@napi-rs/canvas", "tesseract.js", "@tesseract.js-data/tur"],
   experimental: {
     serverActions: { bodySizeLimit: "26mb" },
   },

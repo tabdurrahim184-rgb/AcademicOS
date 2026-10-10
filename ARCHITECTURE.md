@@ -106,3 +106,21 @@ Herhangi bir Node.js barındırıcısı + yönetilen PostgreSQL yeterlidir (ör.
 Supabase/Neon/RDS). Yayına almadan önce: ayrı üretim veritabanı ve rolleri, `ALLOW_REGISTRATION=false`
 (tek kullanıcı), otomatik veritabanı yedeği, HTTPS. Bu adımlar ücret ve hesap gerektirdiği için
 kullanıcı onayı bekliyor.
+
+## Entegrasyonlar ve uzun işler (v0.3)
+
+- **DEBİM** (`src/lib/lms/`): Moodle Web Services REST (`core_webservice_get_site_info`, `core_enrol_get_users_courses`,
+  `core_course_get_contents`, `webservice/pluginfile.php?token=`). Kimlik: kullanıcının güvenlik anahtarı; şifre yok.
+  Anahtar `APP_ENCRYPTION_KEY` ile AES-256-GCM şifreli saklanır, yalnızca sunucuda çözülür. İstek yalnızca
+  `LMS_ALLOWED_HOSTS` alan adlarına, https üzerinden, yönlendirme takip etmeden yapılır (SSRF koruması).
+  Aktarım ortak içe aktarma çekirdeğini (`data/bulk-import.ts`) kullanır: bölüm → konu/hafta, SHA-256 ile yinelenen tespiti,
+  dosya başına SAVEPOINT.
+- **OCR** (`src/lib/ocr.ts`): tesseract.js + `@tesseract.js-data/tur` (çevrimdışı), PDF sayfaları `@napi-rs/canvas`
+  ile ~200 dpi görüntüye çevrilir. Ham çıktı `source_chunks.raw_ocr`'da korunur.
+- **Deşifre** (`src/lib/transcription.ts`): ffmpeg ile 10 dakikalık 16 kHz mono parçalar → OpenAI Audio Transcriptions
+  (`verbose_json` segmentleri, `whisper-1` önerilir). Ham ve düzeltilmiş metin ayrı saklanır.
+- **İşler** (`src/lib/jobs.ts`): `jobs` tablosu; uygulama sürecinde arka planda çalışır, her birimde ilerleme kaydedilir,
+  iptal ve kaldığı yerden devam desteklenir. Uzun işler için kalıcı bir Node sunucusu (Docker) önerilir.
+- **İş Merkezi** (`src/lib/work-schedule.ts`): saf zamanlayıcı; hafta içi 08.30–18.00'e otomatik iş koymaz, ders saatleri,
+  sabit taahhütler ve diğer işlerle çakışmaz; gerekirse etkilenen ders çalışmalarını açıkça listeler.
+- **Rota işleyicileri** (kayıt yükleme, yedek geri yükleme) aynı köken (Origin) kontrolü yapar.

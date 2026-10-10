@@ -11,7 +11,12 @@ export const NAV = [
   { href: "/tekrar", label: "Tekrar" },
   { href: "/yanlislar", label: "Yanlışlar defteri" },
   { href: "/telafi", label: "Telafi planı" },
+  { href: "/proje", label: "Bölüm Projesi" },
+  { href: "/tartismalar", label: "Akademik tartışmalar" },
+  { href: "/is", label: "İş merkezi" },
+  { href: "/kayitlar", label: "Kayıtlar ve deşifre" },
   { href: "/ara", label: "Kaynaklarda ara" },
+  { href: "/debim", label: "DEBİM ve içe aktarma" },
   { href: "/ayarlar", label: "Ayarlar ve yedek" },
 ];
 

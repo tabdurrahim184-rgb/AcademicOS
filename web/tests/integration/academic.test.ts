@@ -9,7 +9,7 @@ import { getSourceChunks, getSourceFile, listSources, saveUploadedSource, search
 import {
   createQuestion, getStudySession, listAttempts, listDueCards, listMessages, listMistakes, startStudySession, submitAnswer, finalizeAttempt,
 } from "@/lib/data/study";
-import { exportBackup, restoreBackup } from "@/lib/data/backup";
+import { BACKUP_VERSION, exportBackup, restoreBackup } from "@/lib/data/backup";
 import { loadDashboard } from "@/lib/data/dashboard";
 import { generateTutorReply, saveStudentMessage, generateQuestions, gradeAttemptWithAI } from "@/lib/ai/tutor";
 import { AIRequestError, type AIProvider } from "@/lib/ai/provider";
@@ -281,7 +281,7 @@ describe("Yedek sürüm 2 — plan ve öğrenme verisi", () => {
       await regeneratePlan(tx, a.id, new Date("2026-10-12T04:00:00Z"));
     });
     const backup = JSON.parse(JSON.stringify(await withUser(a.id, exportBackup)));
-    expect(backup.version).toBe(2);
+    expect(backup.version).toBe(BACKUP_VERSION); // sürüm 2 alanları sonraki sürümlerde de bulunur
     const taskCount = backup.data.plan_tasks.length;
     expect(taskCount).toBeGreaterThan(0);
 

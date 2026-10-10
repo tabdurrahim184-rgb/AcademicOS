@@ -192,3 +192,14 @@ export async function explainMistake(userId: string, mistakeId: string, provider
   await withUser(userId, (tx) => tx.query("UPDATE mistakes SET ai_explanation=$2 WHERE id=$1", [mistakeId, res.text.slice(0, 8000)]));
   return res.text;
 }
+
+/** Kullanıcının açık onayıyla tek, kısa bir istek gönderir (yapılandırma doğrulaması). */
+export async function testConnection(userId: string, provider: AIProvider) {
+  const res = await callAI(userId, "baglanti_testi", provider, {
+    system: "Kısa ve Türkçe yanıt ver.",
+    messages: [{ role: "user", content: "Bağlantı testi: yalnızca 'Bağlantı çalışıyor.' yaz." }],
+    effort: "low",
+    maxTokens: 300,
+  });
+  return { text: res.text.slice(0, 300), model: res.model, inputTokens: res.inputTokens, outputTokens: res.outputTokens };
+}

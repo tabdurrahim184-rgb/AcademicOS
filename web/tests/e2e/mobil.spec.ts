@@ -13,7 +13,7 @@ test("mobil görünüm: menü çalışır, yatay taşma yok", async ({ page }) =
 
 test("mobil görünüm: plan, takvim, telafi ve ayarlar sayfalarında yatay taşma yok", async ({ page }) => {
   await register(page);
-  for (const path of ["/plan", "/takvim", "/telafi", "/ayarlar", "/plan/ayarlar", "/calis"]) {
+  for (const path of ["/plan", "/takvim", "/telafi", "/ayarlar", "/plan/ayarlar", "/calis", "/debim", "/proje", "/tartismalar", "/is", "/kayitlar"]) {
     await page.goto(path);
     await expect(page.locator("h1").first()).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

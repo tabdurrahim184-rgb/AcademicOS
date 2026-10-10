@@ -111,8 +111,11 @@ export default async function Dashboard() {
         {project && (
           <section className="card" aria-labelledby="proje">
             <h2 id="proje">Bölüm Projesi (GZT440)</h2>
-            <p className="muted mt-2">Proje çalışma alanı (araştırma soruları, danışman görüşmeleri, taslaklar) bir sonraki aşamada eklenecek. Şimdilik konuları, kaynakları ve teslim tarihlerini ders sayfasından takip edebilirsin.</p>
-            <Link href={`/dersler/${project.id}`} className="btn-secondary mt-3">GZT440 sayfasını aç</Link>
+            <p className="muted mt-2">Araştırma soruları, kaynakça, danışman görüşmeleri, taslaklar, revizyonlar ve teslimler proje çalışma alanında; tarihli teslimler plana ve takvime eklenir.</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link href="/proje" className="btn-secondary">Proje çalışma alanı</Link>
+              <Link href={`/dersler/${project.id}`} className="btn-secondary">GZT440 ders sayfası</Link>
+            </div>
           </section>
         )}
 

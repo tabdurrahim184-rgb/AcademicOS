@@ -44,6 +44,8 @@ jobs:
           CREATE DATABASE academicos_test OWNER academicos_owner;
           CREATE DATABASE academicos_e2e OWNER academicos_owner;
           SQL
+      - name: ffmpeg (ses/video testleri için)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck

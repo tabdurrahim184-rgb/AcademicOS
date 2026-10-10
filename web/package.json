@@ -1,6 +1,6 @@
 {
   "name": "academicos-web",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "TÜRKMENOĞLU — Akademik ve Çalışma Asistanı (bulut web uygulaması)",
   "scripts": {
@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.133.0",
+    "@napi-rs/canvas": "^0.1.100",
+    "@tesseract.js-data/tur": "^1.0.0",
     "jszip": "^3.10.2",
     "mammoth": "^1.13.0",
     "next": "^15.5.27",
@@ -29,6 +31,7 @@
     "react": "19.1",
     "react-dom": "19.1",
     "server-only": "^0.0.1",
+    "tesseract.js": "^7.0.0",
     "unpdf": "^1.8.1",
     "zod": "^3.25.76"
   },

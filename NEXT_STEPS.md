@@ -1,19 +1,14 @@
 # Sonraki adımlar
 
-## Senin kararını bekleyenler
+## Senin vermen gereken izinler / bilgiler
+1. **Çalıştırma yeri:** Ya kendi bilgisayarında `docker compose` (ücretsiz, yalnızca sen erişirsin) ya da bir bulut barındırma + yönetilen PostgreSQL (hesap ve olası ücret).
+2. **APP_ENCRYPTION_KEY:** DEBİM bağlantısı için sunucuda 32 baytlık gizli anahtar (sen üretip ortam değişkenine eklersin).
+3. **DEBİM güvenlik anahtarı:** DEBİM → Tercihler → Güvenlik anahtarları. Sayfa yoksa üniversite web servislerini kapatmıştır; ZIP içe aktarmayı kullan.
+4. **Yapay zekâ (ücretli, isteğe bağlı):** `AI_PROVIDER=openai`, `OPENAI_API_KEY`, `AI_MODEL` (OpenAI model kimliğini resmî sayfadan seç), fiyatlar ve `AI_MONTHLY_BUDGET_USD`. Ardından Ayarlar → "Bağlantıyı test et".
+5. **Deşifre (ücretli, isteğe bağlı):** `TRANSCRIPTION_PROVIDER=openai`, `TRANSCRIPTION_MODEL=whisper-1` (zaman damgaları için), `TRANSCRIPTION_PRICE_PER_MIN`.
+6. **PR #1'in `main`'e birleştirilmesi.**
 
-1. **Yapay zekâ sağlayıcısı, model ve bütçe** (ücretli). Öneri: ilk deneme için `claude-haiku-5-5`
-   (1M token: 0,10 $ girdi / 0,50 $ çıktı), `AI_MONTHLY_BUDGET_USD=5` ve `AI_DAILY_REQUEST_LIMIT=50`.
-   Kalite yetersizse `claude-sonnet-5-5`'e (2 $ / 10 $) geçilir. Onay verirsen: anahtarı sunucu ortamına
-   sen eklersin, ardından küçük bir gerçek doğrulama seti (5–10 istek, birkaç sent) çalıştırılır.
-2. **Canlı barındırma** (hesap ve olası ücret): Node.js barındırıcısı + yönetilen PostgreSQL.
-3. **PR #1**: CI yeşil; incelemeden sonra `main`'e birleştirme kararı sende.
-
-## Geliştirme sırası
-
-1. Gerçek sağlayıcıyla doğrulama (onaydan sonra): istek biçimi, atıf oranı, "yalnızca kaynak" uyumu, Türkçe kalite, maliyet ölçümü.
-2. Bölüm Projesi (GZT440) çalışma alanı: araştırma soruları, yöntem, kaynakça, danışman görüşmeleri, taslak/teslim takibi (plana bağlı).
-3. Dönem başlangıç tarihi ayarı → hafta numaralarının takvim tarihleriyle eşlenmesi.
-4. Sözlü sınav provası ve öğrenme analitiği (haftalık doğruluk, tekrar uyumu).
-5. Parola sıfırlama, hesap silme, oturum yönetimi; yayına hazırlık (`ALLOW_REGISTRATION=false`, otomatik yedek).
-6. İş merkezi ve Test I (akademik saatlere iş görevi atanmaması), İslam düşüncesi tartışma alanı, OCR/transkripsiyon.
+## Geliştirme
+1. Gerçek sağlayıcı ve gerçek DEBİM ile ilk doğrulama (izinler verildikten sonra).
+2. Parola sıfırlama, hesap silme, oturum yönetimi.
+3. Deşifrede konuşmacı ayrımı (destekleyen model seçilirse), sözlü sınav provası, öğrenme analitiği.

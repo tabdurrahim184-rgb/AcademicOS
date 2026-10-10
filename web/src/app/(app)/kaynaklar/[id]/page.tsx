@@ -2,6 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { startSessionAction } from "@/app/actions/study";
 import { updateSourceAction } from "@/app/actions/academic";
+import { startOcrAction, updateOcrChunkAction } from "@/app/actions/media";
+import { JobStatus } from "@/components/JobStatus";
+import { listJobs } from "@/lib/jobs";
 import { Flash } from "@/components/Flash";
 import { SubmitButton } from "@/components/SubmitButton";
 import { getAIStatus } from "@/lib/ai/provider";
@@ -24,10 +27,12 @@ export default async function SourcePage({ params, searchParams }: { params: Pro
     return {
       s, chunks: await getSourceChunks(tx, id), course: (await getCourse(tx, s.course_id))!,
       topic: s.topic_id ? await getTopic(tx, s.topic_id) : null, topics: await listTopics(tx, s.course_id),
+      job: (await listJobs(tx, id))[0],
     };
   });
   if (!data) notFound();
-  const { s, chunks, course, topic, topics } = data;
+  const { s, chunks, course, topic, topics, job } = data;
+  const ocrBusy = job && (job.status === "bekliyor" || job.status === "calisiyor");
   const ai = getAIStatus();
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -72,6 +77,14 @@ export default async function SourcePage({ params, searchParams }: { params: Pro
           )}
         </div>
       </header>
+      <JobStatus job={job} returnTo={`/kaynaklar/${s.id}`} />
+      {!ocrBusy && s.extraction_status !== "tamam" && ["pdf", "image"].includes(s.file_type) && (
+        <form action={startOcrAction} className="card space-y-2">
+          <input type="hidden" name="sourceId" value={s.id} />
+          <p className="text-sm">Bu dosyada seçilebilir metin yok (taranmış sayfa veya görsel). OCR ile metin çıkarılabilir: işlem sunucuda, Türkçe dil modeliyle yapılır; dosya dışarı gönderilmez. PDF&apos;lerde en fazla 40 sayfa işlenir. Tanıma hataları olabilir; sonuçları düzenleyebilirsin.</p>
+          <SubmitButton>OCR ile metni çıkar</SubmitButton>
+        </form>
+      )}
       <details className="card">
         <summary className="cursor-pointer text-sm font-medium">Kaynak bilgilerini düzelt (başlık, tür, konu)</summary>
         <form action={updateSourceAction} className="mt-3 grid gap-3 sm:grid-cols-3">
@@ -94,8 +107,19 @@ export default async function SourcePage({ params, searchParams }: { params: Pro
           <h2 id="metin">Çıkarılan metin <span className="muted font-normal">(özgün içerik korunur)</span></h2>
           {chunks.map((c) => (
             <article key={c.id} id={`parca-${c.ord}`} className="card">
-              <p className="badge mb-2">{c.locator}</p>
+              <p className="badge mb-2">{c.locator}{c.raw_ocr != null && " · OCR"}</p>
               <p className="whitespace-pre-wrap text-sm leading-relaxed">{c.content}</p>
+              {c.raw_ocr != null && (
+                <details className="mt-2">
+                  <summary className="cursor-pointer text-xs">OCR metnini düzelt</summary>
+                  <form action={updateOcrChunkAction} className="mt-2 space-y-2">
+                    <input type="hidden" name="sourceId" value={s.id} />
+                    <input type="hidden" name="chunkId" value={c.id} />
+                    <textarea name="content" defaultValue={c.content} className="input min-h-40 text-sm" aria-label="OCR metni" />
+                    <SubmitButton className="btn-secondary">Düzeltmeyi kaydet</SubmitButton>
+                  </form>
+                </details>
+              )}
             </article>
           ))}
         </section>

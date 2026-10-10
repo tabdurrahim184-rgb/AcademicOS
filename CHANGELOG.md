@@ -1,5 +1,21 @@
 # Değişiklik günlüğü
 
+## [web 0.3.0] — 2026-10-11
+
+### Eklendi
+- **DEBİM / Moodle**: resmî web servisleri + kullanıcının güvenlik anahtarı (şifre istenmez/saklanmaz; anahtar AES-256-GCM ile şifreli), ders listesi, ders eşleştirme, bölüm → konu/hafta eşlemesiyle materyal aktarımı, yinelenen dosya tespiti, SSRF korumalı alan adı listesi.
+- **Toplu ve ZIP içe aktarma** (DEBİM "ders içeriğini indir" ZIP'i dahil).
+- **OCR**: taranmış PDF ve görseller için çevrimdışı Türkçe Tesseract; düzenlenebilir metin, ham çıktı saklanır.
+- **Kayıtlar ve deşifre**: ses/video yükleme (100 MB), oynatma, ders/iş arşivleri; OpenAI Audio ile Türkçe deşifre (onaylı, ücretli), zaman damgaları, segment düzenleme, TXT/SRT/VTT/DOCX.
+- **Arka plan işleri**: ilerleme, iptal, kaldığı yerden devam.
+- **Bölüm Projesi (GZT440)**, **Akademik tartışmalar**, **İş Merkezi** (Ahmet Özsoy, Hasan Bey; akademik zaman koruması; etki analizi).
+- OpenAI isteklerinde `store: false`; Ayarlar'da onaylı "Bağlantıyı test et".
+- Docker / docker compose yapılandırması (yerel güvenli test ortamı).
+
+### Değişti
+- Yedek biçimi sürüm 3; geri yükleme ayrı uç noktadan (büyük yedekler).
+- Çalışma planı iş taahhütlerini ve planlanmış iş görevlerini meşgul sayar.
+
 ## [web 0.2.0] — 2026-10-10
 
 ### Güvenlik

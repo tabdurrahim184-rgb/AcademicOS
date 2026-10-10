@@ -13,7 +13,7 @@ import {
 } from "@/lib/data/study";
 import { QUESTION_TYPES, type QuestionType } from "@/lib/grading";
 import { AIRequestError, AIUnavailableError, getProvider } from "@/lib/ai/provider";
-import { explainMistake, generateQuestions, generateTutorReply, gradeAttemptWithAI, saveStudentMessage } from "@/lib/ai/tutor";
+import { explainMistake, generateQuestions, generateTutorReply, gradeAttemptWithAI, saveStudentMessage, testConnection } from "@/lib/ai/tutor";
 
 const str = (f: FormData, k: string) => String(f.get(k) ?? "").trim();
 const withParams = (path: string, params: Record<string, string>) => {
@@ -284,4 +284,18 @@ export async function explainMistakeAction(form: FormData) {
   }
   revalidatePath("/yanlislar");
   redirect(withParams(returnTo, { tamam: "Öğretmen açıklaması eklendi." }));
+}
+
+export type AiTestState = { error?: string; ok?: string } | undefined;
+
+/** Ücretli tek istek: yalnızca kullanıcı onay kutusunu işaretleyip düğmeye bastığında çalışır. */
+export async function testAiConnectionAction(_: AiTestState, form: FormData): Promise<AiTestState> {
+  const user = await requireUser();
+  if (form.get("consent") !== "on") return { error: "Ücretli test isteği için onay kutusunu işaretleyin." };
+  try {
+    const r = await testConnection(user.id, getProvider());
+    return { ok: `Yanıt alındı (${r.model}, ${r.inputTokens} girdi + ${r.outputTokens} çıktı token): "${r.text}"` };
+  } catch (e) {
+    return { error: aiMessage(e) };
+  }
 }

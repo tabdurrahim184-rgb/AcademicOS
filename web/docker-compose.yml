@@ -1,0 +1,29 @@
+# Yerel / güvenli test ortamı: PostgreSQL + AcademicOS. Yalnızca bu bilgisayardan erişilir (127.0.0.1).
+# Kullanım: cp .env.docker.example .env.docker  (değerleri doldurun)  →  docker compose up --build
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD gerekli}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?APP_DB_PASSWORD gerekli}
+      OWNER_DB_PASSWORD: ${OWNER_DB_PASSWORD:?OWNER_DB_PASSWORD gerekli}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/docker-init.sql:/docker-entrypoint-initdb.d/00-roles.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 20
+  app:
+    build: .
+    env_file: .env.docker
+    environment:
+      DATABASE_URL: postgres://academicos_app:${APP_DB_PASSWORD}@db:5432/academicos
+      DATABASE_URL_OWNER: postgres://academicos_owner:${OWNER_DB_PASSWORD}@db:5432/academicos
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  pgdata:

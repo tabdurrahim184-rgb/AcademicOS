@@ -4,6 +4,7 @@ import { findConflicts, fromMinutes, localParts, toMinutes, type Meeting } from 
 import { ASSESSMENT_KINDS, listAssessments } from "./assessments";
 import { listCourses, listMeetings } from "./courses";
 import { listPlanTasks, TASK_KINDS } from "./plan";
+import { projectDeadlines } from "./project";
 import { STUDY_MODES } from "./study";
 
 export type CalEvent = {
@@ -57,6 +58,10 @@ export async function loadWeek(tx: Tx, weekStartDate: string) {
       type: "sinav", date: p.date, start: p.time, end: null, title: `${code(a.course_id)} — ${a.title}`,
       subtitle: ASSESSMENT_KINDS[a.kind], href: `/dersler/${a.course_id}#sinavlar`,
     });
+  }
+  for (const p of await projectDeadlines(tx)) {
+    if (p.due_date < weekStartDate || p.due_date > last) continue;
+    events.push({ type: "sinav", date: p.due_date, start: null, end: null, title: `Bölüm Projesi — ${p.title}`, subtitle: "Proje teslimi", href: "/proje" });
   }
   const { rows: sessions } = await tx.query<{ id: string; course_id: string; mode: keyof typeof STUDY_MODES; started_at: Date; last_activity_at: Date }>(
     `SELECT id, course_id, mode, started_at, last_activity_at FROM study_sessions

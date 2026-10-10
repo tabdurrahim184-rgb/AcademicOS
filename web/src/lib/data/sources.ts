@@ -36,7 +36,7 @@ export type Source = {
   unit_count: number;
   created_at: Date;
 };
-export type SourceChunk = { id: string; source_id: string; ord: number; locator_type: string; locator: string; content: string };
+export type SourceChunk = { id: string; source_id: string; ord: number; locator_type: string; locator: string; content: string; raw_ocr?: string | null };
 
 const SOURCE_COLS =
   "id, course_id, topic_id, title, kind, filename, mime, size_bytes, sha256, file_type, extraction_status, extraction_note, unit_count, created_at";
@@ -105,7 +105,7 @@ export async function getSourceFile(tx: Tx, id: string): Promise<Buffer | null> 
 
 export async function getSourceChunks(tx: Tx, sourceId: string): Promise<SourceChunk[]> {
   const { rows } = await tx.query<SourceChunk>(
-    "SELECT id, source_id, ord, locator_type, locator, content FROM source_chunks WHERE source_id = $1 ORDER BY ord",
+    "SELECT id, source_id, ord, locator_type, locator, content, raw_ocr FROM source_chunks WHERE source_id = $1 ORDER BY ord",
     [sourceId],
   );
   return rows;
