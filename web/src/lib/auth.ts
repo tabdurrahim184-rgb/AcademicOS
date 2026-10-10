@@ -36,7 +36,15 @@ export async function endSession() {
   store.delete(SESSION_COOKIE);
 }
 
+/**
+ * Hız sınırı anahtarı için istemci adresi. X-Forwarded-For istemci tarafından
+ * sahte gönderilebileceğinden yalnızca güvenilir bir ters vekil arkasında
+ * (TRUST_PROXY=true) kullanılır; aksi halde sınır yalnızca e-posta başınadır.
+ */
 export async function clientKey(): Promise<string> {
+  if (process.env.TRUST_PROXY !== "true") return "yerel";
   const h = await headers();
-  return (h.get("x-forwarded-for")?.split(",")[0] ?? "yerel").trim();
+  const parts = (h.get("x-forwarded-for") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  // Vekilin eklediği son adres güvenilirdir; öncekiler istemciden gelebilir.
+  return parts[parts.length - 1] ?? "yerel";
 }

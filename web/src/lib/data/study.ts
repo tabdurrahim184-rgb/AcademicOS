@@ -1,7 +1,7 @@
 import type { Tx } from "../db";
 import { gradeObjective, isObjective, type QuestionType, QUESTION_TYPES } from "../grading";
 import { NEW_CARD, nextDueDate, qualityFromResult, sm2 } from "../sm2";
-import { advanceTopicStatus, getCourse, getTopic, isUuid, setTopicStatus } from "./courses";
+import { advanceTopicStatus, getCourse, getTopic, isUuid, markPlanStale, setTopicStatus } from "./courses";
 
 export const STUDY_MODES = {
   konu_anlatimi: { label: "Konu anlatımı", ai: true, hint: "Kavramlar, tanımlar, neden-sonuç ilişkileri ve örneklerle anlatım." },
@@ -332,6 +332,7 @@ async function afterGrading(tx: Tx, userId: string, q: Question, attemptId: stri
     );
     cardId = ins.rows[0].id;
   }
+  await markPlanStale(tx);
   await tx.query("INSERT INTO review_log (user_id, card_id, quality, interval_days, ease) VALUES ($1,$2,$3,$4,$5)", [
     userId, cardId, quality, next.intervalDays, next.ease,
   ]);

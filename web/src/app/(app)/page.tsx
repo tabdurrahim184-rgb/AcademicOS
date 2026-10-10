@@ -25,7 +25,7 @@ const recLabel = (r: Recommendation) =>
 
 export default async function Dashboard() {
   const user = await requireUser();
-  const d = await withUser(user.id, (tx) => loadDashboard(tx, new Date(), user.timezone));
+  const d = await withUser(user.id, (tx) => loadDashboard(tx, user.id, new Date(), user.timezone));
   const ai = getAIStatus();
   const recCourse = d.courses.find((c) => "courseId" in d.rec && c.id === d.rec.courseId);
   const project = d.courses.find((c) => c.code === "GZT440");
@@ -45,6 +45,25 @@ export default async function Dashboard() {
           <Link href={recHref(d.rec)} className="btn text-base">{recLabel(d.rec)}</Link>
           <Link href="/calis" className="btn-secondary">Başka bir hedef seç</Link>
         </div>
+      </section>
+
+      <section className="card" aria-labelledby="bugun-plan">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="bugun-plan">Bugünkü çalışma planın</h2>
+          <Link href="/plan" className="text-sm">14 günlük planın tamamı</Link>
+        </div>
+        {d.todayPlan.length === 0 ? (
+          <p className="muted mt-2">Bugün için planlanmış görev yok. Konularını ve materyallerini ekledikçe plan otomatik dolar.</p>
+        ) : (
+          <ul className="mt-2 divide-y divide-slate-200 dark:divide-slate-800">
+            {d.todayPlan.filter((t) => t.status !== "atlandi").map((t) => (
+              <li key={t.id} className={`flex flex-wrap items-center justify-between gap-2 py-2 text-sm ${t.status === "tamamlandi" ? "opacity-60" : ""}`}>
+                <span><span className="tabular-nums font-medium">{trTime(t.start_time)}</span> · <span className={t.status === "tamamlandi" ? "line-through" : ""}>{t.title}</span></span>
+                <span className="muted">{t.duration_min} dk{t.status === "tamamlandi" ? " · tamamlandı" : ""}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">

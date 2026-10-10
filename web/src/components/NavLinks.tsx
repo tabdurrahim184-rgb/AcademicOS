@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 export const NAV = [
   { href: "/", label: "Kontrol paneli" },
   { href: "/calis", label: "Ders çalış" },
+  { href: "/plan", label: "Çalışma planı" },
+  { href: "/takvim", label: "Takvim" },
   { href: "/dersler", label: "Derslerim" },
   { href: "/tekrar", label: "Tekrar" },
   { href: "/yanlislar", label: "Yanlışlar defteri" },

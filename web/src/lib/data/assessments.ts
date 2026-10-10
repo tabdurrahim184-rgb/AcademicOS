@@ -1,5 +1,5 @@
 import type { Tx } from "../db";
-import { getCourse } from "./courses";
+import { getCourse, markPlanStale } from "./courses";
 
 export const ASSESSMENT_KINDS = {
   vize: "Vize", final: "Final", odev: "Ödev", proje: "Proje", sunum: "Sunum", quiz: "Kısa sınav", diger: "Diğer",
@@ -37,14 +37,17 @@ export async function createAssessment(
     "INSERT INTO assessments (user_id, course_id, kind, title, due_at, weight) VALUES ($1,$2,$3,$4,$5,$6)",
     [userId, a.courseId, a.kind, a.title.trim() || ASSESSMENT_KINDS[a.kind], a.dueAt, a.weight],
   );
+  await markPlanStale(tx);
 }
 
 export async function updateAssessmentScore(tx: Tx, id: string, score: number | null) {
   await tx.query("UPDATE assessments SET score=$2 WHERE id=$1", [id, score]);
+  await markPlanStale(tx);
 }
 
 export async function deleteAssessment(tx: Tx, id: string) {
   await tx.query("DELETE FROM assessments WHERE id=$1", [id]);
+  await markPlanStale(tx);
 }
 
 /**

@@ -124,7 +124,7 @@ describe("Test C / D / E / F — çalışma oturumu, cevaplar, yanlışlar, tekr
       expect(await listDueCards(tx, new Date(Date.now() + 86400_000 + 60_000))).toHaveLength(1);
       expect(await listDueCards(tx, new Date())).toHaveLength(0);
       expect((await listTopics(tx, courseId))[0].status).toBe("tekrar_gerekiyor");
-      const dash = await loadDashboard(tx, new Date(Date.now() + 3 * 86400_000));
+      const dash = await loadDashboard(tx, again, new Date(Date.now() + 3 * 86400_000));
       expect(dash.totalDue).toBe(1);
     });
 
@@ -216,8 +216,9 @@ describe("Test H — yapay zekâ bağlantısı kesilince veri kaybı olmaz", () 
       { type: "acik_uclu", prompt: "Çerçevelemeyi tartışın.", rubric: "Tanım ve örnek" },
     ]));
     expect(await generateQuestions(u.id, { courseId, topicId, sourceIds: [sourceId], count: 3 }, p)).toEqual({ saved: 2, rejected: 1 });
-    const qs = await withUser(u.id, (tx) => tx.query("SELECT origin, source_id FROM questions ORDER BY created_at"));
+    const qs = await withUser(u.id, (tx) => tx.query("SELECT origin, source_id, prompt FROM questions ORDER BY created_at"));
     expect(qs.rows.every((r) => r.origin === "yapay_zeka")).toBe(true);
+    expect(qs.rows.map((r) => r.prompt)).toEqual(["Chapel Hill hangi yıl?", "Çerçevelemeyi tartışın."]);
     expect(qs.rows[0].source_id).toBe(sourceId);
   });
   it("açık uçlu cevap yapay zekâ ile puanlanır", async () => {
@@ -266,5 +267,46 @@ describe("Test J — yedekleme ve geri yükleme", () => {
     const u = await newUser();
     await expect(withUser(u.id, (tx) => restoreBackup(tx, u.id, { format: "academicos-yedek", version: 1, data: { courses: [{ id: "x", code: "A", name: "B", delivery: "yuz_yuze", notes: "", created_at: new Date().toISOString() }], course_meetings: [{ id: "m", course_id: "olmayan", weekday: 1, start_time: "08:00", end_time: "09:00" }] } }))).rejects.toThrow("tutarsız");
     expect(await withUser(u.id, listCourses)).toHaveLength(9);
+  });
+});
+
+describe("Yedek sürüm 2 — plan ve öğrenme verisi", () => {
+  it("plan görevleri, çalışma aralıkları, ayarlar ve telafi işaretleri yedeklenip geri yüklenir; sürüm 1 yedeği hâlâ yüklenir", async () => {
+    const { regeneratePlan, getSettings, getWindows, updateSettings, listPlanTasks } = await import("@/lib/data/plan");
+    const a = await newUser();
+    const { topicId } = await setupCourseWithPdf(a.id);
+    await withUser(a.id, async (tx) => {
+      await tx.query("UPDATE topics SET is_catch_up = true WHERE id = $1", [topicId]);
+      await updateSettings(tx, a.id, { weekdayCapacityMin: 90, weekendCapacityMin: 120, maxTaskMin: 40, breakMin: 5, catchUpShare: 50, semesterEnd: "2027-01-15" });
+      await regeneratePlan(tx, a.id, new Date("2026-10-12T04:00:00Z"));
+    });
+    const backup = JSON.parse(JSON.stringify(await withUser(a.id, exportBackup)));
+    expect(backup.version).toBe(2);
+    const taskCount = backup.data.plan_tasks.length;
+    expect(taskCount).toBeGreaterThan(0);
+
+    const b = await newUser();
+    await withUser(b.id, (tx) => restoreBackup(tx, b.id, backup));
+    await withUser(b.id, async (tx) => {
+      const s = await getSettings(tx, b.id);
+      expect(s).toMatchObject({ weekdayCapacityMin: 90, semesterEnd: "2027-01-15" });
+      expect(await getWindows(tx, b.id)).toHaveLength(14);
+      expect((await listTopics(tx)).find((t) => t.title === "Gündem belirleme")!.is_catch_up).toBe(true);
+      const tasks = await listPlanTasks(tx, "2026-10-01", "2026-11-30");
+      expect(tasks).toHaveLength(taskCount);
+      expect(tasks[0].scheduled_date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    });
+
+    // Sürüm 1 biçimi (yeni kolonlar ve tablolar yok)
+    const v1 = { ...backup, version: 1, data: { ...backup.data } };
+    delete v1.data.plan_tasks; delete v1.data.planner_settings; delete v1.data.availability_windows; delete v1.data.learning_objectives;
+    v1.data.topics = v1.data.topics.map((t: Record<string, unknown>) => {
+      const copy = { ...t };
+      delete copy.is_catch_up;
+      return copy;
+    });
+    const c = await newUser();
+    const counts = await withUser(c.id, (tx) => restoreBackup(tx, c.id, v1));
+    expect(counts.courses).toBe(9);
   });
 });

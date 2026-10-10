@@ -58,7 +58,9 @@ export async function createTopicAction(form: FormData) {
   if (title.length < 2 || (week != null && !(week >= 1 && week <= 20))) {
     redirect(back(`/dersler/${courseId}`, { hata: "Konu adı en az 2 karakter, hafta 1–20 arası olmalı." }));
   }
-  await withUser(user.id, (tx) => createTopic(tx, user.id, courseId, { title, week, description: str(form, "description") }));
+  await withUser(user.id, (tx) =>
+    createTopic(tx, user.id, courseId, { title, week, description: str(form, "description"), isCatchUp: form.get("isCatchUp") === "on" }),
+  );
   revalidatePath("/", "layout");
   redirect(back(str(form, "returnTo") || `/dersler/${courseId}`, { tamam: "Konu eklendi." }));
 }

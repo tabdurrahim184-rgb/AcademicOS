@@ -3,8 +3,11 @@ import { recommend, type Recommendation } from "../recommend";
 import { localParts } from "../schedule";
 import { listAssessments } from "./assessments";
 import { listCourses, listMeetings, listTopics } from "./courses";
+import { ensureFreshPlan, listPlanTasks, nicosiaNow } from "./plan";
 
-export async function loadDashboard(tx: Tx, now = new Date(), timeZone = "Europe/Nicosia") {
+export async function loadDashboard(tx: Tx, userId: string, now = new Date(), timeZone = "Europe/Nicosia") {
+  await ensureFreshPlan(tx, userId, now);
+  const todayPlan = await listPlanTasks(tx, nicosiaNow(now).today, nicosiaNow(now).today);
   const courses = await listCourses(tx);
   const topics = await listTopics(tx);
   const meetings = await listMeetings(tx);
@@ -54,5 +57,5 @@ export async function loadDashboard(tx: Tx, now = new Date(), timeZone = "Europe
   const totalDue = Object.values(dueByCourse).reduce((a, b) => a + b, 0);
   const totalMistakes = Object.values(mistakesByCourse).reduce((a, b) => a + b, 0);
 
-  return { courses, rec, todaysClasses, upcoming, missingMaterials, topicTotals, totalDue, totalMistakes, today };
+  return { courses, rec, todayPlan, todaysClasses, upcoming, missingMaterials, topicTotals, totalDue, totalMistakes, today };
 }
