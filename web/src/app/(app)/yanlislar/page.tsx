@@ -3,7 +3,7 @@ import { explainMistakeAction } from "@/app/actions/study";
 import { Flash } from "@/components/Flash";
 import { SubmitButton } from "@/components/SubmitButton";
 import { TeacherText } from "@/components/TeacherText";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { listMistakes, type MistakeRow } from "@/lib/data/study";
@@ -24,7 +24,7 @@ function resp(m: MistakeRow) {
 export default async function MistakesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const durum = sp.durum;
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const status = durum === "cozuldu" ? "cozuldu" : durum === "hepsi" ? "hepsi" : "acik";
   const user = await requireUser();
   const mistakes = await withUser(user.id, (tx) => listMistakes(tx, status));
