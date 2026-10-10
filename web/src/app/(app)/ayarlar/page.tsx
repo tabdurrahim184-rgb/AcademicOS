@@ -27,7 +27,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
 
       <section className="card space-y-3" aria-labelledby="chatgpt-hesap">
         <h2 id="chatgpt-hesap">ChatGPT hesabını bağla</h2>
-        <p className="text-sm">Kendi bilgisayarında 127.0.0.1 üzerinden çalışan açık kaynaklı AcademicOS için resmî ChatGPT girişi. Şifren AcademicOS'a verilmez. Uygun hesaplarda ChatGPT plan kullanım hakkı ile API anahtarı gerekmeden öğretmen çalışabilir; erişim ve model izinleri OpenAI tarafından belirlenir.</p>
+        <p className="text-sm">Kendi bilgisayarında 127.0.0.1 üzerinden çalışan açık kaynaklı AcademicOS için resmî ChatGPT girişi. Şifren AcademicOS&apos;a verilmez. Uygun hesaplarda ChatGPT plan kullanım hakkı ile API anahtarı gerekmeden öğretmen çalışabilir; erişim ve model izinleri OpenAI tarafından belirlenir.</p>
         {chatgpt ? (
           <>
             <p className="badge-ok">Bağlı hesap: {chatgpt.email || "ChatGPT kullanıcısı"} {chatgpt.authorized ? "· Plan kullanım izni var" : "· Kullanım izni yok"}</p>
@@ -46,7 +46,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
         ) : (
           <a href="/api/chatgpt/baglan" className="btn">ChatGPT ile devam et</a>
         )}
-        <p className="muted">OpenAI hesabında giriş ve izin verme işlemini sen yaparsın. Uygunluk hesabına bağlıdır. Bu bağlantı eski sohbet geçmişini AcademicOS'a aktarmaz. Abonelik üzerinden kullanılamazsa isteğe bağlı, ayrıca ücretli API yolu korunur.</p>
+        <p className="muted">OpenAI hesabında giriş ve izin verme işlemini sen yaparsın. Uygunluk hesabına bağlıdır. Bu bağlantı eski sohbet geçmişini AcademicOS&apos;a aktarmaz. Abonelik üzerinden kullanılamazsa isteğe bağlı, ayrıca ücretli API yolu korunur.</p>
       </section>
 
       <section className="card space-y-3" aria-labelledby="yz">
