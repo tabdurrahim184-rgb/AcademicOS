@@ -17,7 +17,7 @@ export type CompletionRequest = { system: string; messages: ChatTurn[]; maxToken
 export type CompletionResult = { text: string; provider: string; model: string; inputTokens: number; outputTokens: number };
 
 export interface AIProvider {
-  readonly id: "anthropic" | "openai";
+  readonly id: "anthropic" | "openai" | "chatgpt";
   readonly model: string;
   complete(req: CompletionRequest): Promise<CompletionResult>;
 }
