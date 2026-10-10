@@ -4,7 +4,7 @@ import { withUser } from "@/lib/db";
 import { loadDashboard } from "@/lib/data/dashboard";
 import { ASSESSMENT_KINDS } from "@/lib/data/assessments";
 import { STUDY_MODES } from "@/lib/data/study";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { fmtDateTime, relativeDays } from "@/lib/format";
 import { trTime, WEEKDAYS } from "@/lib/schedule";
 import type { Recommendation } from "@/lib/recommend";
@@ -26,7 +26,7 @@ const recLabel = (r: Recommendation) =>
 export default async function Dashboard() {
   const user = await requireUser();
   const d = await withUser(user.id, (tx) => loadDashboard(tx, user.id, new Date(), user.timezone));
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const recCourse = d.courses.find((c) => "courseId" in d.rec && c.id === d.rec.courseId);
   const project = d.courses.find((c) => c.code === "GZT440");
 

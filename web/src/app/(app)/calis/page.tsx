@@ -2,7 +2,7 @@ import Link from "next/link";
 import { startSessionAction } from "@/app/actions/study";
 import { Flash } from "@/components/Flash";
 import { SubmitButton } from "@/components/SubmitButton";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { isUuid, listCourses, listTopics, TOPIC_STATUSES } from "@/lib/data/courses";
@@ -23,7 +23,7 @@ export default async function StudyStart({ searchParams }: { searchParams: Promi
     sources: courseId ? await listSources(tx, { courseId }) : [],
     recent: await listStudySessions(tx, 8),
   }));
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const course = data.courses.find((c) => c.id === courseId);
   const mode = (sp.mod && sp.mod in STUDY_MODES ? sp.mod : ai.enabled ? "konu_anlatimi" : "okuma") as StudyMode;
   const topicId = sp.konu ?? "";

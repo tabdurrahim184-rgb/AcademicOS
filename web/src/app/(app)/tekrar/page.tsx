@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Flash } from "@/components/Flash";
 import { QuestionCard } from "@/components/QuestionCard";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { isUuid } from "@/lib/data/courses";
@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export default async function ReviewPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const user = await requireUser();
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const data = await withUser(user.id, async (tx) => {
     const due = await listDueCards(tx);
     let result: { attempt: Attempt; q: Awaited<ReturnType<typeof getQuestion>> } | null = null;

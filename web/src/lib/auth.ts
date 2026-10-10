@@ -23,7 +23,7 @@ export async function startSession(userId: string) {
   store.set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production" && process.env.TRUST_PROXY === "true",
     path: "/",
     expires: expiresAt,
   });
