@@ -5,7 +5,7 @@ import { ConfirmSubmit } from "@/components/ConfirmSubmit";
 import { Flash } from "@/components/Flash";
 import { QuestionForm } from "@/components/QuestionForm";
 import { SubmitButton } from "@/components/SubmitButton";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { getCourse, getTopic, TOPIC_STATUSES } from "@/lib/data/courses";
@@ -40,7 +40,7 @@ export default async function TopicPage({ params, searchParams }: { params: Prom
   if (!data) notFound();
   const { course, progress: p, sources, courseSources, sessions } = data;
   const t = p.topic;
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const here = `/konular/${id}`;
   const textSources = (sources.some((s) => s.extraction_status === "tamam") ? sources : courseSources).filter((s) => s.extraction_status === "tamam");
   const current = p.steps.find((s) => !s.done);
