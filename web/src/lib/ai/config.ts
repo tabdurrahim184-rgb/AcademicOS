@@ -37,6 +37,7 @@ export type Price = { input: number; output: number } | null;
 
 export function priceFor(provider: string, model: string, env: Env = process.env): Price {
   if (provider === "chatgpt") return { input: 0, output: 0 };
+  if (provider === "chatgpt") return { input: 0, output: 0 };
   const i = Number(env.AI_PRICE_INPUT_PER_MTOK);
   const o = Number(env.AI_PRICE_OUTPUT_PER_MTOK);
   if (env.AI_PRICE_INPUT_PER_MTOK && env.AI_PRICE_OUTPUT_PER_MTOK && i >= 0 && o >= 0) return { input: i, output: o };
