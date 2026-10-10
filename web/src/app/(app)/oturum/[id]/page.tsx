@@ -6,7 +6,7 @@ import { Flash } from "@/components/Flash";
 import { QuestionCard } from "@/components/QuestionCard";
 import { SubmitButton } from "@/components/SubmitButton";
 import { TeacherText } from "@/components/TeacherText";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { getCourse, getTopic } from "@/lib/data/courses";
@@ -43,7 +43,7 @@ export default async function SessionPage({ params, searchParams }: { params: Pr
   });
   if (!data) notFound();
   const { s, course, topic, allSources, selected, questions, messages, attempts, readingChunks } = data;
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const here = `/oturum/${id}`;
   const lastAttempt = (qid: string) => [...attempts].reverse().find((a) => a.question_id === qid) ?? null;
   const answered = questions.filter((q) => lastAttempt(q.id)).length;
