@@ -1,7 +1,7 @@
 import "server-only";
 import { createHash, createPublicKey, randomBytes, randomUUID, verify as verifySignature } from "node:crypto";
 import type { AIProvider, CompletionRequest, CompletionResult } from "./provider";
-import { AIRequestError, AIUnavailableError, getProvider } from "./provider";
+import { AIRequestError, getProvider } from "./provider";
 import { getAIStatus, type AIStatus } from "./config";
 import { encrypt, decrypt } from "../crypto";
 import { withUser } from "../db";
