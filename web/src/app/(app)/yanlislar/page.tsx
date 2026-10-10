@@ -24,9 +24,9 @@ function resp(m: MistakeRow) {
 export default async function MistakesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const durum = sp.durum;
-  const ai = await getUserAIStatus(user.id);
   const status = durum === "cozuldu" ? "cozuldu" : durum === "hepsi" ? "hepsi" : "acik";
   const user = await requireUser();
+  const ai = await getUserAIStatus(user.id);
   const mistakes = await withUser(user.id, (tx) => listMistakes(tx, status));
   return (
     <div className="mx-auto max-w-4xl space-y-6">
