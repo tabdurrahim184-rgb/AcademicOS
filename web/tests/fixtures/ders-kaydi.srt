@@ -1,0 +1,7 @@
+1
+00:00:01,000 --> 00:00:04,000
+Bugün çerçeveleme kuramını işleyeceğiz.
+
+2
+00:01:05,500 --> 00:01:09,000
+Şimdi gündem belirlemeye geçelim.
