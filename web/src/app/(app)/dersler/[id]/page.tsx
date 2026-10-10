@@ -9,7 +9,7 @@ import { ConfirmSubmit } from "@/components/ConfirmSubmit";
 import { Flash } from "@/components/Flash";
 import { QuestionForm } from "@/components/QuestionForm";
 import { SubmitButton } from "@/components/SubmitButton";
-import { getAIStatus } from "@/lib/ai/provider";
+import { getUserAIStatus } from "@/lib/ai/chatgpt";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { ASSESSMENT_KINDS, listAssessments, requiredRemainingAverage } from "@/lib/data/assessments";
@@ -54,7 +54,7 @@ export default async function CoursePage({ params, searchParams }: Props) {
   });
   if (!data) notFound();
   const { course, meetings, topics, sources, questions, notes, assessments, objectives, audit } = data;
-  const ai = getAIStatus();
+  const ai = await getUserAIStatus(user.id);
   const here = `/dersler/${id}`;
   const preTopic = typeof sp.konu === "string" ? sp.konu : "";
   const textSources = sources.filter((s) => s.extraction_status === "tamam");
