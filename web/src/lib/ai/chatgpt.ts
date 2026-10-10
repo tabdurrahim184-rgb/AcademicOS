@@ -38,7 +38,7 @@ async function verifyIdToken(idToken: string, clientId: string, nonce: string) {
   const keys = Array.isArray(jwks.keys) ? jwks.keys as Record<string, unknown>[] : [];
   const jwk = keys.find(k => k.kid === header.kid && k.kty === "RSA");
   if (!jwk) throw new ChatGPTConnectionError("OpenAI kimlik doğrulama anahtarı bulunamadı.");
-  const pub = createPublicKey({ key: jwk as JsonWebKey, format: "jwk" });
+  const pub = createPublicKey({ key: jwk as import("node:crypto").JsonWebKey, format: "jwk" });
   const ok = verifySignature("RSA-SHA256", Buffer.from(parts[0] + "." + parts[1]), pub, Buffer.from(parts[2], "base64url"));
   if (!ok) throw new ChatGPTConnectionError("OpenAI kimlik imzası doğrulanamadı.");
   const claims = JSON.parse(Buffer.from(parts[1], "base64url").toString("utf8")) as Record<string, unknown>;
