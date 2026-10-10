@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import type { Tx } from "../db";
 import { detectFileType, extractContent, imageMime, MIME, UploadError } from "../extract";
 import { advanceTopicStatus, getCourse, getTopic, isUuid } from "./courses";
+import { auditSources, type AuditSource } from "../source-audit";
 
 export const SOURCE_KINDS = {
   hoca: "Hocanın verdiği materyal",
@@ -173,4 +174,31 @@ export async function selectContext(
   );
   rows.forEach(add);
   return [...picked.values()].sort((a, b) => (a.source_id === b.source_id ? a.ord - b.ord : a.source_id < b.source_id ? -1 : 1));
+}
+
+/** Kaynağın başlık, tür ve konu bilgisini düzeltir (konu aynı derse ait olmalı). */
+export async function updateSource(tx: Tx, id: string, data: { title: string; kind: SourceKind; topicId: string | null }) {
+  const s = await getSource(tx, id);
+  if (!s) throw new Error("Kaynak bulunamadı.");
+  if (!(data.kind in SOURCE_KINDS)) throw new Error("Geçersiz kaynak türü.");
+  if (data.title.trim().length < 1) throw new Error("Başlık boş olamaz.");
+  if (data.topicId) {
+    const t = await getTopic(tx, data.topicId);
+    if (!t || t.course_id !== s.course_id) throw new Error("Konu bu kaynağın dersine ait değil.");
+  }
+  await tx.query("UPDATE sources SET title=$2, kind=$3, topic_id=$4 WHERE id=$1", [id, data.title.trim().slice(0, 200), data.kind, data.topicId]);
+  if (data.topicId) await advanceTopicStatus(tx, data.topicId, "materyal_alindi");
+}
+
+export async function loadSourceAudit(tx: Tx, courseId: string) {
+  const { rows } = await tx.query<AuditSource>(
+    `SELECT s.id, s.title, s.course_id, s.topic_id, s.sha256, s.extraction_status, t.title AS "topicTitle",
+            coalesce((SELECT left(string_agg(c.content, ' ' ORDER BY c.ord), 40000) FROM source_chunks c WHERE c.source_id = s.id), '') AS text
+     FROM sources s LEFT JOIN topics t ON t.id = s.topic_id WHERE s.course_id = $1`,
+    [courseId],
+  );
+  const { rows: all } = await tx.query<{ id: string; sha256: string; title: string; course_label: string }>(
+    "SELECT s.id, s.sha256, s.title, c.code AS course_label FROM sources s JOIN courses c ON c.id = s.course_id",
+  );
+  return auditSources(rows, all);
 }

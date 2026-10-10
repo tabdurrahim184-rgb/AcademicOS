@@ -74,7 +74,7 @@ export default async function PlanPage({ searchParams }: { searchParams: Promise
           <section key={date} className="card" aria-labelledby={`gun-${date}`} data-testid="plan-gunu">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h2 id={`gun-${date}`} className="text-base">{date === today ? "Bugün — " : ""}{fmtDay(date)}</h2>
-              <span className="muted tabular-nums">{minutes} / {cap} dk</span>
+              <span className="muted tabular-nums" data-testid="gun-toplami">{minutes} / {cap} dk</span>
             </div>
             {list.length === 0 ? <p className="muted mt-1">Planlanmış görev yok.</p> : (
               <ul className="divide-y divide-slate-200 dark:divide-slate-800">

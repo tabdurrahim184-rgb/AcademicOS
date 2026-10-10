@@ -25,6 +25,11 @@ Next.js 15 (App Router, React Server Components, Server Actions) — tek Node.js
    ├─ src/lib/sm2.ts           SM-2 aralıklı tekrar (deterministik)
    ├─ src/lib/grading.ts       nesnel soru değerlendirme (Türkçe normalleştirme)
    ├─ src/lib/recommend.ts     "Şimdi ne çalışmalısın?" kural motoru
+   ├─ src/lib/planner.ts       14 günlük planlayıcı (saf, deterministik)
+   ├─ src/lib/planner-demand.ts gerçek durumdan çalışma talepleri
+   ├─ src/lib/mastery.ts       hedef/kavram ustalığı, çalışma adımları
+   ├─ src/lib/ics.ts           iCalendar üretimi
+   ├─ src/lib/source-audit.ts  kaynak denetimi
    └─ src/lib/ai/*             sağlayıcıdan bağımsız yapay zekâ katmanı (Anthropic / OpenAI)
    ▼
 PostgreSQL 16  (Row Level Security + FORCE; uygulama rolü RLS'yi atlayamaz)
@@ -61,11 +66,28 @@ PostgreSQL 16  (Row Level Security + FORCE; uygulama rolü RLS'yi atlayamaz)
   kaynak parçalarına eşlenir.
 - **Güvenlik başlıkları:** X-Frame-Options DENY, nosniff, Referrer-Policy, Permissions-Policy.
 
+## Planlayıcı
+
+- **Talep üretimi** (`planner-demand.ts`) gerçek durumdan çalışır: konu durumu (materyal eksik → temin,
+  materyal alındı → konuyu çalış, okundu → aktif hatırlama, tekrar gerekiyor → eksik tamamlama),
+  telafi işareti (öncelik +10), vadesi gelen tekrar kartları, her ders oturumundan sonra 2 gün içinde
+  gözden geçirme, tarihi bilinen sınavlar için 3 hazırlık oturumu. Tarihsiz sınav planlanmaz.
+- **Yerleştirme** (`planner.ts`): öncelik → son tarih → anahtar sırasıyla, gün gün açgözlü yerleştirme.
+  Kurallar katıdır: çalışma aralıkları, ders saatleri (+mola), günlük kapasite, telafi payı (%),
+  ders başına 120 dk, aynı konu günde bir kez, son tarih. Sığmayan talepler gerekçesiyle döner.
+- **Kalıcılık** (`data/plan.ts`): otomatik ve tamamlanmamış görevler her gün (veya durum değişince)
+  silinip yeniden üretilir; tamamlanan, kullanıcının taşıdığı/eklediği (kilitli) görevlere dokunulmaz.
+  Durum değiştiren her veri işlemi planı "eskimiş" işaretler.
+- Saat dilimi: tarih hesapları `YYYY-MM-DD` dizgileriyle UTC'de; "bugün" ve "şu an" Europe/Nicosia'dan alınır.
+
 ## Yapay zekâ entegrasyonu
 
-- `src/lib/ai/provider.ts`: `AIProvider` arayüzü; Anthropic (resmî `@anthropic-ai/sdk`, varsayılan
-  model `claude-opus-5-5`, uyarlanabilir düşünme, `effort: medium`, sunucu tarafı reddetme yedeği
-  `fallbacks: "default"`) ve OpenAI (resmî `openai` SDK, Responses API, model açıkça verilmeli).
+- `src/lib/ai/config.ts`: yapılandırma, **varsayılan model yok**, desteklenen Anthropic modelleri ve
+  resmî fiyatları (10 Ekim 2026), günlük istek ve aylık bütçe sınırları.
+- `src/lib/ai/usage.ts`: her çağrıdan önce sınır kontrolü, sonra kullanım kaydı (`ai_usage`).
+- `src/lib/ai/provider.ts`: Anthropic (resmî `@anthropic-ai/sdk`, uyarlanabilir düşünme, varsayılan
+  `effort: low`, istem önbelleği, desteklenen modellerde sunucu tarafı reddetme yedeği) ve OpenAI
+  (resmî `openai` SDK, Responses API).
 - **Abonelikler API erişimi sağlamaz.** OpenAI ve Anthropic yardım merkezleri, ChatGPT Plus ve Claude
   Pro/Max aboneliklerinin API kullanımını içermediğini, API'nin ayrı faturalandığını belirtir.
   Oturum çerezi kullanımı veya resmî olmayan yollar uygulanmadı.

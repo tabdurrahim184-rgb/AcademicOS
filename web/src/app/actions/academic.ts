@@ -6,7 +6,7 @@ import { withUser } from "@/lib/db";
 import {
   addMeeting, deleteMeeting, createTopic, setTopicStatus, updateCourse, isUuid, getCourse, TOPIC_STATUSES, type TopicStatus,
 } from "@/lib/data/courses";
-import { deleteSource, saveUploadedSource, SOURCE_KINDS, type SourceKind } from "@/lib/data/sources";
+import { deleteSource, saveUploadedSource, SOURCE_KINDS, updateSource, type SourceKind } from "@/lib/data/sources";
 import { createAssessment, deleteAssessment, updateAssessmentScore, type AssessmentKind } from "@/lib/data/assessments";
 import { UploadError } from "@/lib/extract";
 import { toMinutes } from "@/lib/schedule";
@@ -150,4 +150,19 @@ function nicosiaToUtc(date: string, time: string): Date {
   const m = off.match(/GMT([+-])(\d{2}):(\d{2})/);
   const minutes = m ? (m[1] === "-" ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3])) : 120;
   return new Date(naive.getTime() - minutes * 60_000);
+}
+
+export async function updateSourceAction(form: FormData) {
+  const user = await requireUser();
+  const id = str(form, "sourceId");
+  const topicId = str(form, "topicId");
+  try {
+    await withUser(user.id, (tx) =>
+      updateSource(tx, id, { title: str(form, "title"), kind: str(form, "kind") as SourceKind, topicId: isUuid(topicId) ? topicId : null }),
+    );
+  } catch (e) {
+    redirect(back(`/kaynaklar/${id}`, { hata: (e as Error).message }));
+  }
+  revalidatePath("/", "layout");
+  redirect(back(`/kaynaklar/${id}`, { tamam: "Kaynak bilgileri güncellendi." }));
 }

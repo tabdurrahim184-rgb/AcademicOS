@@ -1,20 +1,19 @@
 # Sonraki adımlar
 
-## Kullanıcı kararı gerektirenler
+## Senin kararını bekleyenler
 
-1. **Yapay zekâ sağlayıcısı ve bütçe.** Anthropic veya OpenAI API hesabı açılması, anahtarın sunucuya
-   eklenmesi ve aylık harcama sınırı belirlenmesi. (Varsayılan model `claude-opus-5-5`: girdi 4 $/1M,
-   çıktı 20 $/1M token. Daha düşük maliyet için `AI_MODEL=claude-sonnet-5-5` seçilebilir.)
-2. **Canlı barındırma.** Node.js barındırıcısı + yönetilen PostgreSQL seçimi (ör. Vercel + Neon/Supabase),
-   alan adı, otomatik yedek. Hesap açma ve olası ücret onayı gerekiyor.
-3. **Depo görünürlüğü.** Depo herkese açıksa kişisel dosyaların depoya eklenmemesi.
+1. **Yapay zekâ sağlayıcısı, model ve bütçe** (ücretli). Öneri: ilk deneme için `claude-haiku-5-5`
+   (1M token: 0,10 $ girdi / 0,50 $ çıktı), `AI_MONTHLY_BUDGET_USD=5` ve `AI_DAILY_REQUEST_LIMIT=50`.
+   Kalite yetersizse `claude-sonnet-5-5`'e (2 $ / 10 $) geçilir. Onay verirsen: anahtarı sunucu ortamına
+   sen eklersin, ardından küçük bir gerçek doğrulama seti (5–10 istek, birkaç sent) çalıştırılır.
+2. **Canlı barındırma** (hesap ve olası ücret): Node.js barındırıcısı + yönetilen PostgreSQL.
+3. **PR #1**: CI yeşil; incelemeden sonra `main`'e birleştirme kararı sende.
 
-## Geliştirme (öncelik sırasıyla)
+## Geliştirme sırası
 
-1. Gerçek sağlayıcıyla yapay zekâ doğrulaması: istek biçimi, atıf oranı, "yalnızca kaynak" uyumu için küçük bir değerlendirme seti.
-2. Yayına hazırlık: üretim migration süreci, `ALLOW_REGISTRATION=false`, hata kaydı, otomatik veritabanı yedeği ve geri yükleme provası.
-3. **PHASE 3:** kapasite modeli (hafta içi 08.30–18.00 akademik koruma, akşam sınırı, hafta sonu), 14 günlük telafi planlayıcısı, takvim görünümü, ICS dışa aktarma, Bölüm Projesi çalışma alanı.
-4. Parola sıfırlama, hesap verisini silme, oturum listesi.
-5. **PHASE 4:** sözlü sınav provası, gazetecilik vaka analizi şablonları, öğrenme analitiği; FSRS değerlendirmesi.
-6. **PHASE 5:** OCR ve transkripsiyon (iş kuyruğu + nesne depolama), İslam düşüncesiyle akademik tartışma alanı (ayrı kategori, kaynak doğrulama), iş merkezi (Ahmet Özsoy / Hasan Bey) ve "bu işi alırsam hangi çalışma etkilenir?" hesabı.
-7. Bağımlılık güvenlik uyarılarının takibi (`npm audit`), Next.js 16'ya geçiş değerlendirmesi.
+1. Gerçek sağlayıcıyla doğrulama (onaydan sonra): istek biçimi, atıf oranı, "yalnızca kaynak" uyumu, Türkçe kalite, maliyet ölçümü.
+2. Bölüm Projesi (GZT440) çalışma alanı: araştırma soruları, yöntem, kaynakça, danışman görüşmeleri, taslak/teslim takibi (plana bağlı).
+3. Dönem başlangıç tarihi ayarı → hafta numaralarının takvim tarihleriyle eşlenmesi.
+4. Sözlü sınav provası ve öğrenme analitiği (haftalık doğruluk, tekrar uyumu).
+5. Parola sıfırlama, hesap silme, oturum yönetimi; yayına hazırlık (`ALLOW_REGISTRATION=false`, otomatik yedek).
+6. İş merkezi ve Test I (akademik saatlere iş görevi atanmaması), İslam düşüncesi tartışma alanı, OCR/transkripsiyon.

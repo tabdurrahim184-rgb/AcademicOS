@@ -5,6 +5,7 @@
  */
 import type { TopicStatus } from "./data/courses";
 import { addDays, dateRange, weekdayOf, weekStart, type Demand } from "./planner";
+import { WEEKDAYS } from "./schedule";
 
 export type DemandInput = {
   today: string;
@@ -81,7 +82,7 @@ export function buildDemands(i: DemandInput): Demand[] {
       const m = { course_id: courseId };
       push({
         key: `guncel:${m.course_id}:${date}`, courseId: m.course_id, topicId: null, kind: "guncel", minutes: 25, priority: 92,
-        title: `Bugünkü dersi gözden geçir: ${code(m.course_id)}`,
+        title: `Dersi gözden geçir: ${code(m.course_id)} (${WEEKDAYS[wd]} dersi)`,
         detail: "Ders notlarını temize çek, işlenen konuyu sisteme konu olarak ekle ve materyalini yükle.",
         earliest: date < i.today ? i.today : date, earliestTime: date < i.today ? undefined : endTime,
         deadline: addDays(date, 2), catchUp: false,

@@ -1,5 +1,27 @@
 # Değişiklik günlüğü
 
+## [web 0.2.0] — 2026-10-10
+
+### Güvenlik
+- Bütün kullanıcı ilişkilerine (kolon, user_id) sahiplik FK'leri: FK kontrolleri RLS'yi atladığı için başka kullanıcının kaydına referans veritabanı düzeyinde engellendi.
+- `X-Forwarded-For` yalnızca `TRUST_PROXY=true` iken kullanılır (hız sınırı atlatılamaz).
+
+### Eklendi
+- **14 günlük çalışma planı** (`/plan`): deterministik planlayıcı; çalışma aralıkları, ders saatleri, günlük kapasite, telafi payı, mola, son tarih kuralları; tamamla / ertele / taşı / sabitle / kendi görevini ekle; sığmayanların gerekçeli listesi; günlük otomatik yeniden planlama.
+- **Plan ayarları** (`/plan/ayarlar`): kapasite, görev uzunluğu, mola, telafi payı, dönem sonu, çalışma aralıkları.
+- **Telafi** (`/telafi`): ders bazında eksik materyal, çalışılmamış ve konu girilmemiş haftalar, yanlışlar, kavram yanılgıları, tekrar gereken kavramlar; telafi işareti.
+- **Takvim** (`/takvim`) ve `.ics` dışa aktarma (Europe/Nicosia).
+- **Konu çalışma sayfası** (`/konular/[id]`): 7 adımlı çalışma yolu, öğrenme hedefleri, hedef/kavram bazlı ustalık, çalışma geçmişi.
+- Cevaplarda **eminlik** bildirimi ve SM-2 kişiselleştirmesi; **kavram yanılgısı** işareti.
+- **Kaynak denetimi** ve kaynak bilgisi düzeltme.
+- Yapay zekâ: kullanım kaydı, günlük istek ve aylık bütçe sınırı, tahmini maliyet, yanlışların gerekçeli açıklaması, eksik kavramların yanlışlar defterine yazılması, kaynak dışı bilgi vurgusu, istem önbelleği.
+- Kontrol panelinde bugünkü plan.
+
+### Değişti
+- Yapay zekâda **varsayılan model kaldırıldı**; `AI_MODEL` bilinçli seçilmelidir (desteklenen: `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5`, veya OpenAI modeli). Varsayılan efor `low`.
+- Yedek biçimi sürüm 2 (plan, hedefler, ayarlar); sürüm 1 yedekleri yüklenebilir.
+- Aynı işlemde eklenen satırların sırası kararlı (`clock_timestamp()`).
+
 ## [web 0.1.0] — 2026-10-10
 
 İlk bulut web sürümü (`web/`). iOS prototipi değiştirilmedi.

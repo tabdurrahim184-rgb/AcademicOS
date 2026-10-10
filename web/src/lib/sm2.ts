@@ -33,8 +33,18 @@ export function nextDueDate(from: Date, intervalDays: number): Date {
   return new Date(from.getTime() + intervalDays * 86400_000);
 }
 
-/** Otomatik değerlendirilen bir denemeyi SM-2 kalitesine çevirir. */
-export function qualityFromResult(isCorrect: boolean, score?: number | null): number {
+export type Confidence = "tahmin" | "kismen" | "emin";
+
+/**
+ * Bir denemeyi SM-2 kalitesine çevirir. Öğrencinin eminlik bildirimi varsa
+ * tekrar aralığını kişiselleştirir: tahminle bulunan doğru cevap kısa aralıkla
+ * tekrar edilir; emin olunarak verilen yanlış cevap (kavram yanılgısı) en düşük kaliteyi alır.
+ */
+export function qualityFromResult(isCorrect: boolean, score?: number | null, confidence?: Confidence | null): number {
+  if (confidence && score == null) {
+    if (isCorrect) return confidence === "emin" ? 5 : confidence === "kismen" ? 4 : 3;
+    return confidence === "emin" ? 0 : confidence === "kismen" ? 1 : 2;
+  }
   if (score != null) {
     if (score >= 90) return 5;
     if (score >= 75) return 4;

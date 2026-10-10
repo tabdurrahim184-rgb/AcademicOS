@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { startSessionAction } from "@/app/actions/study";
+import { updateSourceAction } from "@/app/actions/academic";
 import { Flash } from "@/components/Flash";
 import { SubmitButton } from "@/components/SubmitButton";
 import { getAIStatus } from "@/lib/ai/provider";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
-import { getCourse, getTopic } from "@/lib/data/courses";
+import { getCourse, getTopic, listTopics } from "@/lib/data/courses";
 import { EXTRACTION_LABELS, getSource, getSourceChunks, SOURCE_KINDS } from "@/lib/data/sources";
 import { fmtBytes, fmtDateTime } from "@/lib/format";
 
@@ -20,10 +21,13 @@ export default async function SourcePage({ params, searchParams }: { params: Pro
   const data = await withUser(user.id, async (tx) => {
     const s = await getSource(tx, id);
     if (!s) return null;
-    return { s, chunks: await getSourceChunks(tx, id), course: (await getCourse(tx, s.course_id))!, topic: s.topic_id ? await getTopic(tx, s.topic_id) : null };
+    return {
+      s, chunks: await getSourceChunks(tx, id), course: (await getCourse(tx, s.course_id))!,
+      topic: s.topic_id ? await getTopic(tx, s.topic_id) : null, topics: await listTopics(tx, s.course_id),
+    };
   });
   if (!data) notFound();
-  const { s, chunks, course, topic } = data;
+  const { s, chunks, course, topic, topics } = data;
   const ai = getAIStatus();
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -68,6 +72,23 @@ export default async function SourcePage({ params, searchParams }: { params: Pro
           )}
         </div>
       </header>
+      <details className="card">
+        <summary className="cursor-pointer text-sm font-medium">Kaynak bilgilerini düzelt (başlık, tür, konu)</summary>
+        <form action={updateSourceAction} className="mt-3 grid gap-3 sm:grid-cols-3">
+          <input type="hidden" name="sourceId" value={s.id} />
+          <label className="text-sm">Başlık<input name="title" defaultValue={s.title} required className="input mt-1" /></label>
+          <label className="text-sm">Tür
+            <select name="kind" defaultValue={s.kind} className="input mt-1">{Object.entries(SOURCE_KINDS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select>
+          </label>
+          <label className="text-sm">Konu
+            <select name="topicId" defaultValue={s.topic_id ?? ""} className="input mt-1">
+              <option value="">Konu seçilmedi</option>
+              {topics.map((t) => <option key={t.id} value={t.id}>{t.week ? `${t.week}. hafta — ` : ""}{t.title}</option>)}
+            </select>
+          </label>
+          <div className="sm:col-span-3"><SubmitButton className="btn-secondary">Kaydet</SubmitButton></div>
+        </form>
+      </details>
       {chunks.length > 0 && (
         <section aria-labelledby="metin" className="space-y-3">
           <h2 id="metin">Çıkarılan metin <span className="muted font-normal">(özgün içerik korunur)</span></h2>

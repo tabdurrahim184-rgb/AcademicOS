@@ -5,6 +5,7 @@ import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
 import { isUuid } from "@/lib/data/courses";
 import { createNote, deleteNote } from "@/lib/data/notes";
+import { createObjective, deleteObjective } from "@/lib/data/objectives";
 import { restoreBackup } from "@/lib/data/backup";
 import {
   createQuestion, deleteQuestion, endStudySession, finalizeAttempt, startStudySession, STUDY_MODES, submitAnswer,
@@ -12,7 +13,7 @@ import {
 } from "@/lib/data/study";
 import { QUESTION_TYPES, type QuestionType } from "@/lib/grading";
 import { AIRequestError, AIUnavailableError, getProvider } from "@/lib/ai/provider";
-import { generateQuestions, generateTutorReply, gradeAttemptWithAI, saveStudentMessage } from "@/lib/ai/tutor";
+import { explainMistake, generateQuestions, generateTutorReply, gradeAttemptWithAI, saveStudentMessage } from "@/lib/ai/tutor";
 
 const str = (f: FormData, k: string) => String(f.get(k) ?? "").trim();
 const withParams = (path: string, params: Record<string, string>) => {
@@ -126,6 +127,7 @@ export async function createQuestionAction(form: FormData) {
     await withUser(user.id, (tx) =>
       createQuestion(tx, user.id, {
         ...q, courseId: str(form, "courseId"), topicId: isUuid(topicId) ? topicId : null,
+        objectiveId: isUuid(str(form, "objectiveId")) ? str(form, "objectiveId") : null,
         rubric: str(form, "rubric"), explanation: str(form, "explanation"), concept: str(form, "concept"),
         origin: str(form, "origin") === "ogretim_elemani" ? "ogretim_elemani" : "kullanici",
       }),
@@ -161,7 +163,10 @@ export async function answerAction(form: FormData) {
   }
   const sessionId = str(form, "sessionId");
   const res = await withUser(user.id, (tx) =>
-    submitAnswer(tx, user.id, { questionId: str(form, "questionId"), sessionId: isUuid(sessionId) ? sessionId : null, response }),
+    submitAnswer(tx, user.id, {
+      questionId: str(form, "questionId"), sessionId: isUuid(sessionId) ? sessionId : null, response,
+      confidence: (["tahmin", "kismen", "emin"].includes(str(form, "confidence")) ? str(form, "confidence") : null) as "tahmin" | "kismen" | "emin" | null,
+    }),
   );
   revalidatePath("/", "layout");
   redirect(withParams(returnTo, { sonuc: res.attemptId }));
@@ -248,4 +253,35 @@ export async function restoreBackupAction(form: FormData) {
   }
   revalidatePath("/", "layout");
   redirect(withParams("/ayarlar", { tamam: `Geri yükleme tamamlandı: ${counts.courses} ders, ${counts.sources} kaynak, ${counts.questions} soru.` }));
+}
+
+export async function createObjectiveAction(form: FormData) {
+  const user = await requireUser();
+  const returnTo = str(form, "returnTo");
+  try {
+    await withUser(user.id, (tx) => createObjective(tx, user.id, str(form, "topicId"), str(form, "text")));
+  } catch (e) {
+    redirect(withParams(returnTo, { hata: (e as Error).message }));
+  }
+  revalidatePath("/", "layout");
+  redirect(withParams(returnTo, { tamam: "Öğrenme hedefi eklendi." }));
+}
+
+export async function deleteObjectiveAction(form: FormData) {
+  const user = await requireUser();
+  await withUser(user.id, (tx) => deleteObjective(tx, str(form, "objectiveId")));
+  revalidatePath("/", "layout");
+  redirect(withParams(str(form, "returnTo"), { tamam: "Hedef silindi." }));
+}
+
+export async function explainMistakeAction(form: FormData) {
+  const user = await requireUser();
+  const returnTo = str(form, "returnTo") || "/yanlislar";
+  try {
+    await explainMistake(user.id, str(form, "mistakeId"), getProvider());
+  } catch (e) {
+    redirect(withParams(returnTo, { hata: `Açıklama alınamadı: ${aiMessage(e)}` }));
+  }
+  revalidatePath("/yanlislar");
+  redirect(withParams(returnTo, { tamam: "Öğretmen açıklaması eklendi." }));
 }

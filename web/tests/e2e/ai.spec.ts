@@ -37,4 +37,14 @@ test("Bana bu konuyu öğret → kaynaklı yanıt → soru üret → açık uçl
   await page.getByRole("button", { name: "Yapay zekâ ile değerlendir" }).click();
   await expect(page.getByText(/Tanım var ama örnek eksik/)).toBeVisible();
   await expect(page.getByText(/40 \/ 100/)).toBeVisible();
+
+  // Yanlışın gerekçeli açıklaması
+  await page.goto("/yanlislar");
+  await page.getByRole("button", { name: "Neden yanlış? Öğretmene sor" }).first().click();
+  await expect(page.getByText("Öğretmen açıklaması eklendi.")).toBeVisible();
+  await expect(page.getByText("Öğretmen açıklaması (yapay zekâ)")).toBeVisible();
+
+  // Kullanım kaydı ayarlar sayfasında görünür
+  await page.goto("/ayarlar");
+  await expect(page.getByText(/Bugünkü istek: [1-9]\d* \/ 50/)).toBeVisible();
 });

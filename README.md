@@ -4,8 +4,9 @@ Bulutta çalışmak üzere tasarlanmış, öğrenme odaklı akademik platform. �
 materyalleriyle **gerçekten ders çalışmasını**, cevaplarının değerlendirilmesini, yanlışlarının
 takibini ve aralıklı tekrarını sağlar.
 
-> Durum: **İlk kullanılabilir sürüm (v0.1.0)** — akademik temel ve ders çalışma motoru çalışıyor ve
-> testlerle doğrulandı. Henüz internette yayımlanmadı. Ayrıntılar: [PROJECT_STATUS.md](PROJECT_STATUS.md).
+> Durum: **web v0.2.0** — akademik temel, ders çalışma motoru, telafi sistemi, 14 günlük plan ve akademik
+> takvim çalışıyor ve testlerle doğrulandı. Yapay zekâ öğretmeni gerçek bir sağlayıcıyla henüz denenmedi.
+> Henüz internette yayımlanmadı. Ayrıntılar: [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 ## Depo yapısı
 
@@ -44,10 +45,17 @@ Yapay zekâ özellikleri **varsayılan olarak kapalıdır**. ChatGPT ve Claude a
 içermez; açmak için ayrı faturalanan bir API anahtarı gerekir:
 
 ```bash
-AI_PROVIDER=anthropic   ANTHROPIC_API_KEY=...   # AI_MODEL boşsa claude-opus-5-5
+AI_PROVIDER=anthropic  ANTHROPIC_API_KEY=...  AI_MODEL=claude-haiku-5-5   # veya claude-sonnet-5-5 / claude-opus-5-5
 # veya
-AI_PROVIDER=openai      OPENAI_API_KEY=...   AI_MODEL=<model adı>
+AI_PROVIDER=openai     OPENAI_API_KEY=...     AI_MODEL=<OpenAI model kimliği>
+AI_PRICE_INPUT_PER_MTOK=...  AI_PRICE_OUTPUT_PER_MTOK=...   # OpenAI için maliyet tahmini
+
+AI_DAILY_REQUEST_LIMIT=50     # varsayılan 50
+AI_MONTHLY_BUDGET_USD=5       # isteğe bağlı; aşılınca çağrı yapılmaz
 ```
+
+Varsayılan model yoktur. Fiyat karşılaştırması ve kullanım ayarlar sayfasında gösterilir
+(Anthropic, 1M token: Haiku 5.5 0,10 $/0,50 $; Sonnet 5.5 2 $/10 $; Opus 5.5 4 $/20 $).
 
 Yapay zekâ kapalıyken kaynak yükleme/okuma, arama, not, soru bankası, soru çözme, yanlışlar defteri,
 aralıklı tekrar ve yedekleme tam olarak çalışır; sahte yapay zekâ yanıtı üretilmez.

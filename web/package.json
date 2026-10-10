@@ -1,6 +1,6 @@
 {
   "name": "academicos-web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "TÜRKMENOĞLU — Akademik ve Çalışma Asistanı (bulut web uygulaması)",
   "scripts": {

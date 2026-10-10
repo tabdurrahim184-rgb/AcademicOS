@@ -26,7 +26,7 @@ function scriptedProvider(reply: string | (() => never)): AIProvider & { calls: 
     async complete(req) {
       calls.push(req);
       if (typeof reply === "function") reply();
-      return { text: reply as string, provider: "test", model: "test-ikizi" };
+      return { text: reply as string, provider: "test", model: "test-ikizi", inputTokens: 1200, outputTokens: 300 };
     },
   };
 }
@@ -308,5 +308,79 @@ describe("Yedek sürüm 2 — plan ve öğrenme verisi", () => {
     const c = await newUser();
     const counts = await withUser(c.id, (tx) => restoreBackup(tx, c.id, v1));
     expect(counts.courses).toBe(9);
+  });
+});
+
+describe("Yapay zekâ kullanım kaydı, limitler ve yanlış açıklama", () => {
+  it("her çağrı kaydedilir; günlük sınır aşılınca çağrı yapılmaz", async () => {
+    const { usageSummary } = await import("@/lib/ai/usage");
+    const u = await newUser();
+    const { courseId, topicId, sourceId } = await setupCourseWithPdf(u.id);
+    const sid = await withUser(u.id, (tx) =>
+      startStudySession(tx, u.id, { courseId, topicId, mode: "sokratik", goal: "", sourceIds: [sourceId], onlySelected: true }),
+    );
+    const p = scriptedProvider("Sence medya neyi belirler? [K1]");
+    await saveStudentMessage(u.id, sid, "Başlayalım.");
+    await generateTutorReply(u.id, sid, p);
+    let s = await withUser(u.id, (tx) => usageSummary(tx, "anthropic", "claude-haiku-5-5"));
+    expect(s).toMatchObject({ todayRequests: 1, monthInputTokens: 1200, monthOutputTokens: 300 });
+    expect(s.monthCostUsd).toBeCloseTo((1200 * 0.1 + 300 * 0.5) / 1e6, 10);
+
+    process.env.AI_DAILY_REQUEST_LIMIT = "1";
+    try {
+      await saveStudentMessage(u.id, sid, "Devam.");
+      await expect(generateTutorReply(u.id, sid, p)).rejects.toThrow("Günlük yapay zekâ istek sınırına");
+      expect(p.calls).toHaveLength(1); // sağlayıcı çağrılmadı
+    } finally {
+      delete process.env.AI_DAILY_REQUEST_LIMIT;
+    }
+    // Başarısız sağlayıcı çağrısı da kayda geçer
+    const down = scriptedProvider(() => { throw new AIRequestError("bağlantı yok"); });
+    await expect(generateTutorReply(u.id, sid, down)).rejects.toThrow();
+    s = await withUser(u.id, (tx) => usageSummary(tx, null, null));
+    expect(s).toMatchObject({ monthRequests: 2, monthFailed: 1 });
+  });
+
+  it("öğretmen sistemi Sokratik kuralları, zayıf kavramları ve kaynak dışı işaretini içerir", async () => {
+    const u = await newUser();
+    const { courseId, topicId, sourceId } = await setupCourseWithPdf(u.id);
+    const qid = await withUser(u.id, (tx) =>
+      createQuestion(tx, u.id, { courseId, topicId, type: "dogru_yanlis", prompt: "Çerçeveleme seçimdir.", answer: { value: true }, concept: "Çerçeveleme tanımı", origin: "kullanici" }),
+    );
+    await withUser(u.id, (tx) => submitAnswer(tx, u.id, { questionId: qid, sessionId: null, response: { value: false } }));
+    const sid = await withUser(u.id, (tx) =>
+      startStudySession(tx, u.id, { courseId, topicId, mode: "sokratik", goal: "", sourceIds: [sourceId], onlySelected: false }),
+    );
+    await saveStudentMessage(u.id, sid, "Anlamadım.");
+    const p = scriptedProvider("(Kaynak dışı bilgi) Bir örnek…");
+    await generateTutorReply(u.id, sid, p);
+    const sys = p.calls[0].system;
+    expect(sys).toContain("Sokratik");
+    expect(sys).toContain("Çerçeveleme tanımı");
+    expect(sys).toContain("(Kaynak dışı bilgi)");
+    expect(sys).toContain("cevabı aynı mesajda verme");
+  });
+
+  it("yanlışın gerekçeli açıklaması kaydedilir; açık uçlu değerlendirmedeki eksik kavramlar yanlışlar defterine yazılır", async () => {
+    const { explainMistake } = await import("@/lib/ai/tutor");
+    const u = await newUser();
+    const { courseId, topicId, sourceId } = await setupCourseWithPdf(u.id);
+    const qid = await withUser(u.id, (tx) =>
+      createQuestion(tx, u.id, { courseId, topicId, sourceId, type: "dogru_yanlis", prompt: "Gündem belirleme 1968'dedir.", answer: { value: true }, origin: "kullanici" }),
+    );
+    await withUser(u.id, (tx) => submitAnswer(tx, u.id, { questionId: qid, sessionId: null, response: { value: false } }));
+    const m = (await withUser(u.id, (tx) => listMistakes(tx)))[0];
+    const p = scriptedProvider("Yanlış, çünkü kaynak 1968'i belirtiyor [K1]. Kontrol sorusu: …");
+    await explainMistake(u.id, m.id, p);
+    expect(JSON.stringify(p.calls[0].messages)).toContain("Cevap anahtarı");
+    expect((await withUser(u.id, (tx) => listMistakes(tx)))[0].ai_explanation).toContain("1968");
+
+    const open = await withUser(u.id, (tx) =>
+      createQuestion(tx, u.id, { courseId, topicId, type: "acik_uclu", prompt: "Çerçevelemeyi açıklayın.", rubric: "Tanım + örnek", origin: "kullanici" }),
+    );
+    const a = await withUser(u.id, (tx) => submitAnswer(tx, u.id, { questionId: open, sessionId: null, response: { text: "Bilmiyorum" } }));
+    await gradeAttemptWithAI(u.id, a.attemptId, scriptedProvider('{"score": 20, "feedback": "Eksik.", "missing_concepts": ["öne çıkarma", "haber örneği"]}'));
+    const mm = (await withUser(u.id, (tx) => listMistakes(tx))).find((x) => x.question_id === open)!;
+    expect(mm.concept).toBe("öne çıkarma, haber örneği");
   });
 });

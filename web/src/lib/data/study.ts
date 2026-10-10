@@ -1,6 +1,6 @@
 import type { Tx } from "../db";
 import { gradeObjective, isObjective, type QuestionType, QUESTION_TYPES } from "../grading";
-import { NEW_CARD, nextDueDate, qualityFromResult, sm2 } from "../sm2";
+import { NEW_CARD, nextDueDate, qualityFromResult, sm2, type Confidence } from "../sm2";
 import { advanceTopicStatus, getCourse, getTopic, isUuid, markPlanStale, setTopicStatus } from "./courses";
 
 export const STUDY_MODES = {
@@ -135,15 +135,17 @@ export type Question = {
   rubric: string;
   explanation: string;
   concept: string;
+  objective_id: string | null;
   origin: "kullanici" | "yapay_zeka" | "ogretim_elemani";
   created_at: Date;
 };
-const Q_COLS = "id, course_id, topic_id, source_id, type, prompt, options, answer, rubric, explanation, concept, origin, created_at";
+const Q_COLS = "id, course_id, topic_id, source_id, objective_id, type, prompt, options, answer, rubric, explanation, concept, origin, created_at";
 
 export type QuestionInput = {
   courseId: string;
   topicId: string | null;
   sourceId?: string | null;
+  objectiveId?: string | null;
   type: QuestionType;
   prompt: string;
   options?: string[];
@@ -194,10 +196,14 @@ export async function createQuestion(tx: Tx, userId: string, q: QuestionInput): 
     const t = await getTopic(tx, q.topicId);
     if (!t || t.course_id !== q.courseId) throw new Error("Konu bu derse ait değil.");
   }
+  if (q.objectiveId) {
+    const { rows: o } = await tx.query<{ topic_id: string }>("SELECT topic_id FROM learning_objectives WHERE id=$1", [q.objectiveId]);
+    if (!o[0] || o[0].topic_id !== q.topicId) throw new Error("Öğrenme hedefi seçilen konuya ait değil.");
+  }
   const { rows } = await tx.query<{ id: string }>(
-    `INSERT INTO questions (user_id, course_id, topic_id, source_id, type, prompt, options, answer, rubric, explanation, concept, origin)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING id`,
-    [userId, q.courseId, q.topicId, q.sourceId ?? null, q.type, q.prompt.trim(), JSON.stringify(q.options ?? []),
+    `INSERT INTO questions (user_id, course_id, topic_id, source_id, objective_id, type, prompt, options, answer, rubric, explanation, concept, origin)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id`,
+    [userId, q.courseId, q.topicId, q.sourceId ?? null, q.objectiveId ?? null, q.type, q.prompt.trim(), JSON.stringify(q.options ?? []),
       JSON.stringify(q.answer ?? null), q.rubric ?? "", q.explanation ?? "", q.concept ?? "", q.origin],
   );
   return rows[0].id;
@@ -236,6 +242,7 @@ export type Attempt = {
   score: string | null;
   grading_method: "otomatik" | "yapay_zeka" | "oz_degerlendirme" | "bekliyor";
   feedback: string;
+  confidence: Confidence | null;
   created_at: Date;
 };
 
@@ -246,8 +253,9 @@ export type Attempt = {
 export async function submitAnswer(
   tx: Tx,
   userId: string,
-  input: { questionId: string; sessionId: string | null; response: unknown },
+  input: { questionId: string; sessionId: string | null; response: unknown; confidence?: Confidence | null },
 ): Promise<{ attemptId: string; graded: boolean; isCorrect: boolean | null; feedback: string }> {
+  const confidence = input.confidence && ["tahmin", "kismen", "emin"].includes(input.confidence) ? input.confidence : null;
   const q = await getQuestion(tx, input.questionId);
   if (!q) throw new Error("Soru bulunamadı.");
   if (input.sessionId) {
@@ -257,18 +265,19 @@ export async function submitAnswer(
   if (isObjective(q.type)) {
     const g = gradeObjective(q.type, q.answer, input.response);
     const { rows } = await tx.query<{ id: string }>(
-      `INSERT INTO attempts (user_id, question_id, session_id, response, is_correct, score, grading_method, feedback)
-       VALUES ($1,$2,$3,$4,$5,$6,'otomatik',$7) RETURNING id`,
-      [userId, q.id, input.sessionId, JSON.stringify(input.response), g.isCorrect, g.score, g.feedback],
+      `INSERT INTO attempts (user_id, question_id, session_id, response, is_correct, score, grading_method, feedback, confidence)
+       VALUES ($1,$2,$3,$4,$5,$6,'otomatik',$7,$8) RETURNING id`,
+      [userId, q.id, input.sessionId, JSON.stringify(input.response), g.isCorrect, g.score, g.feedback, confidence],
     );
-    await afterGrading(tx, userId, q, rows[0].id, g.isCorrect, g.score);
+    // Eşleştirmede kısmi puan vardır; diğer nesnel türlerde eminlik bilgisi kaliteyi belirler.
+    await afterGrading(tx, userId, q, rows[0].id, g.isCorrect, q.type === "eslestirme" ? g.score : null, confidence);
     if (input.sessionId) await tx.query("UPDATE study_sessions SET last_activity_at=now() WHERE id=$1", [input.sessionId]);
     return { attemptId: rows[0].id, graded: true, isCorrect: g.isCorrect, feedback: g.feedback };
   }
   const { rows } = await tx.query<{ id: string }>(
-    `INSERT INTO attempts (user_id, question_id, session_id, response, grading_method)
-     VALUES ($1,$2,$3,$4,'bekliyor') RETURNING id`,
-    [userId, q.id, input.sessionId, JSON.stringify(input.response)],
+    `INSERT INTO attempts (user_id, question_id, session_id, response, grading_method, confidence)
+     VALUES ($1,$2,$3,$4,'bekliyor',$5) RETURNING id`,
+    [userId, q.id, input.sessionId, JSON.stringify(input.response), confidence],
   );
   if (input.sessionId) await tx.query("UPDATE study_sessions SET last_activity_at=now() WHERE id=$1", [input.sessionId]);
   return { attemptId: rows[0].id, graded: false, isCorrect: null, feedback: "" };
@@ -279,9 +288,9 @@ export async function finalizeAttempt(
   tx: Tx,
   userId: string,
   attemptId: string,
-  result: { method: "yapay_zeka" | "oz_degerlendirme"; score: number; feedback: string },
+  result: { method: "yapay_zeka" | "oz_degerlendirme"; score: number; feedback: string; concept?: string },
 ) {
-  const { rows } = await tx.query<Attempt>("SELECT * FROM attempts WHERE id = $1", [attemptId]);
+  const { rows } = await tx.query<Attempt & { confidence: Confidence | null }>("SELECT * FROM attempts WHERE id = $1", [attemptId]);
   const att = rows[0];
   if (!att) throw new Error("Cevap kaydı bulunamadı.");
   if (att.grading_method !== "bekliyor") throw new Error("Bu cevap zaten değerlendirilmiş.");
@@ -291,16 +300,19 @@ export async function finalizeAttempt(
     attemptId, isCorrect, score, result.method, result.feedback.slice(0, 5000),
   ]);
   const q = (await getQuestion(tx, att.question_id))!;
-  await afterGrading(tx, userId, q, attemptId, isCorrect, score);
+  await afterGrading(tx, userId, q, attemptId, isCorrect, score, att.confidence, result.concept);
   return { isCorrect, score };
 }
 
 /** Yanlışlar defteri + aralıklı tekrar kartı + konu durumu güncellemesi. */
-async function afterGrading(tx: Tx, userId: string, q: Question, attemptId: string, isCorrect: boolean, score: number) {
+async function afterGrading(
+  tx: Tx, userId: string, q: Question, attemptId: string, isCorrect: boolean, score: number | null, confidence: Confidence | null,
+  conceptOverride?: string,
+) {
   if (!isCorrect) {
     await tx.query(
-      "INSERT INTO mistakes (user_id, question_id, attempt_id, concept) VALUES ($1,$2,$3,$4)",
-      [userId, q.id, attemptId, q.concept || q.prompt.slice(0, 120)],
+      "INSERT INTO mistakes (user_id, question_id, attempt_id, concept, misconception) VALUES ($1,$2,$3,$4,$5)",
+      [userId, q.id, attemptId, conceptOverride || q.concept || q.prompt.slice(0, 120), confidence === "emin"],
     );
   } else {
     await tx.query("UPDATE mistakes SET status='cozuldu', resolved_at=now() WHERE question_id=$1 AND status='acik'", [q.id]);
@@ -313,7 +325,7 @@ async function afterGrading(tx: Tx, userId: string, q: Question, attemptId: stri
   const prev = rows[0]
     ? { ease: Number(rows[0].ease), intervalDays: rows[0].interval_days, repetitions: rows[0].repetitions, lapses: rows[0].lapses }
     : NEW_CARD;
-  const quality = qualityFromResult(isCorrect, score);
+  const quality = qualityFromResult(isCorrect, score, confidence);
   const next = sm2(prev, quality);
   const now = new Date();
   const due = nextDueDate(now, next.intervalDays);
@@ -348,7 +360,7 @@ export async function listAttempts(tx: Tx, filter: { sessionId?: string; questio
   if (filter.sessionId) where.push(`session_id = $${params.push(filter.sessionId)}`);
   if (filter.questionId) where.push(`question_id = $${params.push(filter.questionId)}`);
   const { rows } = await tx.query<Attempt>(
-    `SELECT id, question_id, session_id, response, is_correct, score, grading_method, feedback, created_at FROM attempts
+    `SELECT id, question_id, session_id, response, is_correct, score, grading_method, feedback, confidence, created_at FROM attempts
      ${where.length ? "WHERE " + where.join(" AND ") : ""} ORDER BY created_at`,
     params,
   );
@@ -357,6 +369,8 @@ export async function listAttempts(tx: Tx, filter: { sessionId?: string; questio
 
 export type MistakeRow = {
   id: string;
+  misconception: boolean;
+  ai_explanation: string | null;
   question_id: string;
   concept: string;
   status: "acik" | "cozuldu";
@@ -373,7 +387,7 @@ export type MistakeRow = {
 
 export async function listMistakes(tx: Tx, status: "acik" | "cozuldu" | "hepsi" = "acik"): Promise<MistakeRow[]> {
   const { rows } = await tx.query<MistakeRow>(
-    `SELECT m.id, m.question_id, m.concept, m.status, m.created_at, q.prompt, q.type, q.course_id, c.code AS course_code,
+    `SELECT m.id, m.misconception, m.ai_explanation, m.question_id, m.concept, m.status, m.created_at, q.prompt, q.type, q.course_id, c.code AS course_code,
             t.title AS topic_title, a.response, a.feedback, q.explanation
      FROM mistakes m JOIN questions q ON q.id = m.question_id JOIN courses c ON c.id = q.course_id
      JOIN attempts a ON a.id = m.attempt_id LEFT JOIN topics t ON t.id = q.topic_id

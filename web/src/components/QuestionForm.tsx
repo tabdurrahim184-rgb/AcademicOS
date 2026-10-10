@@ -9,14 +9,18 @@ export function QuestionForm({
   topics,
   returnTo,
   defaultTopicId = "",
+  objectives = [],
 }: {
   action: (f: FormData) => Promise<void>;
   courseId: string;
   topics: Array<{ id: string; title: string }>;
   returnTo: string;
   defaultTopicId?: string;
+  objectives?: Array<{ id: string; topic_id: string; text: string }>;
 }) {
   const [type, setType] = useState<QuestionType>("coktan_secmeli");
+  const [topicId, setTopicId] = useState(defaultTopicId);
+  const topicObjectives = objectives.filter((o) => o.topic_id === topicId);
   const open = !["coktan_secmeli", "dogru_yanlis", "kisa_cevap", "bosluk_doldurma", "eslestirme"].includes(type);
   return (
     <form action={action} className="mt-3 space-y-3">
@@ -29,7 +33,7 @@ export function QuestionForm({
           </select>
         </label>
         <label className="text-sm">Konu
-          <select name="topicId" className="input mt-1" defaultValue={defaultTopicId}>
+          <select name="topicId" className="input mt-1" value={topicId} onChange={(e) => setTopicId(e.target.value)}>
             <option value="">—</option>
             {topics.map((t) => <option key={t.id} value={t.id}>{t.title}</option>)}
           </select>
@@ -41,6 +45,14 @@ export function QuestionForm({
           </select>
         </label>
       </div>
+      {topicObjectives.length > 0 && (
+        <label className="block text-sm">Ölçtüğü öğrenme hedefi
+          <select name="objectiveId" className="input mt-1" defaultValue="">
+            <option value="">—</option>
+            {topicObjectives.map((o) => <option key={o.id} value={o.id}>{o.text}</option>)}
+          </select>
+        </label>
+      )}
       <label className="block text-sm">Soru metni{type === "bosluk_doldurma" && " (boşluğu ____ ile göster)"}
         <textarea name="prompt" required className="input mt-1" />
       </label>

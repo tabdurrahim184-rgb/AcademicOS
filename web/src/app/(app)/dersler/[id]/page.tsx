@@ -15,7 +15,8 @@ import { withUser } from "@/lib/db";
 import { ASSESSMENT_KINDS, listAssessments, requiredRemainingAverage } from "@/lib/data/assessments";
 import { getCourse, listMeetings, listTopics, TOPIC_STATUSES } from "@/lib/data/courses";
 import { listNotes } from "@/lib/data/notes";
-import { EXTRACTION_LABELS, listSources, SOURCE_KINDS } from "@/lib/data/sources";
+import { listObjectives } from "@/lib/data/objectives";
+import { EXTRACTION_LABELS, listSources, loadSourceAudit, SOURCE_KINDS } from "@/lib/data/sources";
 import { listQuestions } from "@/lib/data/study";
 import { fmtBytes, fmtDate, fmtDateTime } from "@/lib/format";
 import { QUESTION_TYPES } from "@/lib/grading";
@@ -46,11 +47,13 @@ export default async function CoursePage({ params, searchParams }: Props) {
       sources: await listSources(tx, { courseId: id }),
       questions: await listQuestions(tx, { courseId: id }),
       notes: await listNotes(tx, id),
+      objectives: await listObjectives(tx, { courseId: id }),
+      audit: await loadSourceAudit(tx, id),
       assessments: await listAssessments(tx, id),
     };
   });
   if (!data) notFound();
-  const { course, meetings, topics, sources, questions, notes, assessments } = data;
+  const { course, meetings, topics, sources, questions, notes, assessments, objectives, audit } = data;
   const ai = getAIStatus();
   const here = `/dersler/${id}`;
   const preTopic = typeof sp.konu === "string" ? sp.konu : "";
@@ -82,7 +85,7 @@ export default async function CoursePage({ params, searchParams }: Props) {
             return (
               <li key={t.id} className="flex flex-wrap items-center justify-between gap-2 py-3">
                 <div>
-                  <p className="font-medium">{t.week ? `${t.week}. hafta — ` : ""}{t.title}</p>
+                  <p className="font-medium"><Link href={`/konular/${t.id}`}>{t.week ? `${t.week}. hafta — ` : ""}{t.title}</Link>{t.is_catch_up && <span className="badge-warn ml-2">Telafi</span>}</p>
                   <p className="muted">{TOPIC_STATUSES[t.status]} · {sources.filter((s) => s.topic_id === t.id).length} kaynak</p>
                 </div>
                 <form action={startSessionAction} className="flex flex-wrap gap-2">
@@ -133,6 +136,11 @@ export default async function CoursePage({ params, searchParams }: Props) {
                   {s.topic_id && ` · ${topics.find((t) => t.id === s.topic_id)?.title ?? ""}`}
                 </p>
               </div>
+              {audit.filter((i) => i.sourceId === s.id).map((i, n) => (
+                <p key={n} className={`w-full text-xs ${i.level === "uyari" ? "text-amber-800 dark:text-amber-300" : "text-slate-500"}`} data-testid="kaynak-denetimi">
+                  {i.level === "uyari" ? "Kontrol et: " : "Not: "}{i.message}
+                </p>
+              ))}
               <form action={deleteSourceAction}>
                 <input type="hidden" name="sourceId" value={s.id} />
                 <input type="hidden" name="courseId" value={course.id} />
@@ -184,7 +192,7 @@ export default async function CoursePage({ params, searchParams }: Props) {
         </ul>
         <details>
           <summary className="cursor-pointer text-sm font-medium">Soru ekle</summary>
-          <QuestionForm action={createQuestionAction} courseId={course.id} topics={topics.map((t) => ({ id: t.id, title: t.title }))} returnTo={here} />
+          <QuestionForm action={createQuestionAction} courseId={course.id} topics={topics.map((t) => ({ id: t.id, title: t.title }))} returnTo={here} objectives={objectives} />
         </details>
         {ai.enabled ? (
           <details>

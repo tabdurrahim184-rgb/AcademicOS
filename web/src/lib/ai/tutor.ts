@@ -18,6 +18,7 @@ import {
 } from "../data/study";
 import { isObjective } from "../grading";
 import type { AIProvider } from "./provider";
+import { callAI } from "./usage";
 import {
   buildTutorSystem,
   extractCitations,
@@ -25,6 +26,7 @@ import {
   GRADING_SYSTEM,
   parseGeneratedQuestions,
   parseGrade,
+  MISTAKE_EXPLAIN_SYSTEM,
   QUESTION_GEN_SYSTEM,
   toChatTurns,
 } from "./prompts";
@@ -50,11 +52,10 @@ export async function generateTutorReply(userId: string, sessionId: string, prov
     const lastStudent = [...history].reverse().find((m) => m.role === "ogrenci")?.content ?? "";
     const query = [topic?.title ?? "", lastStudent].join(" ");
     const chunks = await selectContext(tx, s.source_ids, query);
-    const mistakes =
-      s.mode === "eksik_tamamlama"
-        ? (await listMistakes(tx, "acik")).filter((m) => m.course_id === s.course_id).map((m) => `${m.prompt} → ${m.feedback || "yanlış"}`)
-        : [];
-    return { s, course, topic, history, chunks, mistakes };
+    const open = (await listMistakes(tx, "acik")).filter((m) => m.course_id === s.course_id);
+    const mistakes = s.mode === "eksik_tamamlama" ? open.map((m) => `${m.prompt} → ${m.feedback || "yanlış"}`) : [];
+    const weakConcepts = [...new Set(open.map((m) => m.concept).filter(Boolean))];
+    return { s, course, topic, history, chunks, mistakes, weakConcepts };
   });
   const system = buildTutorSystem({
     mode: prep.s.mode,
@@ -64,10 +65,11 @@ export async function generateTutorReply(userId: string, sessionId: string, prov
     onlySources: prep.s.only_selected_sources,
     hasSources: prep.chunks.length > 0,
     mistakes: prep.mistakes,
+    weakConcepts: prep.weakConcepts,
   });
   const turns = toChatTurns(prep.history, formatContext(prep.chunks));
   if (!turns.length) throw new Error("Yanıtlanacak öğrenci mesajı yok.");
-  const res = await provider.complete({ system, messages: turns, effort: "medium" });
+  const res = await callAI(userId, "ogretmen", provider, { system, messages: turns, effort: "low", maxTokens: 4000 });
   const citations = extractCitations(res.text, prep.chunks);
   await withUser(userId, (tx) =>
     addMessage(tx, userId, sessionId, { role: "ogretmen", content: res.text, citations, provider: res.provider, model: res.model }),
@@ -90,7 +92,7 @@ export async function generateQuestions(
   });
   if (!prep.chunks.length) throw new Error("Soru üretmek için metni çıkarılmış en az bir kaynak seçin.");
   const count = Math.max(1, Math.min(10, input.count));
-  const res = await provider.complete({
+  const res = await callAI(userId, "soru_uretimi", provider, {
     system: QUESTION_GEN_SYSTEM,
     messages: [
       {
@@ -147,7 +149,7 @@ export async function gradeAttemptWithAI(userId: string, attemptId: string, prov
     const chunks = q.source_id ? await selectContext(tx, [q.source_id], q.concept || q.prompt, 12000) : [];
     return { q, answer: String(att.response?.text ?? ""), chunks };
   });
-  const res = await provider.complete({
+  const res = await callAI(userId, "degerlendirme", provider, {
     system: GRADING_SYSTEM,
     messages: [
       {
@@ -158,8 +160,35 @@ export async function gradeAttemptWithAI(userId: string, attemptId: string, prov
     effort: "medium",
   });
   const grade = parseGrade(res.text);
-  const feedback = grade.missing_concepts?.length
-    ? `${grade.feedback}\n\nEksik kavramlar: ${grade.missing_concepts.join(", ")}`
-    : grade.feedback;
-  return withUser(userId, (tx) => finalizeAttempt(tx, userId, attemptId, { method: "yapay_zeka", score: grade.score, feedback }));
+  const missing = (grade.missing_concepts ?? []).map((c) => c.trim()).filter(Boolean).slice(0, 5);
+  const feedback = missing.length ? `${grade.feedback}\n\nEksik kavramlar: ${missing.join(", ")}` : grade.feedback;
+  // Eksik kavramlar yanlışlar defterine kavram olarak yazılır; tekrar listesi bunları izler.
+  return withUser(userId, (tx) =>
+    finalizeAttempt(tx, userId, attemptId, { method: "yapay_zeka", score: grade.score, feedback, concept: missing.length ? missing.join(", ") : undefined }),
+  );
+}
+
+/** Bir yanlışın gerekçeli açıklamasını üretir ve yanlışlar defterine kaydeder. */
+export async function explainMistake(userId: string, mistakeId: string, provider: AIProvider) {
+  const prep = await withUser(userId, async (tx) => {
+    const m = (await listMistakes(tx, "hepsi")).find((x) => x.id === mistakeId);
+    if (!m) throw new Error("Yanlış kaydı bulunamadı.");
+    const q = (await getQuestion(tx, m.question_id))!;
+    const chunks = q.source_id ? await selectContext(tx, [q.source_id], q.concept || q.prompt, 10000) : [];
+    return { m, q, chunks };
+  });
+  const answerKey = JSON.stringify(prep.q.answer);
+  const res = await callAI(userId, "yanlis_aciklama", provider, {
+    system: MISTAKE_EXPLAIN_SYSTEM,
+    messages: [
+      {
+        role: "user",
+        content: `${formatContext(prep.chunks)}\n\nSoru: ${prep.q.prompt}\n${prep.q.options.length ? `Seçenekler: ${prep.q.options.map((o, i) => `${i}) ${o}`).join(" | ")}\n` : ""}Cevap anahtarı: ${answerKey}\nAçıklama/ölçüt: ${prep.q.explanation || prep.q.rubric || "(yok)"}\nÖğrencinin cevabı: ${JSON.stringify(prep.m.response)}\nÖnceki geri bildirim: ${prep.m.feedback || "(yok)"}`,
+      },
+    ],
+    effort: "low",
+    maxTokens: 2000,
+  });
+  await withUser(userId, (tx) => tx.query("UPDATE mistakes SET ai_explanation=$2 WHERE id=$1", [mistakeId, res.text.slice(0, 8000)]));
+  return res.text;
 }

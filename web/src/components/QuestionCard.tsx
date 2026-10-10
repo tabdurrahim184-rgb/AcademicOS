@@ -93,6 +93,12 @@ export function QuestionCard({
               {!attempt.is_correct && ca && <p className="mt-1"><span className="font-medium">Doğru cevap:</span> {ca}</p>}
               {q.explanation && <p className="mt-1"><span className="font-medium">Açıklama:</span> {q.explanation}</p>}
               {!attempt.is_correct && <p className="mt-1 text-xs">Bu soru yanlışlar defterine eklendi ve tekrar listene alındı.</p>}
+              {!attempt.is_correct && attempt.confidence === "emin" && (
+                <p className="mt-1 text-xs font-semibold">Emin olduğun halde yanlış: bu bir kavram yanılgısı olabilir. Açıklamayı dikkatle oku; bu soru daha sık tekrar edilecek.</p>
+              )}
+              {attempt.is_correct && attempt.confidence === "tahmin" && (
+                <p className="mt-1 text-xs">Doğru ama tahminle: konu henüz &quot;öğrenildi&quot; sayılmaz, kısa süre sonra yeniden sorulacak.</p>
+              )}
             </div>
           )}
         </div>
@@ -138,6 +144,12 @@ export function QuestionCard({
           {!isObjective(q.type) && (
             <textarea name="text" className="input min-h-32" placeholder="Cevabını kendi cümlelerinle yaz…" aria-label="Cevabın" />
           )}
+          <fieldset className="flex flex-wrap items-center gap-3 text-sm">
+            <legend className="mb-1 text-xs text-slate-500">Cevabından ne kadar eminsin? (tekrar aralığını kişiselleştirir)</legend>
+            <label className="flex items-center gap-1"><input type="radio" name="confidence" value="tahmin" /> Tahmin</label>
+            <label className="flex items-center gap-1"><input type="radio" name="confidence" value="kismen" /> Kısmen</label>
+            <label className="flex items-center gap-1"><input type="radio" name="confidence" value="emin" /> Eminim</label>
+          </fieldset>
           <SubmitButton pendingText="Gönderiliyor…">Cevabı gönder</SubmitButton>
         </form>
       )}

@@ -5,6 +5,7 @@ import { ChatBox } from "@/components/ChatBox";
 import { Flash } from "@/components/Flash";
 import { QuestionCard } from "@/components/QuestionCard";
 import { SubmitButton } from "@/components/SubmitButton";
+import { TeacherText } from "@/components/TeacherText";
 import { getAIStatus } from "@/lib/ai/provider";
 import { requireUser } from "@/lib/auth";
 import { withUser } from "@/lib/db";
@@ -116,7 +117,7 @@ export default async function SessionPage({ params, searchParams }: { params: Pr
             {messages.map((m) => (
               <li key={m.id} className={m.role === "ogrenci" ? "ml-8 rounded-lg bg-indigo-50 p-3 dark:bg-indigo-950/50" : "mr-4 rounded-lg border border-slate-200 p-3 dark:border-slate-800"}>
                 <p className="mb-1 text-xs font-semibold text-slate-500">{m.role === "ogrenci" ? "Sen" : `Öğretmen (yapay zekâ${m.model ? ` · ${m.model}` : ""})`}</p>
-                <p className="whitespace-pre-wrap text-sm leading-relaxed">{m.content}</p>
+                {m.role === "ogretmen" ? <TeacherText text={m.content} /> : <p className="whitespace-pre-wrap text-sm leading-relaxed">{m.content}</p>}
                 {m.role === "ogretmen" && m.citations.length > 0 && (
                   <p className="mt-2 text-xs">
                     Kaynaklar:{" "}
