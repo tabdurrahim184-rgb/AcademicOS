@@ -1,0 +1,54 @@
+{
+  "name": "academicos-web",
+  "version": "0.3.0",
+  "private": true,
+  "description": "TÜRKMENOĞLU — Akademik ve Çalışma Asistanı (bulut web uygulaması)",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test",
+    "fixtures": "tsx scripts/make-fixtures.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "@napi-rs/canvas": "^0.1.100",
+    "@tesseract.js-data/tur": "^1.0.0",
+    "jszip": "^3.10.2",
+    "mammoth": "^1.13.0",
+    "next": "^15.5.27",
+    "openai": "^7.32.0",
+    "pg": "^8.23.1",
+    "react": "19.1",
+    "react-dom": "19.1",
+    "server-only": "^0.0.1",
+    "tesseract.js": "^7.0.0",
+    "unpdf": "^1.8.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@playwright/test": "1.56",
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.27",
+    "postcss": "^8.5.29",
+    "tailwindcss": "3.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
+  }
+}

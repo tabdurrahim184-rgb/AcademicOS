@@ -1,0 +1,9 @@
+# Linux konteynerinde çalışan dosyalar LF kalmalı; Windows betikleri CRLF.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.pdf binary
+*.pptx binary
+*.docx binary

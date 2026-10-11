@@ -1,0 +1,35 @@
+# Yerel / güvenli kullanım ortamı: PostgreSQL + AcademicOS. Yalnızca bu bilgisayardan erişilir (127.0.0.1).
+# Windows'ta: windows\AcademicOS-Baslat.bat (gizli değerleri .env.docker içinde kendisi üretir).
+# Elle: docker compose --env-file .env.docker up -d --build
+name: academicos
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD gerekli}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?APP_DB_PASSWORD gerekli}
+      OWNER_DB_PASSWORD: ${OWNER_DB_PASSWORD:?OWNER_DB_PASSWORD gerekli}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/docker-init.sql:/docker-entrypoint-initdb.d/00-roles.sql:ro
+    healthcheck:
+      # TCP üzerinden ve uygulama veritabanıyla kontrol: ilk kurulum betikleri bitmeden "hazır" sayılmaz.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d academicos"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env.docker
+    environment:
+      DATABASE_URL: postgres://academicos_app:${APP_DB_PASSWORD}@db:5432/academicos
+      DATABASE_URL_OWNER: postgres://academicos_owner:${OWNER_DB_PASSWORD}@db:5432/academicos
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  pgdata:
