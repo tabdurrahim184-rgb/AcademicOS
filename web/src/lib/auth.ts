@@ -23,7 +23,8 @@ export async function startSession(userId: string) {
   store.set(SESSION_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    // Yerel HTTP (127.0.0.1) kurulumunda COOKIE_SECURE=false; HTTPS arkasında true (varsayılan: üretimde true).
+    secure: process.env.COOKIE_SECURE ? process.env.COOKIE_SECURE === "true" : process.env.NODE_ENV === "production",
     path: "/",
     expires: expiresAt,
   });

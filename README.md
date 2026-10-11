@@ -10,11 +10,17 @@ takibini ve aralıklı tekrarını sağlar.
 
 ## En kolay kullanım: kendi bilgisayarında Docker ile
 
+**Windows 11:** Docker Desktop'ı kur, sonra `web\windows\AcademicOS-Baslat.bat` dosyasına çift tıkla.
+Betik eksik ayarları denetler, parolaları ve şifreleme anahtarını bilgisayarında üretir (`web\.env.docker`,
+yedeği `%LOCALAPPDATA%\AcademicOS`), mevcut veritabanını korur, hataları Türkçe gösterir ve Chrome'da
+`http://127.0.0.1:3000/kayit` adresini açar. Durdurmak: `AcademicOS-Durdur.bat` (veriler korunur). Ücretli API kapalıdır.
+
+**macOS / Linux:**
+
 ```bash
 cd web
-cp .env.docker.example .env.docker      # APP_ENCRYPTION_KEY vb. doldur
-export POSTGRES_PASSWORD=... APP_DB_PASSWORD=... OWNER_DB_PASSWORD=...
-docker compose up --build               # http://127.0.0.1:3000 (yalnızca bu bilgisayardan erişilir)
+cp .env.docker.example .env.docker      # parolalar, APP_ENCRYPTION_KEY ve COOKIE_SECURE=false ekle
+docker compose --env-file .env.docker up -d --build   # http://127.0.0.1:3000 (yalnızca bu bilgisayardan)
 ```
 
 ## Depo yapısı

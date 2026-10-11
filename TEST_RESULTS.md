@@ -38,5 +38,10 @@ Bir test sürüm numarasını sabit "2" bekliyordu; yedek biçimi bilinçli olar
 
 - **Gerçek DEBİM**: konteynerin ağ politikası `debim.neu.edu.tr`'yi engelliyor; üniversitenin web servis/anahtar sayfasını açık tutup tutmadığı bilinmiyor.
 - **Gerçek OpenAI / Anthropic** (öğretmen ve deşifre): ücretli API çağrısı yapılmadı; yanıt kalitesi ve Türkçe deşifre doğruluğu ölçülmedi.
-- **Docker imajı**: `docker compose config` doğrulandı; bu ortamda Docker sunucusu olmadığı için imaj derlenmedi.
+- **Docker imajı**: bu ortamda Docker sunucusu yok; imaj derlenmedi ve konteynerler çalıştırılmadı.
+- **Windows başlatıcısı** (`web/windows`): PowerShell 7 ile sözdizimi denetlendi ve sahte `docker` komutuyla senaryolar
+  çalıştırıldı (ilk kurulumda parola/anahtar üretimi, ikinci çalıştırmada dosyanın değişmemesi, `.env.docker` silinmişse
+  yedekten geri yükleme, yedek yoksa ve veri varsa durup hata verme). `docker-init.sql` gerçek PostgreSQL'de, üretim
+  modunda `COOKIE_SECURE=false` ile http://127.0.0.1 üzerinden kayıt/giriş Chromium'da denendi. **Gerçek Windows 11,
+  Windows PowerShell 5.1, Docker Desktop/WSL 2, Chrome'un açılması, `icacls` izinleri ve ARM64 Windows denenmedi.**
 - Gerçek mobil cihaz, ekran okuyucu ve yük testi.
